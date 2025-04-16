@@ -18,5 +18,8 @@ EXEC DeleteHoliday
   @HolidayId = 1,
   @WhoDeleted = 'HR';
 
-EXEC GetAllHoliday;
+EXEC GetHolidays;
 
+EXEC GetHolidays 
+  @HolidayListType = 'US Holiday',
+  @Year = 2025;
