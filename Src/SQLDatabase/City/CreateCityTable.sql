@@ -20,7 +20,6 @@ CREATE TABLE City_ (
 
     IsDeleted BIT DEFAULT 0,
 
-    -- Foreign Key Constraints
     CONSTRAINT FK_City_State FOREIGN KEY (StateId) REFERENCES State_(StateId),
     CONSTRAINT FK_City_Country FOREIGN KEY (CountryId) REFERENCES Country_(CountryId)
 );
