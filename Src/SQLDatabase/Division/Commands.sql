@@ -2,7 +2,7 @@ EXEC InsertDivision
     @DivisionName = 'DotNer',
     @ProjectManagerName = 'Rahul Suthar',
     @PrefixName = '.NET',
-    @HolidayId = 1, -- should exist in Holiday_
+    @HolidayId = 1,
     @ManHours = 8,
     @WhoInserted = 'HR';
 
