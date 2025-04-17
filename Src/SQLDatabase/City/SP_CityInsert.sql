@@ -2,7 +2,7 @@ CREATE OR ALTER PROCEDURE SP_CityInsert
     @Fk_StateId INT,
     @CityName NVARCHAR(100),
     @CityStatus BIT,
-    @CreatedBy NVARCHAR(50)
+    @CreatedBy INT
 AS
 BEGIN
     INSERT INTO Tbl_CityMaster (
