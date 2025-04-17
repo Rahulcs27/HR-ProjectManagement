@@ -1,19 +1,19 @@
-EXEC SP_AddCity 
+EXEC SP_CityInsert 
     @Fk_StateId = 1,              
     @CityName = 'Pune',
     @CityStatus = 1,
-    @CreatedBy = 'HR';
+    @CreatedBy = 1;
 
 EXEC SP_CityUpdate 
-    @CityId = 1,                  
+    @CityId = 2,                  
     @Fk_StateId = 1,              
     @CityName = 'Mumbai',
     @CityStatus = 1,
-    @UpdatedBy = 'HR';
+    @UpdatedBy = 1;
 
 EXEC SP_CityDelete
     @CityId = 1,                   
-    @UpdatedBy = 'admin';
+    @UpdatedBy = 1;
 
 EXEC SP_GetAllCities;
 

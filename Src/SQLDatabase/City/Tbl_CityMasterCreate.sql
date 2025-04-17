@@ -2,10 +2,10 @@ CREATE TABLE [dbo].[Tbl_CityMaster] (
     [CityId] INT IDENTITY(1,1) NOT NULL,
     [Fk_StateId] INT NOT NULL,                       
     [CityName] NVARCHAR(100) NULL,
-    [CreatedBy] NVARCHAR(50) NULL,
+    [CreatedBy] INT NULL,
     [CreatedDate] DATETIME2(7) NULL,
 
-    [UpdatedBy] NVARCHAR(50) NULL,
+    [UpdatedBy] INT NULL,
     [UpdatedDate] DATETIME2(7) NULL,
 
     [CityStatus] BIT NULL,                       

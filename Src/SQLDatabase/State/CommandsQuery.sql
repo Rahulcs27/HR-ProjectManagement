@@ -3,7 +3,7 @@ EXEC SP_StateInsert
     @StateName = 'Maharashtra',
     @StateCode = 'MH',
     @StateStatus = 1,
-    @CreatedBy = 'HR';
+    @CreatedBy = 1;
 
 EXEC SP_StateUpdate 
     @StateId = 2,                    
@@ -11,11 +11,11 @@ EXEC SP_StateUpdate
     @StateName = 'Gujarat',
     @StateCode = 'GJ',
     @StateStatus = 1,
-    @UpdatedBy = 'HR';
+    @UpdatedBy = 1;
 
 EXEC SP_StateDelete 
     @StateId = 1,                    
-    @UpdatedBy = 'HR';
+    @UpdatedBy = 1;
 
 EXEC SP_GetAllStates;
 
@@ -24,3 +24,4 @@ EXEC SP_GetStateById
 
 
 
+select * from Tbl_StateMaster

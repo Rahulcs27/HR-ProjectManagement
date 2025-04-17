@@ -1,10 +1,10 @@
-CREATE PROCEDURE SP_StateUpdate
+CREATE or Alter PROCEDURE SP_StateUpdate
     @StateId INT,
     @Fk_CountryId INT,
     @StateName NVARCHAR(100),
     @StateCode CHAR(3),
     @StateStatus BIT,
-    @UpdatedBy NVARCHAR(50)
+    @UpdatedBy INT
 AS
 BEGIN
     UPDATE Tbl_StateMaster

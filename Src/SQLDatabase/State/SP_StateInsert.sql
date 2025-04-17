@@ -1,9 +1,9 @@
-CREATE PROCEDURE SP_StateInsert
+CREATE OR ALTER PROCEDURE SP_StateInsert
     @Fk_CountryId INT,
     @StateName NVARCHAR(100),
     @StateCode CHAR(3),
     @StateStatus BIT,
-    @CreatedBy NVARCHAR(50)
+    @CreatedBy INT
 AS
 BEGIN
     INSERT INTO Tbl_StateMaster (

@@ -1,6 +1,6 @@
-CREATE PROCEDURE SP_StateDelete
+CREATE or Alter PROCEDURE SP_StateDelete
     @StateId INT,
-    @UpdatedBy NVARCHAR(50)
+    @UpdatedBy INT
 AS
 BEGIN
     UPDATE Tbl_StateMaster

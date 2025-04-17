@@ -3,7 +3,7 @@ CREATE OR ALTER PROCEDURE SP_CityUpdate
     @Fk_StateId INT,
     @CityName NVARCHAR(100),
     @CityStatus BIT,
-    @UpdatedBy NVARCHAR(50)
+    @UpdatedBy INT
 AS
 BEGIN
     UPDATE Tbl_CityMaster
