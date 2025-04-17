@@ -22,7 +22,10 @@ export class LoginComponent {
   loginUser(loginForm: NgForm) {
     this.login = loginForm.value;
     console.log(this.login);
-    this.router.navigate(['/otp']);
+    this.router.navigate(['/otp'])
+    // this.router.navigate(['/sidebar'])  reduect to sidebar not for forst login 
+    ;
+;
 
     // this.userService.login(this.loginModel).subscribe({
     //   next: (response: AuthResponseModel) => {
