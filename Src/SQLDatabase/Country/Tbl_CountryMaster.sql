@@ -4,7 +4,7 @@ Go
 
 Create Table Tbl_CountryMaster(
 
- CountryId int Identity (1,1) primary key,
+ CountryId int Identity (1,1),
  CountryName NVARCHAR(100) null,
  CountryCode CHAR(3) null,
  
@@ -15,7 +15,9 @@ Create Table Tbl_CountryMaster(
  UpdatedBy NVARCHAR(50) null,
  UpdatedDate DateTime2 null,
 
- CountryStatus BIT null
+ CountryStatus BIT null,
+
+ CONSTRAINT PK_Tbl_CountryMaster PRIMARY KEY (CountryId)
 
 );
 
