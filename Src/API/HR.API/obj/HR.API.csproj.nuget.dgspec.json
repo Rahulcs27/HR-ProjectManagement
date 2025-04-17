@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {}
+    "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {
+    "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+        "projectUniqueName": "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
         "projectName": "HR.API",
-        "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+        "projectPath": "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
+        "outputPath": "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
