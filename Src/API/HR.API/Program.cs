@@ -1,4 +1,7 @@
 
+using HR.Identity;
+using HR.Persistence;
+
 namespace HR.API
 {
     public class Program
@@ -8,6 +11,11 @@ namespace HR.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddIdentityServices(builder.Configuration);
+            builder.Services.AddInterfaceServices(builder.Configuration);
+           // builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+            
+           // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
