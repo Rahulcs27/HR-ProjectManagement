@@ -1,25 +1,26 @@
-CREATE PROCEDURE UpdateDivision
+
+CREATE OR ALTER PROCEDURE SP_DivisionUpdate
     @DivisionId INT,
     @DivisionName NVARCHAR(75),
     @ProjectManagerName NVARCHAR(100),
     @PrefixName NVARCHAR(20),
-    @HolidayId INT,
+    @Fk_HolidayId INT,
     @ManHours FLOAT,
     @DivisionStatus BIT,
-    @WhoUpdated NVARCHAR(50)
+    @UpdatedBy INT
 AS
 BEGIN
-    UPDATE Division_
+    UPDATE Tbl_DivisionMaster
     SET 
         DivisionName = @DivisionName,
         ProjectManagerName = @ProjectManagerName,
         PrefixName = @PrefixName,
-        HolidayId = @HolidayId,
+        Fk_HolidayId = @Fk_HolidayId,
         ManHours = @ManHours,
         DivisionStatus = @DivisionStatus,
-        WhoUpdated = @WhoUpdated,
-        WhenUpdated = GETDATE()
+        UpdatedBy = @UpdatedBy,
+        UpdatedDate = GETDATE()
     WHERE DivisionId = @DivisionId;
 
     SELECT 'Division Updated Successfully' AS Message;
-END
+END;

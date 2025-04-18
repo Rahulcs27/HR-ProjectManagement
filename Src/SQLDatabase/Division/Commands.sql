@@ -1,26 +1,8 @@
-EXEC InsertDivision 
-    @DivisionName = 'DotNer',
-    @ProjectManagerName = 'Rahul Suthar',
-    @PrefixName = '.NET',
-    @HolidayId = 1,
-    @ManHours = 8,
-    @WhoInserted = 'HR';
-
-
-EXEC UpdateDivision 
-    @DivisionId = 1,
-    @DivisionName = 'Angular',
-    @ProjectManagerName = 'Rahul Suthar',
-    @PrefixName = 'ANG',
-    @HolidayId = 1,
-    @ManHours = 7.5,
+ EXEC SP_DivisionInsert 
+    @DivisionName = 'SDT-US-TEKLA',
+    @ProjectManagerName = 'Akhilesh',
+    @PrefixName = 'SDT',
+    @Fk_HolidayId = 1,
+    @ManHours = 8.0,
     @DivisionStatus = 1,
-    @WhoUpdated = 'HR';
-
-EXEC DeleteDivision 
-    @DivisionId = 1,
-    @WhoDeleted = 'HR';
-
-EXEC GetAllDivisions;
-
-EXEC GetDivisionById @DivisionId = 1;
+    @CreatedBy = 1;
