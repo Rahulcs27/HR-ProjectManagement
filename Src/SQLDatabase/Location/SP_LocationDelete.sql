@@ -1,15 +1,15 @@
-Create procedure DeleteLocation_
+Create procedure SP_LocationDelete
 	@LocationId int,
-	@DeletedBy Nvarchar(20)
+	@UpdatedBy int
 
 As
 Begin
 
-UPDATE Location_
+UPDATE Tbl_LocationMaster
 	set LocationStatus = 0,
-	WhoDeleted = @DeletedBy,
-	WhenDeleted = GetDate(),
-	Action = 'Delete'
+	UpdatedBy = @UpdatedBy,
+	UpdatedDate = GetDate()
+	
 	where LocationId = @LocationId 
 
 	SELECT 'Location Deleted Successfully' AS Message;
