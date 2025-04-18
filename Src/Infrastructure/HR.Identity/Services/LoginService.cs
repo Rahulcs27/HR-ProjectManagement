@@ -20,7 +20,7 @@ namespace HR.Identity.Services
         }
         public async Task<LoginResponse> Login(LoginRequest loginRequest)
         {
-            var userexists = await _userManager.FindByIdAsync(loginRequest.UserName);
+            var userexists = await _userManager.FindByNameAsync(loginRequest.UserName);
             //FindByEmailAsync(loginRequest.UserName)
             if (userexists == null)
             {
@@ -43,6 +43,7 @@ namespace HR.Identity.Services
                 await _userManager.UpdateAsync(userexists);
                 //_idbcontext.Users.Update(userexists);
                 //await _userManager.SaveChanges
+                return response;
             }
             return null;
         }
