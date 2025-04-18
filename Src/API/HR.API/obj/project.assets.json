@@ -2034,6 +2034,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "HR.Application": "1.0.0",
           "Microsoft.AspNetCore.Identity": "2.3.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.15",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.15"
@@ -5170,23 +5171,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+      "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
       "projectName": "HR.API",
-      "projectPath": "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
+      "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5202,14 +5203,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
+            "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
+              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
             },
-            "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
+            "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
+              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
             },
-            "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj"
+            "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
+              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj"
             }
           }
         }
@@ -5269,13 +5270,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\user\\Desktop\\demo project\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
