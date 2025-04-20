@@ -11,8 +11,7 @@ namespace HR.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddIdentityServices(builder.Configuration);
-            builder.Services.AddInterfaceServices(builder.Configuration);
+
            // builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
             
            // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
