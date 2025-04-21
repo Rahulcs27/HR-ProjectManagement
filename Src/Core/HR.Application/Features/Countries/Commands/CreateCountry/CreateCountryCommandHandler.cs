@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Application.Features.Countries.Commands.Dtos;
-using HR.Application.Interface;
 using MediatR;
 
 namespace HR.Application.Features.Countries.Commands.CreateCountry;

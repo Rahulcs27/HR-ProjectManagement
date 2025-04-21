@@ -7,12 +7,13 @@ import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 import { Router, NavigationEnd } from '@angular/router';
+import { CountryComponent } from './features/Master/settings/country/country.component';
 
 
 @Component({
 
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LefSideNavComponent, CommonModule],
+  imports: [RouterOutlet, HeaderComponent, LefSideNavComponent, CommonModule,CountryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Application.Features.Countries.Commands.CreateCountry;
 using HR.Application.Features.Countries.Commands.Dtos;
 using HR.Application.Features.Countries.Commands.UpdateCountry;
-using HR.Application.Interface;
 using HR.Domain.Entities;
 using HR.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -66,6 +66,7 @@ namespace HR.Persistence.Repositories
 
     public async Task<CountryDto> GetByIdAsync(int id)
     {
+   
         return await _context.CountryDtos.FromSqlRaw("EXEC SP_GetCountryById @CountryId = {0}", id).FirstOrDefaultAsync();
     }
 }

@@ -1,5 +1,5 @@
 using System;
-using HR.Application.Interface;
+using HR.Application.Contracts.Models.Persistence;
 using MediatR;
 
 namespace HR.Application.Features.Countries.Commands.DeleteCountry;
