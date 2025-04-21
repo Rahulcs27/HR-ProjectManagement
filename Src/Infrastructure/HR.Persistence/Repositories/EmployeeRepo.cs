@@ -32,7 +32,7 @@ namespace HR.Persistence.Repositories
             @LoginStatus = {10}, 
             @CreatedBy = {11}";
 
-
+            Console.WriteLine("djfjdfnkjewf");
             await _appDbContext.Database.ExecuteSqlRawAsync(sql,
                  employee.UserName,
                  employee.Email,
