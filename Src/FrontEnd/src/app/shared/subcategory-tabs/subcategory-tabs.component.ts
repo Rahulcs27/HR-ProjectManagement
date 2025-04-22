@@ -1,12 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CountryComponent } from '../../features/Master/settings/country/country.component';
+// import more...
 
 @Component({
   selector: 'app-subcategory-tabs',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CountryComponent,
+    // more components here
+  ],
   templateUrl: './subcategory-tabs.component.html',
-  imports: [CommonModule],
+  styleUrls: ['./subcategory-tabs.component.css'],
 })
 export class SubcategoryTabsComponent {
+  isDropdownOpen = true;
+
   tabs: string[] = [
     'Country',
     'State',
@@ -33,6 +43,10 @@ export class SubcategoryTabsComponent {
   selectedTab: string = 'Country';
 
   @Output() tabChanged = new EventEmitter<string>();
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 
   selectTab(tab: string) {
     this.selectedTab = tab;

@@ -26,7 +26,7 @@ export class CountryService {
     return this.http.put<void>(`${this.apiUrl}`, updateDto);
   }
   
-softDeleteCountry(id: number): Observable<any> {
+softDeleteCountry(id: number, newStatus: number): Observable<any> {
   return this.http.delete(`${this.apiUrl}/${id}`);
 }
 

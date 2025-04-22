@@ -1,15 +1,12 @@
 <app-subcategory-tabs (tabChanged)="onTabChanged($event)"></app-subcategory-tabs>
 
-<!-- Conditional Rendering Based on Active Tab -->
 <div *ngIf="activeTab === 'Country'">
   <app-country></app-country>
 </div>
 
 <div *ngIf="activeTab === 'State'">
-  <!-- <app-state></app-state> -->
 </div>
 
 <div *ngIf="activeTab === 'City'">
-  <!-- <app-city></app-city> -->
 </div>
-
+ 

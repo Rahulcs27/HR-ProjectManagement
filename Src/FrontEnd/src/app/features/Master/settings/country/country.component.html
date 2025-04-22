@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <div class="text-end mb-3">
+  <!-- <div class="text-end mb-3">
   <button class="btn"style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" (click)="toggleForm()">+ Add Country</button>
   </div>
   <form *ngIf="showForm" [formGroup]="countryForm" (ngSubmit)="onSubmit()" class="mb-4 row g-3">
@@ -24,7 +24,49 @@
     <div class="col-md-4 d-flex align-items-end">
       <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Add' }}</button>
     </div>
-  </form>
+  </form> -->
+  <div class="text-end mb-3">
+    <button type="button" class="btn" style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" data-bs-toggle="modal" data-bs-target="#countryModal" (click)="openAddModal()">
+      + Add Country
+    </button>
+  </div>
+  
+  <div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="countryModalLabel">{{ isEditMode ? 'Edit Country' : 'Add New Country' }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="countryForm" (ngSubmit)="onSubmit()" class="row g-3">
+            <div class="col-md-6">
+              <label for="countryName" class="form-label">Country Name:</label>
+              <input type="text" id="countryName" class="form-control" formControlName="countryName">
+            </div>
+  
+            <div class="col-md-6">
+              <label for="countryCode" class="form-label">Country Code:</label>
+              <input type="text" id="countryCode" class="form-control" formControlName="countryCode">
+            </div>
+  
+            <div class="col-12">
+              <label for="status" class="form-label">Status:</label>
+              <select id="status" class="form-control" formControlName="status">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+            </div>
+  
+            <div class="col-12 d-flex justify-content-end">
+              <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Add' }}</button>
+              <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal" (click)="resetForm()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <table class="table table-bordered text-center">
     <thead class="table-white">
