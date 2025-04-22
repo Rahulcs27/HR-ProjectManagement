@@ -18,23 +18,24 @@ namespace HR.Persistence.Repositories
         public async Task<EmployeeMaster> AddEmployee(CreateEmployeeMasterDto employee)
         {
 
-            string sql = @"EXEC SP_EmployeeModuleInsert 
+            string sql = @"EXEC sp_EmployeeInsert 
             @UserName = {0}, 
-            @Email = {1}, 
-            @Password = {2}, 
-            @Profile = {3}, 
-            @Name = {4}, 
-            @EmployeeCode = {5}, 
-            @Fk_DesignationId = {6}, 
-            @Fk_BranchId = {7}, 
-            @Fk_DivisionId = {8}, 
-            @Fk_EmployeeTypeId = {9}, 
-            @LoginStatus = {10}, 
-            @CreatedBy = {11}";
+            @Employeename = {1},
+            @Email = {2}, 
+            @Password = {3}, 
+            @Profile = {4}, 
+            @Name = {5}, 
+            @EmployeeCode = {6}, 
+            @Fk_DesignationId = {7}, 
+            @Fk_BranchId = {8}, 
+            @Fk_DivisionId = {9}, 
+            @Fk_EmployeeTypeId = {10}, 
+            @LoginStatus = {11}, 
+            @CreatedBy = {12}";
 
-            Console.WriteLine("djfjdfnkjewf");
             await _appDbContext.Database.ExecuteSqlRawAsync(sql,
                  employee.UserName,
+                 employee.EmployeeName,
                  employee.Email,
                  employee.Password,
                  employee.Profile,
@@ -52,6 +53,7 @@ namespace HR.Persistence.Repositories
             return new EmployeeMaster
             {
                 UserName = employee.UserName,
+                EmployeeName = employee.EmployeeName,
                 Email = employee.Email,
                 Password = employee.Password,
                 Profile = employee.Profile,
@@ -68,8 +70,13 @@ namespace HR.Persistence.Repositories
 
 
 
-
-
+        public async Task<List<Employee>> GetAllEmployee()
+        {
+            return await _appDbContext.Employees
+                .FromSqlRaw("EXEC sp_Employee")
+                .ToListAsync();
+        }
 
     }
+
 }

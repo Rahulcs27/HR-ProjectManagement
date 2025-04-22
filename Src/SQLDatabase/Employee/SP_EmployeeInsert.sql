@@ -1,4 +1,5 @@
 CREATE OR ALTER PROCEDURE sp_EmployeeInsert
+	
     @EmployeeName VARCHAR(100),
     @Fk_BranchId INT,
     @Address VARCHAR(250),
@@ -59,3 +60,5 @@ BEGIN
         @CreatedBy, GETDATE()
     );
 END;
+
+select * from Tbl_EmployeeMaster;
