@@ -1,15 +1,37 @@
-EXEC sp_EmployeeModuleInsert
-    @UserName = 'johndoe',
-    @Email = 'johndoe@example.com',
-    @Password = 'password123',
-    @Profile = 'Software Engineer',
-    @Name = 'John Doe',
-    @EmployeeCode = 'EMP001',
-    @Fk_DesignationId = 1,      -- Assuming Designation ID 1
-    @Fk_BranchId = 1,          -- Assuming Branch ID 1
-    @Fk_DivisionId = 1,        -- Assuming Division ID 1
-    @Fk_EmployeeTypeId = 1,    -- Assuming Employee Type ID 1
-    @LoginStatus = 1,          -- '1' for active login
-    @CreatedBy = 1;            -- Assuming the creator's ID is 1
+EXEC SP_EmployeeMasterInsert
+    @EmployeeName = 'John Doe', 
+    @Fk_BranchId = 1, 
+    @Address = '123 Main St', 
+    @Mobile = '1234567890', 
+    @SkypeId = 'johndoe123', 
+    @CcEmail = 'johndoe@example.com', 
+    @Fk_HeadDesignationId = 1, 
+    @JoinDate = '2025-01-01', 
+    @DutyHour = '09:00:00', 
+    @LeftCompany = 0, 											 
+    @LeftDate = NULL, 
+    @UserName = 'johndoe', 
+    @Password = 'password123', 
+    @AadharNumber = '123456789012', 
+    @EmployeeCode = 'EMP124', 
+    @Fk_DesignationId = 1, 
+    @Fk_DivisionId = 1, 
+    @Fk_LocationId = 1, 
+    @Fk_UserGroupId = 1, 
+    @PinCode = 123456, 
+    @Email = 'johndoe@example.com', 
+    @BccEmail = 'manager@example.com', 
+    @PANNumber = 'ABCDE1234F', 
+    @Fk_GenderId = 1, 
+    @BirthDate = '1990-01-01', 
+    @Fk_ShiftId = 1, 
+    @Photo = NULL, 
+    @Signature = NULL, 
+    @Fk_EmployeeTypeId = 1, 
+    @LoginStatus = 'Active', 
+    @SignaturePath = 'path/to/signature', 
+    @CreatedBy = 1;
 
-	Select * from Tbl_EmployeeModuleMaster;
+
+	SELECT * FROM Tbl_EmployeeMaster WHERE EmployeeCode = 'EMP123';
+

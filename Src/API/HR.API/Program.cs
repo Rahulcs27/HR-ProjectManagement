@@ -26,7 +26,7 @@ namespace HR.API
 
             // Register Repositories
             builder.Services.AddScoped<ITimeSheetRepository, TimeSheetRepo>();
-            builder.Services.AddScoped<IEmployeeMasterRepository, EmployeeRepo>();
+            builder.Services.AddScoped<IEmployeeMasterRepository, EmployeeRepository>();
 
             // Register AutoMapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));  // Ensure MappingProfile is the correct profile class

@@ -1,4 +1,4 @@
-﻿using HR.Domain.Entity;
+﻿using HR.Application.Features.Employee.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace HR.Persistence
@@ -6,16 +6,15 @@ namespace HR.Persistence
     public class AppDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
+        { }
+        public DbSet<EmployeeDto> Employees { get; set; }
 
-        }
 
 
-        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>().HasNoKey();
+            modelBuilder.Entity<EmployeeDto>().HasNoKey();
         }
     }
 }

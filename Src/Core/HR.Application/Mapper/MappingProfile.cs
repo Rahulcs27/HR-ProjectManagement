@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using HR.Application.Features.Employee.Commands.CreateEmployeeMaster;
-using HR.Application.Features.Query;
 using HR.Application.Features.TimeSheet.Commands.CreateTimeSheet;
 using HR.Domain.Entity;
 
@@ -17,7 +15,7 @@ namespace HR.Application.Mapper
             CreateMap<CreateEmployeeMasterDto, EmployeeMaster>();
             CreateMap<EmployeeMaster, CreateEmployeeMasterDto>();
 
-            CreateMap<Employee, GetEmployeeVm>();
+            //CreateMap<Employee, GetEmployeeVm>();
 
         }
     }
