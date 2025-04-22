@@ -8,12 +8,13 @@ import { CommonModule } from '@angular/common';
 
 import { Router, NavigationEnd } from '@angular/router';
 import { CountryComponent } from './features/Master/settings/country/country.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
 
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LefSideNavComponent, CommonModule,CountryComponent],
+  imports: [RouterOutlet, HeaderComponent, LefSideNavComponent, CommonModule,ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 

@@ -1,1 +1,69 @@
-<p>country works!</p>
+<div class="container mt-4">
+  <div class="text-end mb-3">
+  <button class="btn"style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" (click)="toggleForm()">+ Add Country</button>
+  </div>
+  <form *ngIf="showForm" [formGroup]="countryForm" (ngSubmit)="onSubmit()" class="mb-4 row g-3">
+    <div class="col-md-4">
+      <label for="countryName" class="form-label">Country Name:</label>
+      <input type="text" id="countryName" class="form-control" formControlName="countryName">
+    </div>
+
+    <div class="col-md-4">
+      <label for="countryCode" class="form-label">Country Code:</label>
+      <input type="text" id="countryCode" class="form-control" formControlName="countryCode">
+    </div>
+
+    <div *ngIf="isEditMode" class="col-md-4">
+      <label for="status" class="form-label">Status:</label>
+      <select id="status" class="form-control" formControlName="status">
+        <option [value]="true">Active</option>
+        <option [value]="false">Inactive</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 d-flex align-items-end">
+      <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Add' }}</button>
+    </div>
+  </form>
+
+  <table class="table table-bordered text-center">
+    <thead class="table-white">
+      <tr>
+        <th class="table-secondary">Sr.</th>
+        <th>Country Name</th>
+        <th>Country Code</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-secondary" *ngIf="countries && countries.length > 0; else noData">
+      <tr *ngFor="let country of countries; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ country.countryName }}</td>
+        <td>{{ country.countryCode }}</td>
+        <td>
+          <select class="form-select" [(ngModel)]="country.countryStatus" (change)="onStatusChange(country)">
+            <option [value]="country.countryStatus">Active</option>
+            
+            <option value="false">Inactive</option>
+          </select>
+            
+        
+          
+        </td>
+        <td>
+          <button class="btn btn-sm btn-warning me-2" (click)="onEdit(country)"><i class="fas fa-edit"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <ng-template #noData>
+    <tr>
+      <td colspan="5">No countries found.</td>
+    </tr>
+  </ng-template>
+  
+  
+ 
+</div>

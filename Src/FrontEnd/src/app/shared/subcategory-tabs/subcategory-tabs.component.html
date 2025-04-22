@@ -1,0 +1,15 @@
+<div class="btn-group mb-3 w-100 flex-wrap" role="group">
+    <button
+      *ngFor="let tab of tabs"
+      type="button"
+      class="btn"
+      [ngClass]="{
+        'btn-secondary': selectedTab === tab,
+        'btn-outline-secondary': selectedTab !== tab
+      }"
+      (click)="selectTab(tab)"
+    >
+      {{ tab }}
+    </button>
+  </div>
+  
