@@ -4,7 +4,7 @@ CREATE TABLE dbo.Tbl_HolidayMaster(
 
     HolidayName NVARCHAR(30) NOT NULL,
     HolidayDate DATE NOT NULL,
-    HolidayListType NVARCHAR(50) NOT NULL,
+    HolidayListType BIT DEFAULT 1,
     Year INT NOT NULL,
     HolidayStatus BIT DEFAULT 1,           
 

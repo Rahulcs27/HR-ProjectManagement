@@ -19,6 +19,12 @@ namespace HR.Persistence
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IStateRepository, StateRepository>();
+            services.AddScoped<IDesignationRepository, DesignationRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IHolidayRepository, HolidayRepository>();
+
+
+
 
             return services;
         }
