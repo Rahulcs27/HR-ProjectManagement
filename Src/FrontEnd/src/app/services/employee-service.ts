@@ -19,7 +19,7 @@ export class EmployeeService {
       params.search = search;
     }
   
-    return this.http.get<any>(`https://localhost:7292/ALlEmployees?pageNumber=${page}&pageSize=${size}`, { params });
+    return this.http.get<any>(`${this.baseUrl}?pageNumber=${page}&pageSize=${size}`, { params });
   }
   
 }

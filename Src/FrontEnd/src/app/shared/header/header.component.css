@@ -2,8 +2,15 @@
 .header-box {
     border: 2px solid;
 }
+body {
+  padding-top: 80px; /* adjust according to header height */
+}
+
 
 .header {
+  position: sticky;
+top: 0;
+z-index: 1050;
     display: flex;
     justify-content: space-between;
     align-items: center;

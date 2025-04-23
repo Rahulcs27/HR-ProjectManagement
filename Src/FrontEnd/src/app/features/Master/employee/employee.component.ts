@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../../Models/employee-model';
 import { EmployeeService } from '../../../services/employee-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivateEmployeeComponent } from './activate-employee/activate-employee.component';
 import { InactivateEmployeeComponent } from './inactivate-employee/inactivate-employee.component';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { saveAs } from 'file-saver';
+
 
 
 
@@ -81,10 +85,14 @@ export class EmployeeComponent implements OnInit {
   openActivatePopup(emp: any): void {
     this.dialog.open(ActivateEmployeeComponent, {
       width: '1000px',
-     
       data: emp
+    }).afterClosed().subscribe(result => {
+      if (result === true) {
+        this.loadEmployees();
+      }
     });
   }
+  
   onSearch() {
     this.employeeService.getPagedEmployees(this.pageNumber, this.pageSize, this.searchText)
       .subscribe(res => {
@@ -92,5 +100,97 @@ export class EmployeeComponent implements OnInit {
         this.totalCount = res.totalCount;
       });
     }
+    exportexceldata():void{
+ const exceldata=this.employees.map((emp,i)=>{
+  const row:any ={};
+  this.columns.forEach(col=>{
+    if (col.key==="srNo"){
+      row['Sr.No']=(this.pageNumber-1)*this.pageSize+i+1;
+    }
+    else if(col.key=='loginStatus'){       
+       row['Status'] = emp[col.key] ? 'Active' : 'Inactive';
+    }
+    else if (col.key !== 'photo' && col.key !== 'action') {
+      row[col.label] = emp[col.key];
+    }
+
+  });
+  return row;
+ });
+ 
+ const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(exceldata);
+ const workbook: XLSX.WorkBook = { Sheets: { 'Employees': worksheet }, SheetNames: ['Employees'] };
+ const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+ const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+saveAs(data, 'Visible_Employees.xlsx');
+  }
+
+  exportVisibleDataAsPDF(): void {
+    const doc = new jsPDF('landscape'); // For wider tables
+    const pageWidth = doc.internal.pageSize.getWidth();
+  
+    // Header Title
+    doc.setFontSize(12);
+    doc.text('PAN GULF TECHNOLOGIES PVT.LTD', pageWidth / 2, 15, { align: 'center' });
+  
+    doc.setFontSize(10);
+    doc.text('Employee List Report', pageWidth / 2, 22, { align: 'center' });
+  
+    // Page No.
+    doc.setFontSize(10);
+    doc.text(`PAGE 1 of 1`, pageWidth - 30, 15);
+  
+    // Table Headers
+    const tableHeaders = [
+      [
+        'SR. NO.',
+        'Emp Name',
+        'Emp Code',
+        'Designation Name',
+        'Branch Name',
+        'Division Name',
+        'Employee Type',
+        'Login Status',
+      ],
+    ];
+  
+    // Table Data (Only visible employees)
+    const tableRows = this.employees.map((emp, i) => [
+      (this.pageNumber - 1) * this.pageSize + i + 1,
+      emp.empName,
+      emp.empCode,
+      emp.designationName,
+      emp.branchName,
+      emp.divisionName,
+      emp.employeeType,
+      emp.loginStatus ? 'Active' : 'Inactive',
+    ]);
+  
+    // Draw Table
+    autoTable(doc, {
+      head: tableHeaders,
+      body: tableRows,
+      startY: 30,
+      styles: {
+        fontSize: 8,
+        cellPadding: 2,
+      },
+      headStyles: {
+        fillColor: [0, 0, 0],
+        textColor: [255, 255, 255],
+        halign: 'center',
+      },
+      columnStyles: {
+        0: { cellWidth: 20 }, // Sr. No.
+        1: { cellWidth: 35 }, // Emp Name
+        // Add other column widths if needed
+      },
+    });
+  
+    // Save
+    doc.save('Employee_List_Report.pdf');
+  }
+  
 }
 
