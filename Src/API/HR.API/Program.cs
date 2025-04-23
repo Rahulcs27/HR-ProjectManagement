@@ -1,6 +1,7 @@
 using HR.Application;
 using HR.Application.Contracts.Persistence;
 using HR.Application.Mapper;
+using HR.Domain.Entity;
 using HR.Persistence;
 using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,12 @@ namespace HR.API
 
             // Register Application Services
             builder.Services.AddApplicationServices();
+            builder.Services.AddServiceRegistration(builder.Configuration);
+
+            //------------------------------------------------------------------------------------------
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+            builder.Services.AddTransient<IEmailService, EmailService>();
+            //------------------------------------------------------------------------------------------
 
             // Register Repositories
             builder.Services.AddScoped<ITimeSheetRepository, TimeSheetRepo>();
@@ -40,7 +47,7 @@ namespace HR.API
             builder.Services.AddCors(o => o.AddPolicy("MyPolicy",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
+                        builder.AllowAnyOrigin()
                                .AllowAnyMethod()
                                .AllowAnyHeader();
                     }));
