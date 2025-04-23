@@ -1,30 +1,4 @@
 <div class="container mt-4">
-  <!-- <div class="text-end mb-3">
-  <button class="btn"style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" (click)="toggleForm()">+ Add Country</button>
-  </div>
-  <form *ngIf="showForm" [formGroup]="countryForm" (ngSubmit)="onSubmit()" class="mb-4 row g-3">
-    <div class="col-md-4">
-      <label for="countryName" class="form-label">Country Name:</label>
-      <input type="text" id="countryName" class="form-control" formControlName="countryName">
-    </div>
-
-    <div class="col-md-4">
-      <label for="countryCode" class="form-label">Country Code:</label>
-      <input type="text" id="countryCode" class="form-control" formControlName="countryCode">
-    </div>
-
-    <div *ngIf="isEditMode" class="col-md-4">
-      <label for="status" class="form-label">Status:</label>
-      <select id="status" class="form-control" formControlName="status">
-        <option [value]="true">Active</option>
-        <option [value]="false">Inactive</option>
-      </select>
-    </div>
-
-    <div class="col-md-4 d-flex align-items-end">
-      <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Add' }}</button>
-    </div>
-  </form> -->
   <div class="text-end mb-3">
     <button type="button" class="btn" style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" data-bs-toggle="modal" data-bs-target="#countryModal" (click)="openAddModal()">
       + Add Country

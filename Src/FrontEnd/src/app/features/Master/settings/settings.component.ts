@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 import { CountryComponent } from './country/country.component';
 import { CommonModule } from '@angular/common';
 import { SubcategoryTabsComponent } from '../../../shared/subcategory-tabs/subcategory-tabs.component';
+import { StateComponent } from './state/state-component.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [ReactiveFormsModule,CountryComponent,CommonModule,SubcategoryTabsComponent],
+  imports: [ReactiveFormsModule,CountryComponent,CommonModule,SubcategoryTabsComponent,StateComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })

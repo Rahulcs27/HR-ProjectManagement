@@ -1,4 +1,4 @@
-CREATE or Alter PROCEDURE SP_StateUpdate
+CREATE or Alter PROCEDURE dbo.SP_StateUpdate
     @StateId INT,
     @Fk_CountryId INT,
     @StateName NVARCHAR(100),
