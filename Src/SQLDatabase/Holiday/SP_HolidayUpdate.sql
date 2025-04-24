@@ -1,8 +1,8 @@
-CREATE OR ALTER PROCEDURE SP_HolidayUpdate
+CREATE OR ALTER PROCEDURE dbo.SP_HolidayUpdate
     @HolidayId INT,
     @HolidayName NVARCHAR(30),
     @HolidayDate DATE,
-    @HolidayListType NVARCHAR(50),
+    @HolidayListType BIT,
     @Year INT,
     @HolidayStatus BIT,
     @UpdatedBy INT

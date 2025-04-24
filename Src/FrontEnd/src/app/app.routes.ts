@@ -6,10 +6,16 @@ import { SettingsComponent } from './features/Master/settings/settings.component
 import { ChangePasswordComponent } from './features/Profile/change-password/change-password.component';
 import { LefSideNavComponent } from './shared/lef-side-nav/lef-side-nav.component';
 import { GmcComponent } from './features/Master/gmc/gmc.component';
+import { CountryComponent } from './features/Master/settings/country/country.component';
+import { StateComponent } from './features/Master/settings/state/state-component.component';
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'country', component: CountryComponent },
+  { path: 'state', component: StateComponent },
+
+
   { path: 'changePassword', component: ChangePasswordComponent },
   {path:"gmc",component:GmcComponent},
 

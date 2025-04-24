@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <div class="text-end mb-3">
+    <button type="button" class="btn" style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" data-bs-toggle="modal" data-bs-target="#countryModal" (click)="openAddModal()">
+      + Add Country
+    </button>
+  </div>
+  
+  <div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="countryModalLabel">{{ isEditMode ? 'Edit Country' : 'Add New Country' }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="countryForm" (ngSubmit)="onSubmit()" class="row g-3">
+            <div class="col-md-6">
+              <label for="countryName" class="form-label">Country Name:</label>
+              <input type="text" id="countryName" class="form-control" formControlName="countryName">
+            </div>
+  
+            <div class="col-md-6">
+              <label for="countryCode" class="form-label">Country Code:</label>
+              <input type="text" id="countryCode" class="form-control" formControlName="countryCode">
+            </div>
+  
+            <div class="col-12">
+              <label for="status" class="form-label">Status:</label>
+              <select id="status" class="form-control" formControlName="status">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+            </div>
+  
+            <div class="col-12 d-flex justify-content-end">
+              <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Add' }}</button>
+              <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal" (click)="resetForm()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered text-center">
+    <thead class="table-white">
+      <tr>
+        <th class="table-secondary">Sr.</th>
+        <th>Country Name</th>
+        <th>Country Code</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-secondary" *ngIf="countries && countries.length > 0; else noData">
+      <tr *ngFor="let country of countries; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ country.countryName }}</td>
+        <td>{{ country.countryCode }}</td>
+        <td>
+          <select class="form-select" [(ngModel)]="country.countryStatus" (change)="onStatusChange(country)">
+            <option [value]="country.countryStatus">Active</option>
+            
+            <option value="false">Inactive</option>
+          </select>
+            
+        
+          
+        </td>
+        <td>
+          <button class="btn btn-sm btn-warning me-2" (click)="onEdit(country)"><i class="fas fa-edit"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <ng-template #noData>
+    <tr>
+      <td colspan="5">No countries found.</td>
+    </tr>
+  </ng-template>
+  
+  
+ 
+</div>

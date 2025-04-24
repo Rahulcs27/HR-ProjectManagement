@@ -1,6 +1,7 @@
 
 using HR.Identity;
 using HR.Persistence;
+using HR.Application;
 
 namespace HR.API
 {
@@ -11,11 +12,12 @@ namespace HR.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddIdentityServices(builder.Configuration);
-            builder.Services.AddInterfaceServices(builder.Configuration);
-           // builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-            
-           // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
+            builder.Services.AddApplicationServices();
+            builder.Services.AddPersistenceServices(builder.Configuration);
+
+            // builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+            // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,6 +25,10 @@ namespace HR.API
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+            app.UseCors(x => x
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
