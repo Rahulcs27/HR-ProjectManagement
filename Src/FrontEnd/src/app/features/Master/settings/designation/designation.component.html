@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <div class="text-end mb-3">
-      <button class="btn btn-primary" (click)="openAddModal()">+ Add Designation</button>
+      <button class="btn" style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" (click)="openAddModal()">+ Add Designation</button>
     </div>
   
     <!-- Modal -->
@@ -41,13 +41,13 @@
     <table class="table table-bordered text-center mt-4">
       <thead class="table-light">
         <tr>
-          <th>sr</th>
+          <th class="table-secondary">sr</th>
           <th>Designation Name</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-secondary">
         <tr *ngFor="let designation of designations; index as i">
           <td>{{ i + 1 }}</td>
           <td>{{ designation.designationName }}</td>
