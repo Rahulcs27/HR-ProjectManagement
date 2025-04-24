@@ -172,7 +172,7 @@ export class CityComponent implements OnInit, AfterViewInit {
       },
       error: (err) => {
         console.error('Error updating City status:', err);
-        this.loadStates(); 
+        this.loadCities(); 
       }
     });
   }

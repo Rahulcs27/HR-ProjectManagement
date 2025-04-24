@@ -1,0 +1,98 @@
+<div class="container mt-4">
+    <!-- Filter -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="filter.listType">
+          <option value="">Select Holiday List type</option>
+          <option value="1">US Holiday List</option>
+          <option value="0">Non-US Holiday List</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <input type="number" class="form-control" [(ngModel)]="filter.year" placeholder="Year" />
+      </div>
+      <div class="col-md-4 text-end">
+        <button class="btn btn-secondary" (click)="filterHolidays()">Search</button>
+      </div>
+    </div>
+  
+    <div class="text-end mb-3">
+      <button class="btn btn-primary" (click)="openAddModal()">+ Add New Holiday</button>
+    </div>
+  
+    <!-- Table -->
+    <table class="table table-bordered text-center">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Particular</th>
+          <th>Day</th>
+          <th>Date</th>
+          <th>Year</th>
+          <th>Holiday List</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let h of filteredResults; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ h.holidayName }}</td>
+          <td>{{ h.dayName }}</td>
+          <td>{{ h.formattedDate }}</td>
+          <td>{{ h.year }}</td>
+          <td>{{ h.holidayListType ? 'US Holiday List' : 'Non-US Holiday List' }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-2" (click)="onEdit(h)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="onStatusChange(h)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="holidayModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form [formGroup]="holidayForm" (ngSubmit)="onSubmit()" class="modal-body">
+            <h5 class="modal-title mb-3">{{ isEditMode ? 'Edit' : 'Add' }} Holiday</h5>
+  
+            <div class="mb-3">
+              <label class="form-label">Holiday Name</label>
+              <input type="text" class="form-control" formControlName="holidayName" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Date</label>
+              <input type="date" class="form-control" formControlName="holidayDate" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">List Type</label>
+              <select class="form-select" formControlName="holidayListType">
+                <option value="1">US Holiday</option>
+                <option value="0">Non-US Holiday</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Year</label>
+              <input type="number" class="form-control" formControlName="year" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select class="form-select" formControlName="status">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+            </div>
+            <div class="text-end">
+              <button class="btn btn-success" type="submit">{{ isEditMode ? 'Update' : 'Add' }}</button>
+              <button class="btn btn-secondary ms-2" data-bs-dismiss="modal" type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
