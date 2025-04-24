@@ -1,0 +1,99 @@
+<div class="container mt-4">
+    <div class="text-end mb-3">
+      <button class="btn" style="background-color: #e2e3e5; color: #41464b; border-color: #d3d6d8;" (click)="openAddModal()" data-bs-toggle="modal" data-bs-target="#cityModal">
+        + Add City
+      </button>
+    </div>
+  
+    <!-- City Modal -->
+    <div class="modal fade" id="cityModal" tabindex="-1" aria-labelledby="cityModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >{{ isEditMode ? 'Edit City' : 'Add New City' }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="cityForm" (ngSubmit)="onSubmit()" class="row g-3">
+              <div class="col-12">
+                <label class="form-label">Country</label>
+                <select class="form-select" formControlName="countryId" (change)="onCountryChange()">
+                  <option value="">Select Country</option>
+                  <option *ngFor="let country of countries" [value]="country.countryId">{{ country.countryName }}</option>
+                </select>
+              </div>
+  
+              <div class="col-12">
+                <label class="form-label">State</label>
+                <select class="form-select" formControlName="stateId">
+                  <option value="">Select State</option>
+                  <option *ngFor="let state of filteredStates" [value]="state.stateId">{{ state.stateName }}</option>
+                </select>
+              </div>
+  
+              <div class="col-12">
+                <label class="form-label">City Name</label>
+                <input type="text" class="form-control" formControlName="cityName" />
+              </div>
+  
+              <div class="col-12">
+                <!-- <label class="form-label">Status</label>
+                <select class="form-select" formControlName="citystatus">
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
+                </select> -->
+                <label for="cityStatus" class="form-label">Status:</label>
+                <select id="cityStatus" class="form-select" formControlName="cityStatus">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+              </div>
+  
+              <div class="col-12 text-end">
+                <button class="btn btn-success" data-bs-dismiss="modal" type="submit">{{ isEditMode ? 'Update' : 'Add' }}</button>
+                <button class="btn btn-secondary ms-2" type="button" data-bs-dismiss="modal" (click)="resetForm()">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- City Table -->
+    <table class="table table-bordered text-center mt-4">
+      <thead class="table-light">
+        <tr>
+          <th class="table-secondary">Sr.</th>
+          <th>City Name</th>
+          <th>State</th>
+          <th>Country</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="table-secondary">
+        <tr *ngFor="let city of cities; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ city.cityName }}</td>
+          <td>{{ city.stateName }}</td>
+          <td>{{ city.countryName }}</td>
+          <td>
+            <!-- <span [class]="'badge ' + (city.cityStatus ? 'bg-success' : 'bg-secondary')">
+              {{ city.cityStatus ? 'Active' : 'Inactive' }}
+            </span> -->
+            <select class="form-select" [(ngModel)]="city.cityStatus" (change)="onStatusChange( city)">
+                <option [value]="city.cityStatus">Active</option>
+                
+                <option value="false">Inactive</option>
+              </select>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="onEdit(city)" data-bs-toggle="modal" data-bs-target="#cityModal">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

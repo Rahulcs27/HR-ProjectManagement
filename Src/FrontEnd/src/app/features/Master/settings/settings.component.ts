@@ -5,10 +5,12 @@ import { CountryComponent } from './country/country.component';
 import { CommonModule } from '@angular/common';
 import { SubcategoryTabsComponent } from '../../../shared/subcategory-tabs/subcategory-tabs.component';
 import { StateComponent } from './state/state-component.component';
+import { CityComponent } from './city/city.component';
+import { DesignationComponent } from './designation/designation.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [ReactiveFormsModule,CountryComponent,CommonModule,SubcategoryTabsComponent,StateComponent],
+  imports: [ReactiveFormsModule,CountryComponent,CommonModule,SubcategoryTabsComponent,StateComponent,CityComponent,DesignationComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })
