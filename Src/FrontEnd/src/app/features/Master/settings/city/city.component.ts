@@ -144,7 +144,7 @@ export class CityComponent implements OnInit, AfterViewInit {
   }
 
   resetForm(): void {
-    this.cityForm.reset({ countryId: '', stateId: '', cityName: '', status: '1' });
+    this.cityForm.reset({ countryId: '', stateId: '', cityName: '', cityStatus: '1' });
     this.selectedCityId = null;
   }
 

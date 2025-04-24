@@ -43,7 +43,7 @@ export class DesignationComponent implements OnInit, AfterViewInit {
   initForm(): void {
     this.designationForm = this.fb.group({
       designationName: ['', Validators.required],
-      status: ['1', Validators.required]
+      designationStatus: ['1', Validators.required]
     });
   }
 
@@ -69,7 +69,7 @@ export class DesignationComponent implements OnInit, AfterViewInit {
 
   onSubmit(): void {
     if (this.designationForm.invalid) return;
-    const statusBool = this.designationForm.value.cityStatus === '1' ? true : false;
+    const statusBool = this.designationForm.value.designationStatus === '1' ? true : false;
 
     const payload = {
       designationName: this.designationForm.value.designationName,
@@ -78,12 +78,15 @@ export class DesignationComponent implements OnInit, AfterViewInit {
     const createdesignationpayload = {
       designationName: this.designationForm.value.designationName,
     };
+    console.log('designationStatus', statusBool);
+    console.log('payload', payload);
+
 
     if (this.isEditMode && this.selectedDesignationId) {
       const dto: UpdateDesignationDto = { ...payload, designationId: this.selectedDesignationId, updatedBy: 1 };
       this.designationService.updateDesignation(dto).subscribe(() => {
         this.getDesignations();
-        // this.modal.hide();
+        this.modal.hide();
         this.resetForm();
       });
     } 
@@ -91,7 +94,7 @@ export class DesignationComponent implements OnInit, AfterViewInit {
       const dto: CreateDesignationDto = { ...createdesignationpayload, createdBy: 1 };
       this.designationService.createDesignation(dto).subscribe(() => {
         this.getDesignations();
-        // this.modal.hide();
+        this.modal.hide();
         this.resetForm();
       });
     }

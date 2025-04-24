@@ -19,3 +19,4 @@ BEGIN
 
     SELECT 'State Updated Successfully' AS Message;
 END;
+SELECT * FROM dbo.Tbl_CountryMaster
