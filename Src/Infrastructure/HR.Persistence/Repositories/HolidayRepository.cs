@@ -57,7 +57,7 @@ namespace HR.Persistence.Repositories
         
         public async Task DeleteAsync(int id, int updatedBy)
         {
-            string sql = "EXEC SP_DeleteHoliday @HolidayId = {0}, @UpdatedBy = {1}";
+            string sql = "EXEC SP_HolidayDelete @HolidayId = {0}, @UpdatedBy = {1}";
             await _context.Database.ExecuteSqlRawAsync(sql, id, updatedBy);
         }
         public async Task<List<HolidayDto>> GetAllAsync()

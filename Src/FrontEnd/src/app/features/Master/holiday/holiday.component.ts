@@ -6,12 +6,13 @@ import { HolidayService } from '../../../services/holiday.service';
 import { UpdateHolidayDto } from './Models/update-holiday.dto';
 import { CreateHolidayDto } from './Models/create-holiday.dto';
 import { CommonModule } from '@angular/common';
-
+import { DatePickerModule } from 'primeng/datepicker';
 @Component({
   selector: 'app-holiday',
   templateUrl: './holiday.component.html',
   styleUrls: ['./holiday.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,DatePickerModule],
 
 })
 export class HolidayComponent implements OnInit, AfterViewInit {
@@ -26,6 +27,23 @@ export class HolidayComponent implements OnInit, AfterViewInit {
     listType: '',
     year: new Date().getFullYear()
   };
+
+  // onYearPicked(date: { year: number; month: number; day: number }) {
+  //   this.filter.year = date.year;
+  //   console.log('Selected year:', this.filter.year);
+  // }
+  filterYear: Date = new Date(); 
+  filternewYear: Date = new Date();
+
+  onYearSelect(event: Date): void {
+    const selectedYear = event.getFullYear();
+    this.filter.year = selectedYear;
+    console.log('Selected year:', selectedYear);
+  }
+    
+  
+  
+  
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +69,7 @@ export class HolidayComponent implements OnInit, AfterViewInit {
       holidayDate: ['', Validators.required],
       holidayListType: ['1', Validators.required],
       year: [new Date().getFullYear(), Validators.required],
-      status: ['1', Validators.required]
+      holidayStatus: [1, Validators.required]
     });
   }
 
@@ -72,6 +90,7 @@ export class HolidayComponent implements OnInit, AfterViewInit {
         dayName: this.getDayName(h.holidayDate),
         formattedDate: this.formatHolidayDate(h.holidayDate)
       }));
+      console.log('Holidays:', this.holidays);
       this.filterHolidays();
     });
   }
@@ -90,13 +109,16 @@ export class HolidayComponent implements OnInit, AfterViewInit {
   }
 
   onEdit(h: GetHolidayDto): void {
+    console.log('Editing holiday:', h);
     this.holidayForm.patchValue({
       holidayName: h.holidayName,
       holidayDate: h.holidayDate,
       holidayListType: h.holidayListType ? '1' : '0',
       year: h.year,
-      status: h.status ? '1' : '0'
+      holidayStatus: h.holidayStatus ? '1' : '0'
+
     });
+    console.log('Holiday Form Values:', this.holidayForm.value);
     this.selectedHolidayId = h.holidayId;
     this.isEditMode = true;
     this.modal.show();
@@ -110,7 +132,7 @@ export class HolidayComponent implements OnInit, AfterViewInit {
       holidayDate: this.holidayForm.value.holidayDate,
       holidayListType: this.holidayForm.value.holidayListType === '1',
       year: +this.holidayForm.value.year,
-      status: this.holidayForm.value.status === '1'
+      holidayStatus: this.holidayForm.value.holidayStatus === '1' ? true : false,
     };
 
     if (this.isEditMode && this.selectedHolidayId) {
@@ -119,6 +141,7 @@ export class HolidayComponent implements OnInit, AfterViewInit {
         this.loadHolidays();
         this.modal.hide();
       });
+      console.log('Update Payload:', dto);
     } else {
       const dto: CreateHolidayDto = { ...payload, createdBy: 1 };
       this.holidayService.createHoliday(dto).subscribe(() => {
@@ -134,27 +157,29 @@ export class HolidayComponent implements OnInit, AfterViewInit {
       holidayDate: '',
       holidayListType: '1',
       year: new Date().getFullYear(),
-      status: '1'
+      holidayStatus: '1'
     });
     this.selectedHolidayId = null;
   }
 
   onStatusChange(holiday: GetHolidayDto): void {
-      const confirmed = confirm(`Are you sure you want to mark "${holiday.holidayName}" as ${holiday.status ? 'Inactive' : 'Active'}?`);
+      const confirmed = confirm(`Are you sure you want to mark "${holiday.holidayName}" as ${holiday.holidayStatus ? 'Inactive' : 'Active'}?`);
   
       if (!confirmed) {
         this.loadHolidays(); 
         return;
       }
   
-      const newStatus = holiday.status ? 0 : 1; 
+      const newStatus = holiday.holidayStatus ? 0 : 1; 
   
       this.holidayService.softDeleteHoliday(holiday.holidayId, newStatus).subscribe({
         next: () => {
           this.loadHolidays(); 
         },
         error: (err) => {
-          console.error('Error updating City status:', err);
+          console.error('Error updating Holiday status:', err);
+          console.log('holiday id delete:', holiday.holidayId);
+
           this.loadHolidays(); 
         }
       });

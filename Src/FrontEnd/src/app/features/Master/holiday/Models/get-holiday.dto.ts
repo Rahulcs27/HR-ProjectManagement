@@ -5,7 +5,7 @@ export interface GetHolidayDto {
     holidayDate: string;
     holidayListType: boolean;
     year: number;
-    status: boolean;
+    holidayStatus: boolean;
     dayName?: string;
     formattedDate?: string;
   }

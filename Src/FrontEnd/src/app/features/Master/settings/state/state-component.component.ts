@@ -81,7 +81,7 @@ export class StateComponent implements OnInit, AfterViewInit {
       countryId: '',
       stateName: '',
       stateCode: '',
-      status: '1',
+      stateStatus: '1',
     });
     this.selectedStateId = null;
     this.isEditMode = false;
