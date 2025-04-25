@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+  UserName='';
   login: Login = new Login('', '',false);
   errorMessage='';
 

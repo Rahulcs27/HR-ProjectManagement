@@ -1,8 +1,9 @@
 export class Login {
     constructor(
-      public email: string,
+      public UserName: string,
       public password: string,
-      public rememberMe: boolean = false 
+      public rememberMe: boolean = false ,
+      
     ) {}
   }
 
