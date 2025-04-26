@@ -6,14 +6,18 @@ import { SettingsComponent } from './features/Master/settings/settings.component
 import { ChangePasswordComponent } from './features/Profile/change-password/change-password.component';
 import { LefSideNavComponent } from './shared/lef-side-nav/lef-side-nav.component';
 import { GmcComponent } from './features/Master/gmc/gmc.component';
+import { AuthGuard } from './auth.guard';
+
 export const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'changePassword', component: ChangePasswordComponent },
-  {path:"gmc",component:GmcComponent},
+  { path: 'otp', component: OtpComponent  },
+  
+  
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'gmc', component: GmcComponent, canActivate: [AuthGuard] },
+  { path: 'sidebar', component: LefSideNavComponent, canActivate: [AuthGuard] },
 
-  { path: 'otp', component: OtpComponent },
-  {path:'sidebar',component:LefSideNavComponent},
-  { path: '**', redirectTo: '' } 
+  { path: '**', redirectTo: '' }
 ];

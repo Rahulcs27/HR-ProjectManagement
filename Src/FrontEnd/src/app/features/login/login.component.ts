@@ -43,6 +43,7 @@ export class LoginComponent {
         console.error('Login failed!', error);
         alert("Invalid email or password. Please try again");
         console.log(error.error.message);
+        
       }
     });
   }
