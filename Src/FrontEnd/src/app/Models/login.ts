@@ -1,10 +1,17 @@
 export class Login {
     constructor(
-      public UserName: string,
+      public userName: string,
       public password: string,
       public rememberMe: boolean = false ,
       
     ) {}
   }
 
-
+export class AuthResponseModel {
+  constructor(
+    public email:string,
+    public username:string,
+    public otp:string,
+    otpExpiryTime:string
+  ) { }
+}

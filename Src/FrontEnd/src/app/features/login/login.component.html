@@ -5,13 +5,13 @@
     <h3>Welcome to PMS</h3>
     <p class="subheading">Employee Login</p>
 
-    <form #loginform="ngForm" (ngSubmit)="loginUser(loginform)">
+    <form #loginform="ngForm" (ngSubmit)="loginUser(loginform)"> 
       <input 
         type="text" 
         placeholder="UserName" 
-        name="UserName"
-        [(ngModel)]="login.UserName"
-        #userName="ngModel"
+        name="userName"
+        [(ngModel)]="login.userName"
+        #userName="ngModel" 
         required
       />
       <div *ngIf="userName.invalid && userName.touched" class="error-message" style="color: red;">
@@ -42,10 +42,15 @@
       </div>
 
       <button type="submit" class="login-btn" [disabled]="loginform.invalid">Login</button>
+      <div *ngIf="!formSubmitted && loginform.invalid" class="error-message" style="color: red;">
+        Please fill in all required fields.
+      </div>
+      
+       
       
     </form>
 
-    <a href="#" class="login-as-customer">Login As Customer</a>
+    <a href="#" class="login-as-customer">Forgot Password?</a>
 
     <footer>
       © 2018 Pan Gulf Technologies Pvt. Ltd. All rights reserved.
