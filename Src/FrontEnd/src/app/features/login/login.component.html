@@ -42,13 +42,46 @@
       </div>
 
       <button type="submit" class="login-btn" [disabled]="loginform.invalid">Login</button>
-      <div *ngIf="formSubmitted && loginform.invalid" class="error-message" style="color: red;">
+      <div *ngIf="!formSubmitted && loginform.invalid" class="error-message" style="color: red;">
         Please fill in all required fields.
       </div>
       
        
       
     </form>
+
+
+
+
+    <!-- OTP Modal -->
+<div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">Please Enter OTP sent to your Mail</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center gap-2">
+          <input type="text" maxlength="1" class="otp-input" [(ngModel)]="otpDigits[0]" (input)="moveToNext($event, 0)" (keydown.backspace)="moveToPrev($event, 0)">
+          <input type="text" maxlength="1" class="otp-input" [(ngModel)]="otpDigits[1]" (input)="moveToNext($event, 1)" (keydown.backspace)="moveToPrev($event, 1)">
+          <input type="text" maxlength="1" class="otp-input" [(ngModel)]="otpDigits[2]" (input)="moveToNext($event, 2)" (keydown.backspace)="moveToPrev($event, 2)">
+          <input type="text" maxlength="1" class="otp-input" [(ngModel)]="otpDigits[3]" (input)="moveToNext($event, 3)" (keydown.backspace)="moveToPrev($event, 3)">
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" (click)="verifyOtp()" [disabled]="isVerifying">
+    <span *ngIf="!isVerifying">Done</span>
+    <span *ngIf="isVerifying" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span *ngIf="isVerifying"> Verifying...</span>
+  </button>
+        <!-- <button type="button" class="btn btn-primary" (click)="verifyOtp()">Verify OTP</button> -->
+        <button type="button" class="btn btn-secondary" (click)="resendOtp()">Resend OTP</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <a href="#" class="login-as-customer">Forgot Password?</a>
 

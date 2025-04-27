@@ -1,52 +1,97 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core'; // <-- Added NgZone
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthResponseModel, Login } from '../../Models/login';
 import { UserService } from '../../services/user.service';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule,CommonModule,RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
-  UserName='';
-  login: Login = new Login('', '',false);
-  errorMessage='';
+export class LoginComponent implements OnInit {
+  UserName = '';
+  login: Login = new Login('', '', false);
+  otpDigits: string[] = ['', '', '', ''];
+  isVerifying = false;
+  errorMessage = '';
   formSubmitted = false;
 
-  constructor(private router:Router,private userService: UserService) {}
-  ngonInit() { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private ngZone: NgZone   // <-- Injected NgZone
+  ) {}
+
+  ngOnInit() { }
 
   loginUser(loginForm: NgForm) {
     this.login = loginForm.value;
-    console.log(this.login);
-    // this.router.navigate(['/otp'])
-    this.formSubmitted=true;
+    this.formSubmitted = true;
     if (loginForm.invalid) {
       return;
-    }   
+    }
     this.login = loginForm.value;
-    console.log(this.login);
-
 
     this.userService.login(this.login).subscribe({
       next: (response: AuthResponseModel) => {
-        console.log(response)
         localStorage.setItem('otp', response.otp);
-        localStorage.setItem('email', response.email);  
+        localStorage.setItem('email', response.email);
         loginForm.reset();
-        this.router.navigate(['/otp']);
-      }, error: (error) => {
+
+        const modalElement = document.getElementById('otpModal');
+        const otpModal = new bootstrap.Modal(modalElement);
+        otpModal.show();
+      },
+      error: (error) => {
         console.error('Login failed!', error);
         alert("Invalid email or password. Please try again");
-        console.log(error.error.message);
-        
       }
     });
   }
 
-  
+  verifyOtp() {
+    this.isVerifying = true;
+
+    setTimeout(() => {
+      const enteredOtp = this.otpDigits.join('');
+      const storedOtp = localStorage.getItem('otp');
+
+      if (enteredOtp === storedOtp) {
+        alert('OTP Verified Successfully!');
+        const modalElement = document.getElementById('otpModal');
+        const otpModal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+        otpModal.hide();
+        this.router.navigate(['/sidebar']);
+
+      } else {
+        alert('Incorrect OTP. Please try again.');
+      }
+
+      this.isVerifying = false;
+    }, 1500);
+  }
+
+  moveToNext(event: any, index: number) {
+    const input = event.target;
+    if (input.value.length === 1 && index < 3) {
+      const nextInput = input.parentElement.children[index + 1];
+      nextInput.focus();
+    }
+  }
+
+  moveToPrev(event: any, index: number) {
+    const input = event.target;
+    if (input.value.length === 0 && index > 0) {
+      const prevInput = input.parentElement.children[index - 1];
+      prevInput.focus();
+    }
+  }
+
+  resendOtp() {
+    alert('OTP Resent Successfully!');
+  }
 }
