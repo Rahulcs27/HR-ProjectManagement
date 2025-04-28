@@ -25,5 +25,10 @@ export class UserService {
   resetPassword(data: { email: string; otp: string; newPassword: string }) {
     return this.http.post<any>('your-backend-api-url/api/reset-password', data);
   }
+
+  sendForgotPasswordOtp(email: string) {
+    return this.http.post<any>(`https://localhost:7292/api/Login/send-otp?username=NS001`, { email });
+  }
+  
   
 }

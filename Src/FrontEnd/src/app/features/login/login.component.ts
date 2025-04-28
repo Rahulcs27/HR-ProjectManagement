@@ -126,11 +126,23 @@ forgotOtp: string = '';
 newPassword: string = '';
 confirmNewPassword: string = '';
 
-
 openForgotPasswordModal() {
-  const modalElement = document.getElementById('forgotPasswordModal');
-  const forgotPasswordModal = new bootstrap.Modal(modalElement);
-  forgotPasswordModal.show();
+  const email = prompt('Please enter your registered email:');
+  if (email) {
+    this.forgotEmail = email;
+    this.userService.sendForgotPasswordOtp(email).subscribe({
+      next: (response: any) => {
+        alert('OTP sent to your registered email.');
+        const modalElement = document.getElementById('forgotPasswordModal');
+        const forgotPasswordModal = new bootstrap.Modal(modalElement);
+        forgotPasswordModal.show();
+      },
+      error: (error) => {
+        console.error('Failed to send OTP!', error);
+        alert('Failed to send OTP. Please check your email and try again.');
+      }
+    });
+  }
 }
 
 submitForgotPassword() {
