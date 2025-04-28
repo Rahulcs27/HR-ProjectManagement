@@ -13,8 +13,17 @@ export class UserService {
     return this.http.post<AuthResponseModel>(`${this.apiUrl}`, loginUser);
   }
 
+  
+
   resendOtp(loginUser: Login): Observable<AuthResponseModel> {
     return this.http.post<AuthResponseModel>(`${this.apiUrl}/resend-otp`, loginUser);
   }
 
+
+  // --------------------------------------------------
+
+  resetPassword(data: { email: string; otp: string; newPassword: string }) {
+    return this.http.post<any>('your-backend-api-url/api/reset-password', data);
+  }
+  
 }

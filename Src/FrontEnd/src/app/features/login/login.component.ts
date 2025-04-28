@@ -4,14 +4,15 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthResponseModel, Login } from '../../Models/login';
 import { UserService } from '../../services/user.service';
-declare var bootstrap: any;
 
+declare var bootstrap: any;
 @Component({
   selector: 'app-login',
   imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']   
 })
+
 export class LoginComponent implements OnInit {
   UserName = '';
   login: Login = new Login('', '', false);
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   isVerifying = false;
   errorMessage = '';
   formSubmitted = false;
-
+ 
+  
   constructor(
     private router: Router,
     private userService: UserService,
@@ -61,11 +63,11 @@ export class LoginComponent implements OnInit {
       const storedOtp = localStorage.getItem('otp');
 
       if (enteredOtp === storedOtp) {
-        alert('OTP Verified Successfully!');
+        alert('OTP Verified Successfully!'); 
         const modalElement = document.getElementById('otpModal');
         const otpModal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
         otpModal.hide();
-        localStorage.setItem('isAuthenticated', 'true');
+       sessionStorage.setItem('isAuthenticated', 'true');
         this.router.navigate(['/dashboard']);
 
       } else {
@@ -114,4 +116,58 @@ export class LoginComponent implements OnInit {
     });
   }
   
+  // <!-- -----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+ 
+ 
+ 
+ 
+  forgotEmail: string = '';
+forgotOtp: string = '';
+newPassword: string = '';
+confirmNewPassword: string = '';
+
+
+openForgotPasswordModal() {
+  const modalElement = document.getElementById('forgotPasswordModal');
+  const forgotPasswordModal = new bootstrap.Modal(modalElement);
+  forgotPasswordModal.show();
+}
+
+submitForgotPassword() {
+  if (!this.forgotEmail || !this.forgotOtp || !this.newPassword || !this.confirmNewPassword) {
+    alert('Please fill all fields.');
+    return;
+  }
+
+  if (this.newPassword !== this.confirmNewPassword) {
+    alert('New Password and Confirm Password do not match.');
+    return;
+  }
+
+  const resetPasswordData = {
+    email: this.forgotEmail,
+    otp: this.forgotOtp,
+    newPassword: this.newPassword
+  };
+
+  this.userService.resetPassword(resetPasswordData).subscribe({
+    next: (response: any) => {
+      alert('Password reset successfully! Please login with new password.');
+      const modalElement = document.getElementById('forgotPasswordModal');
+      const forgotPasswordModal = bootstrap.Modal.getInstance(modalElement);
+      forgotPasswordModal.hide();
+    },
+    error: (error) => {
+      console.error('Password reset failed!', error);
+      alert('Failed to reset password. Please check your OTP and try again.');
+    }
+  });
+}
+
+
+
+
+
+    // <!-- -----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+
 }
