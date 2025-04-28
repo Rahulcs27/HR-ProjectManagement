@@ -1,4 +1,5 @@
-﻿using HR.Application.Features.Employee.Queries.GetAllEmployees;
+﻿
+using HR.Application.Features.Employee.Queries.GetAllEmployees;
 using HR.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,11 +18,16 @@ namespace HR.Persistence.Context
         {
         }
         public DbSet<GetAllEmployeeVm> GetAllEmployeeVms { get; set; }
+        public DbSet<FamilyMaster> FamilyMasters { get; set; }
+        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             modelBuilder.Entity<GetAllEmployeeVm>().HasNoKey();
+            modelBuilder.Entity<FamilyMaster>()
+     .HasKey(f => f.FamilyId);
 
         }
     }

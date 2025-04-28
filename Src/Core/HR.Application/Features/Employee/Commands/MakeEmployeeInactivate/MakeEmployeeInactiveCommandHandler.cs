@@ -21,7 +21,7 @@ namespace HR.Application.Features.Employee.Commands.MakeEmployeeInactivate
         }
         public async Task<string> Handle(MakeEmployeeInactiveCommand request,CancellationToken cancellationToken)
         {
-            return await _repo.MakeEmployeeInactiveAsync(request.EmployeeCode);
+            return await _repo.MakeEmployeeInactiveAsync(request.Code);
         }
     }
 }

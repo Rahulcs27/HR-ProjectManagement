@@ -29,10 +29,9 @@ namespace HR.Application.Features.Employee.Queries.GetAllEmployees
         {
             var result = await _repo.GetAllEmployeeSummaryPagedAsync(request.PageNumber, request.PageSize);
 
-            // If mapping is needed (and GetAllEmployeeVm is not directly returned):
              var mappedData = _mapper.Map<List<GetAllEmployeeVm>>(result.Data);
             return new PaginatedResult<GetAllEmployeeVm>(mappedData, result.TotalCount, result.PageNumber, result.PageSize);
-            // if already in the correct format
+           
         }
     }
 }

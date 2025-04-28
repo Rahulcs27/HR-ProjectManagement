@@ -9,10 +9,10 @@ namespace HR.Application.Features.Employee.Commands.MakeEmployeeInactivate
 {
     public class MakeEmployeeInactiveCommand:IRequest<string>
     {
-        public string  EmployeeCode { get; set; }
-        public MakeEmployeeInactiveCommand(string employeeCode)
+        public string Code { get; set; }
+        public MakeEmployeeInactiveCommand(string code)
         {
-            EmployeeCode = employeeCode;
+           Code = code;
         }
     }
 }

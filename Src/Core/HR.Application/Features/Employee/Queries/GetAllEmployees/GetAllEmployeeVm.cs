@@ -8,9 +8,9 @@ namespace HR.Application.Features.Employee.Queries.GetAllEmployees
 {
    public  class GetAllEmployeeVm
     {
-        public byte[]? Photo { get; set; }
-        public string? EmployeeName { get; set; }
-        public string? EmployeeCode { get; set; }
+        public string? Image { get; set; }
+        public string? Name { get; set; }
+        public string? Code { get; set; }
         public string? DesignationName { get; set; }
         public string? BranchName { get; set; }
         public string? DivisionName { get; set; }

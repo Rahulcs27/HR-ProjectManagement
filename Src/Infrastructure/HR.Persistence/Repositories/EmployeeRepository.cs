@@ -1,7 +1,6 @@
 ﻿using HR.Application.Contracts.Models.Common;
 using HR.Application.Contracts.Persistence;
 using HR.Application.Features.Employee.Queries.GetAllEmployees;
-using HR.Domain.Entities;
 using HR.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,20 +39,19 @@ namespace HR.Persistence.Repositories
             return new PaginatedResult<GetAllEmployeeVm>(pagedData, totalCount, pageNumber, pageSize);
         }
 
-        //public async Task<string> MakeEmployeeInactiveAsync(int employeeId)
-        //{
-        //    var result = await _appDbContext
-        //        .Database
-        //        .ExecuteSqlRawAsync("EXEC SP_MakeEmployeeInactive @EmployeeId = {0}", employeeId);
-
-        //    // Optional: return a custom success message
-        //    return result > 0 ? "Employee is inactive successfully" : "Failed to inactivate employee";
-        //}
-        public async Task<string> MakeEmployeeInactiveAsync(string employeeCode)
+        public async Task<string> MakeEmployeeActiveAsync(string code)
         {
             var result = await _appDbContext
-     .Database
-     .ExecuteSqlRawAsync("EXEC dbo.SP_MakeEmployeeInactive @EmployeeCode = {0}", employeeCode);
+                .Database
+                .ExecuteSqlRawAsync("Exec dbo.SP_MakeEmployeeActive @Code={0}", code);
+            return result > 0 ? "Employee is Activated Successfully" : "Failed to activate Employee";
+        }
+
+        public async Task<string> MakeEmployeeInactiveAsync(string code)
+        {
+            var result = await _appDbContext
+                 .Database
+                 .ExecuteSqlRawAsync("EXEC dbo.SP_MakeEmployeeInactive @Code = {0}",code);
 
             return result > 0 ? "Employee is inactive successfully" : "Failed to inactivate employee";
         }

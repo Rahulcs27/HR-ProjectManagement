@@ -5,6 +5,7 @@ using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using HR.Application;
 using HR.Persistence.Context;
+using Microsoft.Extensions.DependencyInjection;
 
 
 
@@ -31,8 +32,12 @@ namespace HR.API
 
             // Register repository
             builder.Services.AddScoped<IEmployeeRepository, Employeerepository>();
+            builder.Services.AddScoped<IGmcRepository, GmcRepository>();
             builder.Services.AddApplicationServices();
+            
 
+
+         
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
