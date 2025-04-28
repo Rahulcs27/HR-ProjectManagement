@@ -9,8 +9,7 @@ import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { saveAs } from 'file-saver';
-
-
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -31,9 +30,9 @@ export class EmployeeComponent implements OnInit {
 
   columns = [
     { key: 'srNo', label: 'Sr. No.' },
-    { key: 'photo', label: 'Photo' },
-    { key: 'employeeName', label: 'Name' },
-    { key: 'employeeCode', label: 'Code' },
+    { key: 'Image', label: 'Photo' },
+    { key: 'name', label: 'Employee Name' },
+    { key: 'code', label: 'Employee Code' },
     { key: 'designationName', label: 'Designation' },
     { key: 'branchName', label: 'Branch' },
     { key: 'divisionName', label: 'Division' },
@@ -94,12 +93,29 @@ export class EmployeeComponent implements OnInit {
   }
   
   onSearch() {
-    this.employeeService.getPagedEmployees(this.pageNumber, this.pageSize, this.searchText)
+    this.employeeService.getPagedEmployees(this.pageNumber, this.pageSize)
       .subscribe(res => {
-        this.employees = res.data;
-        this.totalCount = res.totalCount;
+        const search = this.searchText?.toLowerCase().trim();
+  
+        this.employees = res.data.filter((emp: {
+          employeeCode: string,
+          Name: string,
+          branchName: string,
+          designationName: string,
+          divisionName:string
+        }) =>
+          emp.employeeCode?.toLowerCase().includes(search) ||
+          emp.Name?.toLowerCase().includes(search) ||
+          emp.branchName?.toLowerCase().includes(search) ||
+          emp.designationName?.toLowerCase().includes(search)||
+          emp.divisionName?.toLowerCase().includes(search)
+        );
+        
+  
+        this.totalCount = this.employees.length;
       });
-    }
+  }
+  
     exportexceldata():void{
  const exceldata=this.employees.map((emp,i)=>{
   const row:any ={};
@@ -191,6 +207,14 @@ saveAs(data, 'Visible_Employees.xlsx');
     // Save
     doc.save('Employee_List_Report.pdf');
   }
-  
+ show(){
+  Swal.fire({
+    title: 'Error!',
+    text: 'Do you want to continue',
+    icon: 'error',
+    confirmButtonText: 'Cool'
+  })
+ }
+ 
 }
 

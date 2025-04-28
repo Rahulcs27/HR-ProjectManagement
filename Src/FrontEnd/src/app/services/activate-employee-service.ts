@@ -11,7 +11,8 @@ export class ActivateEmployeeService {
 
     constructor(private http: HttpClient) {}
   
-    activateEmployee(employeeCode: string): Observable<ActivateEmployeeModel> {
-      return this.http.put<ActivateEmployeeModel>(`${this.baseUrl}/activate/${employeeCode}`, {});
+    activateEmployee(Code: string): Observable<ActivateEmployeeModel> {
+      return this.http.put<ActivateEmployeeModel>(`${this.baseUrl}/Activate/${Code}`, {},// empty body
+        { headers: { 'Content-Type': 'application/json' } });
     }
 }

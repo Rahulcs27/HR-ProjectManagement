@@ -4,6 +4,7 @@ import { ActivateEmployeeService } from '../../../../services/activate-employee-
 import { ActivateEmployeeModel } from '../../../../Models/activate-employee-model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-activate-employee',
@@ -20,17 +21,26 @@ export class ActivateEmployeeComponent {
   ) {}
 
   activate(): void {
-    this.activateemployeecomponentservice.activateEmployee(this.data.employeeCode).subscribe({
+    this.activateemployeecomponentservice.activateEmployee(this.data.code).subscribe({
           next: (res: ActivateEmployeeModel) => {
-            alert(res.message); 
-            this.dialogRef.close(true);
+            Swal.fire({
+                      title: 'Success!',
+                      text: res.message,
+                      icon: 'success',
+                      confirmButtonText: 'Ok'
+                    }).then(()=>{
+            this.dialogRef.close(true);});
           },
           error: (err) => {
-            console.error(err);
-            alert('Failed to Activate employee');
+            console.error('Activation Error:', err);
+            if (err.error && err.error.message) {
+              alert(`Activation failed: ${err.error.message}`);
+            } else {
+              alert('Failed to activate employee. Please try again.');
+            }
           }
+          
         });
-
   }
 
   close(): void {

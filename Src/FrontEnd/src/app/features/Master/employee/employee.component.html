@@ -27,9 +27,9 @@
           <label>
             Show:
             <select class="form-select d-inline-block w-auto ms-2" [(ngModel)]="pageSize" (change)="onPageChange(1)">
-              <option [value]="5">5</option>
               <option [value]="10">10</option>
               <option [value]="25">25</option>
+              <option [value]="50">50</option>
             </select>
             entries
           </label>
@@ -41,8 +41,7 @@
           <input type="text" class="form-control form-control-sm d-inline-block" style="width: 200px;" [(ngModel)]="searchText" (input)="onSearch()" />
         </div>
       </div>
-      
-      
+    
     <div>
         
   

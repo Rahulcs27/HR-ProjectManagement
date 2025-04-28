@@ -1,9 +1,9 @@
 export class EmployeeModel {
 }
 export interface Employee {
-    photo: string | null;
-    employeeName: string;
-    employeeCode: string;
+  Image: string | null;
+  Name: string;
+  Code: string;
     designationName: string;
     branchName: string;
     divisionName: string;
