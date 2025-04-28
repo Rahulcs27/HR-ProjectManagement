@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
         const modalElement = document.getElementById('otpModal');
         const otpModal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
         otpModal.hide();
-        this.router.navigate(['/sidebar']);
+        localStorage.setItem('isAuthenticated', 'true');
+        this.router.navigate(['/dashboard']);
 
       } else {
         alert('Incorrect OTP. Please try again.');
