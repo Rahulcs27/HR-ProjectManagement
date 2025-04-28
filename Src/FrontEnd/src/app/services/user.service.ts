@@ -13,4 +13,8 @@ export class UserService {
     return this.http.post<AuthResponseModel>(`${this.apiUrl}`, loginUser);
   }
 
+  resendOtp(loginUser: Login): Observable<AuthResponseModel> {
+    return this.http.post<AuthResponseModel>(`${this.apiUrl}/resend-otp`, loginUser);
+  }
+
 }

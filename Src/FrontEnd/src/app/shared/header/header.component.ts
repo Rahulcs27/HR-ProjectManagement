@@ -11,7 +11,7 @@ export class HeaderComponent {
   constructor(private router: Router) {}
 
   logout() {
-    // Clear session or token
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 

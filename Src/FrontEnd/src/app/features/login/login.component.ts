@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, NgZone } from '@angular/core'; // <-- Added NgZone
+import { Component, OnInit, NgZone } from '@angular/core';  
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthResponseModel, Login } from '../../Models/login';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private ngZone: NgZone   // <-- Injected NgZone
+    private ngZone: NgZone  
   ) {}
 
   ngOnInit() { }
@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
 
       } else {
         alert('Incorrect OTP. Please try again.');
+        
       }
 
       this.isVerifying = false;
@@ -93,6 +94,24 @@ export class LoginComponent implements OnInit {
   }
 
   resendOtp() {
-    alert('OTP Resent Successfully!');
+    const email = localStorage.getItem('email');
+    if (!email) {
+      alert('Email not found. Please login again.');
+      return;
+    }
+  
+    const loginUser = new Login(email, '', false); 
+  
+    this.userService.resendOtp(loginUser).subscribe({
+      next: (response: any) => {
+        localStorage.setItem('otp', response.otp);  
+        alert('OTP Resent Successfully!');
+      },
+      error: (error) => {
+        console.error('Resend OTP failed!', error);
+        alert('Failed to resend OTP. Please try again.');
+      }
+    });
   }
+  
 }
