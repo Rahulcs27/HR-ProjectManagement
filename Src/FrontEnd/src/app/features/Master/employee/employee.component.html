@@ -55,16 +55,26 @@
         <tr *ngFor="let emp of employees ,let i =index">
           <td *ngFor="let col of columns">
             <ng-container [ngSwitch]="col.key">
- <!-- Sr. No. -->
- <ng-container *ngSwitchCase="'srNo'">
-    {{ (pageNumber - 1) * pageSize + i + 1 }}
-  </ng-container>
-              <!-- Photo column -->
-              <ng-container *ngSwitchCase="'photo'">
-                <img *ngIf="emp[col.key]" [src]="emp[col.key]" alt="Photo" width="40" class="rounded-circle" />
+          
+              <!-- Sr. No. -->
+              <ng-container *ngSwitchCase="'srNo'">
+                {{ (pageNumber - 1) * pageSize + i + 1 }}
               </ng-container>
-  
-              <!-- Status badge (optional style) -->
+          
+              <!-- Image -->
+              <ng-container *ngSwitchCase="'image'">
+                <ng-container *ngIf="isValidBase64(emp[col.key]); else placeholder">
+                  <img
+                    [src]="'data:image/png;base64,' + emp[col.key]"
+                    alt="Employee Image"
+                    style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" />
+                </ng-container>
+                <ng-template #placeholder>
+                  <span>No Image</span>
+                </ng-template>
+              </ng-container>
+          
+              <!-- Login Status -->
               <ng-container *ngSwitchCase="'loginStatus'">
                 <span
                   [ngClass]="{
@@ -74,19 +84,9 @@
                   {{ emp[col.key] ? 'Active' : 'Inactive' }}
                 </span>
               </ng-container>
-              
-  
-              <!-- Actions -->
-              <!-- <ng-container *ngSwitchCase="'action'">
-                 <img
-                    src="https://img.icons8.com/ios-glyphs/16/4B86D4/edit.png"
-                    alt="Edit"
-                    class="me-1"
-                    (click)="editEmployee(emp)"/>
-                <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp)">Delete</button>
-              </ng-container> -->
+          
+              <!-- Action -->
               <ng-container *ngSwitchCase="'action'">
-                <!-- Edit icon -->
                 <img
                   src="https://img.icons8.com/ios-glyphs/16/4B86D4/edit.png"
                   alt="Edit"
@@ -95,36 +95,32 @@
                   style="cursor: pointer;"
                   (click)="editEmployee(emp)"
                 />
-              
-                <!-- If Active: show red cross to deactivate/delete -->
                 <img
                   *ngIf="emp.loginStatus === true"
                   src="https://img.icons8.com/ios-glyphs/16/FF0000/multiply.png"
-                  alt="Deactivate"
-                  title="Deactivate"
+                  alt="Inactivate"
+                  title="Inactivate"
                   style="cursor: pointer;"
                   (click)="openInactivatePopup(emp)"
                 />
-              
-                <!-- If Inactive(false): show blue plus to activate -->
                 <img
                   *ngIf="emp.loginStatus === false"
-                  src="https://img.icons8.com/ios-glyphs/16/4B86D4/plus.png"
+                  src="https://img.icons8.com/metro/16/add-user-male.png"
                   alt="Activate"
                   title="Activate"
                   style="cursor: pointer;"
                   (click)="openActivatePopup(emp)"
                 />
               </ng-container>
-              
-  
-              <!-- Default columns -->
+          
+              <!-- Default Fallback for Other Fields -->
               <ng-container *ngSwitchDefault>
                 {{ emp[col.key] }}
               </ng-container>
-  
+          
             </ng-container>
           </td>
+          
         </tr>
       </tbody>
     </table>

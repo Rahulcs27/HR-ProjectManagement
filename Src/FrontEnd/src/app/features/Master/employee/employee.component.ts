@@ -30,7 +30,7 @@ export class EmployeeComponent implements OnInit {
 
   columns = [
     { key: 'srNo', label: 'Sr. No.' },
-    { key: 'Image', label: 'Photo' },
+    { key: 'image', label: 'Image' },
     { key: 'name', label: 'Employee Name' },
     { key: 'code', label: 'Employee Code' },
     { key: 'designationName', label: 'Designation' },
@@ -98,13 +98,13 @@ export class EmployeeComponent implements OnInit {
         const search = this.searchText?.toLowerCase().trim();
   
         this.employees = res.data.filter((emp: {
-          employeeCode: string,
+          Code: string,
           Name: string,
           branchName: string,
           designationName: string,
           divisionName:string
         }) =>
-          emp.employeeCode?.toLowerCase().includes(search) ||
+          emp.Code?.toLowerCase().includes(search) ||
           emp.Name?.toLowerCase().includes(search) ||
           emp.branchName?.toLowerCase().includes(search) ||
           emp.designationName?.toLowerCase().includes(search)||
@@ -215,6 +215,10 @@ saveAs(data, 'Visible_Employees.xlsx');
     confirmButtonText: 'Cool'
   })
  }
+ isValidBase64(str: string): boolean {
+  return typeof str === 'string' && str.length > 100 && /^[A-Za-z0-9+/=]+$/.test(str);
+}
+
  
 }
 
