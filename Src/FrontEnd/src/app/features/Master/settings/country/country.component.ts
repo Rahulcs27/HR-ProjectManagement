@@ -20,6 +20,8 @@ export class CountryComponent implements OnInit, AfterViewInit {
   countries: GetCountryDto[] = [];
   isEditMode: boolean = false;
   selectedCountryId: number | null = null;
+  searchText: string = '';
+  filteredCountries: any[] = [];
   private countryModal: bootstrap.Modal | undefined;
   private modalElement: ElementRef | undefined;
 
@@ -51,15 +53,34 @@ export class CountryComponent implements OnInit, AfterViewInit {
   }
 
   // Get the list of countries
+  // getCountries(): void {
+  //   this.countryService.getAllCountries().subscribe({
+  //     next: (countries: GetCountryDto[]) => {
+  //       this.countries = countries;
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching countries:', err);
+  //     }
+  //   });
+  // }
   getCountries(): void {
-    this.countryService.getAllCountries().subscribe({
-      next: (countries: GetCountryDto[]) => {
-        this.countries = countries;
-      },
-      error: (err) => {
-        console.error('Error fetching countries:', err);
-      }
+    this.countryService.getAllCountries().subscribe((data) => {
+      this.countries = data;
+      this.filteredCountries = [...data]; 
     });
+  }
+
+  filterCountries(): void {
+    const search = this.searchText?.trim().toLowerCase();
+  
+    if (!search) {
+      this.filteredCountries = [...this.countries];
+      return;
+    }
+  
+    this.filteredCountries = this.countries.filter(c =>
+      c.countryName.toLowerCase().includes(search)
+    );
   }
 
   // Open the add modal

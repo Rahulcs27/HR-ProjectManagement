@@ -19,6 +19,8 @@ export class DesignationComponent implements OnInit, AfterViewInit {
   designations: GetDesignationDto[] = [];
   isEditMode = false;
   selectedDesignationId: number | null = null;
+  searchText: string = '';
+  filteredDesignations: any[] = [];
   private modal!: bootstrap.Modal;
   private modalElement!: ElementRef;
 
@@ -47,10 +49,28 @@ export class DesignationComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // getDesignations(): void {
+  //   this.designationService.getAllDesignations().subscribe(res => this.designations = res);
+  // }
   getDesignations(): void {
-    this.designationService.getAllDesignations().subscribe(res => this.designations = res);
+    this.designationService.getAllDesignations().subscribe((data) => {
+      this.designations = data;
+      this.filteredDesignations = [...data]; 
+    });
   }
-
+  filterDesignations(): void {
+    const search = this.searchText?.trim().toLowerCase();
+  
+    if (!search) {
+      this.filteredDesignations = [...this.designations];
+      return;
+    }
+  
+    this.filteredDesignations = this.designations.filter(d =>
+      d.designationName.toLowerCase().includes(search)
+    );
+  }
+  
   openAddModal(): void {
     this.resetForm();
     this.isEditMode = false;

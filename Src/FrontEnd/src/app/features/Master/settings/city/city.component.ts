@@ -24,6 +24,8 @@ export class CityComponent implements OnInit, AfterViewInit {
   states: GetStateDto[] = [];
   filteredStates: GetStateDto[] = [];
   cities: GetCityDto[] = [];
+  searchText: string = '';
+  filteredCities: any[] = [];
   selectedCityId: number | null = null;
   isEditMode = false;
 
@@ -74,7 +76,23 @@ export class CityComponent implements OnInit, AfterViewInit {
   }
 
   loadCities(): void {
-    this.cityService.getAllCities().subscribe(res => this.cities = res);
+    this.cityService.getAllCities().subscribe((data) => {
+      this.cities = data;
+      this.filteredCities = [...data];
+    });
+  }
+  
+  filterCities(): void {
+    const search = this.searchText?.trim().toLowerCase();
+  
+    if (!search) {
+      this.filteredCities = [...this.cities];
+      return;
+    }
+  
+    this.filteredCities = this.cities.filter(c =>
+      c.cityName.toLowerCase().includes(search)
+    );
   }
 
   

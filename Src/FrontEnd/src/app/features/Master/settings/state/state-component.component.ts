@@ -24,6 +24,8 @@ export class StateComponent implements OnInit, AfterViewInit {
 
   isEditMode = false;
   selectedStateId: number | null = null;
+  searchText: string = '';
+  filteredStates: any[] = [];
 
   private stateModal!: bootstrap.Modal;
   private modalElement: ElementRef | undefined;
@@ -57,10 +59,11 @@ export class StateComponent implements OnInit, AfterViewInit {
     });
   }
 
+  
   loadStates(): void {
-    this.stateService.getAllStates().subscribe({
-      next: (data) => (this.states = data),
-      error: (err) => console.error('Error loading states:', err),
+    this.stateService.getAllStates().subscribe((data) => {
+      this.states = data;
+      this.filteredStates = [...data]; 
     });
   }
 
@@ -69,6 +72,18 @@ export class StateComponent implements OnInit, AfterViewInit {
       next: (data) => (this.countries = data),
       error: (err) => console.error('Error loading countries:', err),
     });
+  }
+  filterStates(): void {
+    const search = this.searchText?.trim().toLowerCase();
+  
+    if (!search) {
+      this.filteredStates = [...this.states];
+      return;
+    }
+  
+    this.filteredStates = this.states.filter(s =>
+      s.stateName.toLowerCase().includes(search)
+    );
   }
 
   openAddModal(): void {
