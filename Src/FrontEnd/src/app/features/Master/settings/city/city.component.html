@@ -71,8 +71,8 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody class="table-secondary">
-        <tr *ngFor="let city of cities; index as i">
+      <tbody>
+        <tr *ngFor="let city of cities; index as i" [ngClass]="!city.cityStatus ? 'table-secondary' : ''">
           <td>{{ i + 1 }}</td>
           <td>{{ city.cityName }}</td>
           <td>{{ city.stateName }}</td>
@@ -81,11 +81,15 @@
             <!-- <span [class]="'badge ' + (city.cityStatus ? 'bg-success' : 'bg-secondary')">
               {{ city.cityStatus ? 'Active' : 'Inactive' }}
             </span> -->
-            <select class="form-select" [(ngModel)]="city.cityStatus" (change)="onStatusChange( city)">
+            <!-- <select class="form-select" [(ngModel)]="city.cityStatus" (change)="onStatusChange( city)">
                 <option [value]="city.cityStatus">Active</option>
                 
                 <option value="false">Inactive</option>
-              </select>
+              </select> -->
+              <span class="badge"
+                        [ngClass]="(!city.cityStatus) ? 'bg-light-gray text-secondary': 'bg-success text-white'">
+                        {{ city.cityStatus ? 'Active' : 'Inactive' }}
+                    </span>
           </td>
           <td>
             <button class="btn btn-warning btn-sm me-2" (click)="onEdit(city)" data-bs-toggle="modal" data-bs-target="#cityModal">

@@ -145,20 +145,19 @@ export class CountryComponent implements OnInit, AfterViewInit {
     const confirmed = confirm(`Are you sure you want to mark "${country.countryName}" as ${country.countryStatus ? 'Inactive' : 'Active'}?`);
 
     if (!confirmed) {
-      // Revert toggle switch visually (you might need a different approach depending on your UI)
-      this.getCountries(); // Reload to reflect the original state
+      this.getCountries();
       return;
     }
 
-    const newStatus = country.countryStatus ? 0 : 1; // Toggle the status
+    const newStatus = country.countryStatus ? 0 : 1; 
 
     this.countryService.softDeleteCountry(country.countryId, newStatus).subscribe({
       next: () => {
-        this.getCountries(); // Refresh the list after status change
+        this.getCountries();
       },
       error: (err) => {
         console.error('Error updating country status:', err);
-        this.getCountries(); // Revert in case of error
+        this.getCountries();
       }
     });
   }

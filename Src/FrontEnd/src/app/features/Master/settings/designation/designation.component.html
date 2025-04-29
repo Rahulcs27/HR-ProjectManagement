@@ -47,19 +47,21 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody class="table-secondary">
-        <tr *ngFor="let designation of designations; index as i">
+      <tbody>
+        <tr *ngFor="let designation of designations; index as i" [ngClass]="!designation.designationStatus ? 'table-secondary' : ''">
           <td>{{ i + 1 }}</td>
           <td>{{ designation.designationName }}</td>
           <td>
-            <!-- <span class="badge" [ngClass]="d.status ? 'bg-success' : 'bg-secondary'">
-              {{ d.status ? 'Active' : 'Inactive' }}
-            </span> -->
-            <select class="form-select" [(ngModel)]="designation.designationStatus" (change)="onStatusChange(designation)">
+            
+            <!-- <select class="form-select" [(ngModel)]="designation.designationStatus" (change)="onStatusChange(designation)">
                 <option [value]="designation.designationStatus">Active</option>
                 
                 <option value="false">Inactive</option>
-              </select>
+              </select> -->
+              <span class="badge"
+                        [ngClass]="(!designation.designationStatus) ? 'bg-light-gray text-secondary': 'bg-success text-white'">
+                        {{ designation.designationStatus ? 'Active' : 'Inactive' }}
+                    </span>
           </td>
           <td>
             <button class="btn btn-sm btn-warning" (click)="onEdit(designation)">

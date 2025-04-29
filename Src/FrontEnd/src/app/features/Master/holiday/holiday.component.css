@@ -4,3 +4,13 @@
 .datep{
     background: black  !important;
 }
+
+/* .p-datepicker-year-view.ng-tns-c133394098-0.ng-star-inserted{
+    min-width: 100% !important;
+    background-color: red !important;
+} */
+
+::ng-deep .p-datepicker-panel {
+    background-color: rgb(223, 223, 223) !important; /* Use !important if needed for override */
+    border-radius: 10px !important; 
+  }

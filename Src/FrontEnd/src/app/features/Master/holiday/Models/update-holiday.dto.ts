@@ -4,7 +4,6 @@ export interface UpdateHolidayDto {
     holidayName: string;
     holidayDate: string;
     holidayListType: boolean;
-    year: number;
     holidayStatus: boolean;
     updatedBy: number;
   }

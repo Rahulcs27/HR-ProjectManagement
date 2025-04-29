@@ -92,7 +92,7 @@ export class StateComponent implements OnInit, AfterViewInit {
       countryId: state.countryId,
       stateName: state.stateName,
       stateCode: state.stateCode,
-      status: state.stateStatus ? '1' : '0',
+      stateStatus: state.stateStatus ? '1' : '0',
     });
     this.selectedStateId = state.stateId;
     this.isEditMode = true;
