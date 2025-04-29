@@ -41,7 +41,15 @@
         <label for="rememberMe">Remember me</label>
       </div>
 
-      <button type="submit" class="login-btn" [disabled]="loginform.invalid">Login</button>
+      <!-- Login Button Spinner  -->
+<button type="submit" class="login-btn" [disabled]="loginform.invalid || isLoggingIn">
+  <span *ngIf="!isLoggingIn">Login</span>
+  <span *ngIf="isLoggingIn" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <span *ngIf="isLoggingIn"> Logging in...</span>
+</button>
+ 
+
+      <!-- <button type="submit" class="login-btn" [disabled]="loginform.invalid">Login</button> -->
       <div *ngIf="!formSubmitted && loginform.invalid" class="error-message" style="color: red;">
         Please fill in all required fields.
       </div>
@@ -70,15 +78,12 @@
     <span *ngIf="isVerifying"> Verifying...</span>
   </button>
         <!-- <button type="button" class="btn btn-primary" (click)="verifyOtp()">Verify OTP</button> -->
-        <button type="button" class="btn btn-secondary" (click)="resendOtp()">Resend OTP</button>
+        <!-- <button type="button" class="btn btn-secondary" (click)="resendOtp()">Resend OTP</button> -->
       </div>
     </div>
   </div>
 </div>
-<!-- -----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
-
-
-
+ 
 <!-- Forgot Password Modal -->
 <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -89,13 +94,13 @@
       </div>
       <div class="modal-body">
         
-        <!-- <input 
-          type="email" 
-          [(ngModel)]="forgotEmail"
+        <input 
+          type="text" 
+          [(ngModel)]="forgotUsername"
           class="form-control mb-2" 
-          placeholder="Enter your registered email" 
+          placeholder="Enter your registered username" 
           required
-        /> -->
+        />
 
         <input 
           type="text" 
@@ -130,12 +135,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-<!-- -----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
 
 <a href="javascript:void(0);" (click)="openForgotPasswordModal()" class="login-as-customer">Forgot Password?</a>
 
