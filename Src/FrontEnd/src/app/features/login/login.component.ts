@@ -131,10 +131,8 @@ export class LoginComponent implements OnInit {
   }
   
   // <!-- -----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
- 
- 
- 
- 
+ //forgot password logic
+  
   forgotUsername: string = '';
 forgotOtp: string = '';
 newPassword: string = '';
