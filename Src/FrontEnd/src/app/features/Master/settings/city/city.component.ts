@@ -10,12 +10,13 @@ import { GetCityDto } from './Models/get-city.dto';
 import { UpdateCityDto } from './Models/update-city.dto';
 import { CreateCityDto } from './Models/create-city.dto';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,NgxPaginationModule],
   standalone: true,
 })
 export class CityComponent implements OnInit, AfterViewInit {
@@ -24,8 +25,13 @@ export class CityComponent implements OnInit, AfterViewInit {
   states: GetStateDto[] = [];
   filteredStates: GetStateDto[] = [];
   cities: GetCityDto[] = [];
+  searchText: string = '';
+  filteredCities: any[] = [];
   selectedCityId: number | null = null;
   isEditMode = false;
+  currentPage: number = 1;
+  itemsPerPageOptions: number[] = [3, 5, 10, 25, 50];
+  itemsPerPage: number = 5; // default value
 
   private cityModal!: bootstrap.Modal;
   private modalElement: ElementRef | undefined;
@@ -74,7 +80,23 @@ export class CityComponent implements OnInit, AfterViewInit {
   }
 
   loadCities(): void {
-    this.cityService.getAllCities().subscribe(res => this.cities = res);
+    this.cityService.getAllCities().subscribe((data) => {
+      this.cities = data;
+      this.filteredCities = [...data];
+    });
+  }
+  
+  filterCities(): void {
+    const search = this.searchText?.trim().toLowerCase();
+  
+    if (!search) {
+      this.filteredCities = [...this.cities];
+      return;
+    }
+  
+    this.filteredCities = this.cities.filter(c =>
+      c.cityName.toLowerCase().includes(search)
+    );
   }
 
   
@@ -172,7 +194,7 @@ export class CityComponent implements OnInit, AfterViewInit {
       },
       error: (err) => {
         console.error('Error updating City status:', err);
-        this.loadStates(); 
+        this.loadCities(); 
       }
     });
   }

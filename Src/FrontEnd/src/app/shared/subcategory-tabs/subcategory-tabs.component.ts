@@ -8,8 +8,6 @@ import { CountryComponent } from '../../features/Master/settings/country/country
   standalone: true,
   imports: [
     CommonModule,
-    CountryComponent,
-    // more components here
   ],
   templateUrl: './subcategory-tabs.component.html',
   styleUrls: ['./subcategory-tabs.component.css'],

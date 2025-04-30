@@ -26,22 +26,21 @@ namespace HR.Persistence.Repositories
 
         public async Task<Holiday> CreateAsync(CreateHolidayDto dto)
         {
-            var sql = "EXEC SP_HolidayInsert @HolidayName = {0}, @HolidayDate = {1}, @HolidayListType = {2}, @Year = {3}, @CreatedBy = {4}";
-            await _context.Database.ExecuteSqlRawAsync(sql, dto.HolidayName, dto.HolidayDate, dto.HolidayListType, dto.Year, dto.CreatedBy);
+            var sql = "EXEC SP_HolidayInsert @HolidayName = {0}, @HolidayDate = {1}, @HolidayListType = {2}, @CreatedBy = {3}";
+            await _context.Database.ExecuteSqlRawAsync(sql, dto.HolidayName, dto.HolidayDate, dto.HolidayListType, dto.CreatedBy);
             return new Holiday
             {
                 HolidayName = dto.HolidayName,
                 HolidayDate = dto.HolidayDate,
                 HolidayListType = dto.HolidayListType,
-                Year = dto.Year,
                 CreatedBy = dto.CreatedBy,
                 CreatedDate = DateTime.UtcNow
             };
         }
         public async Task<Holiday> UpdateAsync(UpdateHolidayDto dto)
         {
-            var sql = "EXEC SP_HolidayUpdate @HolidayId = {0}, @HolidayName = {1}, @HolidayDate = {2}, @HolidayListType = {3}, @Year = {4}, @HolidayStatus = {5}, @UpdatedBy = {6}";
-            await _context.Database.ExecuteSqlRawAsync(sql, dto.HolidayId, dto.HolidayName, dto.HolidayDate, dto.HolidayListType, dto.Year, dto.HolidayStatus, dto.UpdatedBy);
+            var sql = "EXEC SP_HolidayUpdate @HolidayId = {0}, @HolidayName = {1}, @HolidayDate = {2}, @HolidayListType = {3}, @Year = {3}, @HolidayStatus = {4}, @UpdatedBy = {5}";
+            await _context.Database.ExecuteSqlRawAsync(sql, dto.HolidayId, dto.HolidayName, dto.HolidayDate, dto.HolidayListType, dto.HolidayStatus, dto.UpdatedBy);
 
             return new Holiday
             {
@@ -57,7 +56,7 @@ namespace HR.Persistence.Repositories
         
         public async Task DeleteAsync(int id, int updatedBy)
         {
-            string sql = "EXEC SP_DeleteHoliday @HolidayId = {0}, @UpdatedBy = {1}";
+            string sql = "EXEC SP_HolidayDelete @HolidayId = {0}, @UpdatedBy = {1}";
             await _context.Database.ExecuteSqlRawAsync(sql, id, updatedBy);
         }
         public async Task<List<HolidayDto>> GetAllAsync()

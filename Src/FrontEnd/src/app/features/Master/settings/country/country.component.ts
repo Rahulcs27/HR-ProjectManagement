@@ -6,12 +6,13 @@ import { UpdateCountryDto } from './Models/update-country.dto';
 import { CreateCountryDto } from './Models/create-country.dto';
 import { CommonModule } from '@angular/common';
 import * as bootstrap from 'bootstrap'; // Import Bootstrap for manual modal control
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,NgxPaginationModule],
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit, AfterViewInit {
@@ -20,6 +21,11 @@ export class CountryComponent implements OnInit, AfterViewInit {
   countries: GetCountryDto[] = [];
   isEditMode: boolean = false;
   selectedCountryId: number | null = null;
+  searchText: string = '';
+  filteredCountries: any[] = [];
+  currentPage: number = 1;
+  itemsPerPageOptions: number[] = [3, 5, 10, 25, 50];
+  itemsPerPage: number = 5; // default value
   private countryModal: bootstrap.Modal | undefined;
   private modalElement: ElementRef | undefined;
 
@@ -51,15 +57,34 @@ export class CountryComponent implements OnInit, AfterViewInit {
   }
 
   // Get the list of countries
+  // getCountries(): void {
+  //   this.countryService.getAllCountries().subscribe({
+  //     next: (countries: GetCountryDto[]) => {
+  //       this.countries = countries;
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching countries:', err);
+  //     }
+  //   });
+  // }
   getCountries(): void {
-    this.countryService.getAllCountries().subscribe({
-      next: (countries: GetCountryDto[]) => {
-        this.countries = countries;
-      },
-      error: (err) => {
-        console.error('Error fetching countries:', err);
-      }
+    this.countryService.getAllCountries().subscribe((data) => {
+      this.countries = data;
+      this.filteredCountries = [...data]; 
     });
+  }
+
+  filterCountries(): void {
+    const search = this.searchText?.trim().toLowerCase();
+  
+    if (!search) {
+      this.filteredCountries = [...this.countries];
+      return;
+    }
+  
+    this.filteredCountries = this.countries.filter(c =>
+      c.countryName.toLowerCase().includes(search)
+    );
   }
 
   // Open the add modal
@@ -145,20 +170,19 @@ export class CountryComponent implements OnInit, AfterViewInit {
     const confirmed = confirm(`Are you sure you want to mark "${country.countryName}" as ${country.countryStatus ? 'Inactive' : 'Active'}?`);
 
     if (!confirmed) {
-      // Revert toggle switch visually (you might need a different approach depending on your UI)
-      this.getCountries(); // Reload to reflect the original state
+      this.getCountries();
       return;
     }
 
-    const newStatus = country.countryStatus ? 0 : 1; // Toggle the status
+    const newStatus = country.countryStatus ? 0 : 1; 
 
     this.countryService.softDeleteCountry(country.countryId, newStatus).subscribe({
       next: () => {
-        this.getCountries(); // Refresh the list after status change
+        this.getCountries();
       },
       error: (err) => {
         console.error('Error updating country status:', err);
-        this.getCountries(); // Revert in case of error
+        this.getCountries();
       }
     });
   }

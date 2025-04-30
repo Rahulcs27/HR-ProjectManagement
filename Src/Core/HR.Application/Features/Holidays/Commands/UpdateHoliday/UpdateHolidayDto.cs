@@ -12,7 +12,6 @@ namespace HR.Application.Features.Holidays.Commands.UpdateHoliday
         public string HolidayName { get; set; }
         public DateTime HolidayDate { get; set; }
         public bool HolidayListType { get; set; }
-        public int Year { get; set; }
         public bool HolidayStatus { get; set; }
         public int UpdatedBy { get; set; }
     }

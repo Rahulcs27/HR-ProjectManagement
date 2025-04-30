@@ -6,12 +6,13 @@ import { GetDesignationDto } from './Models/get-designation.dto';
 import { UpdateDesignationDto } from './Models/update-designation.dto';
 import { CreateDesignationDto } from './Models/create-designation.dto';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-designation',
   templateUrl: './designation.component.html',
   styleUrls: ['./designation.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,NgxPaginationModule],
   standalone: true,
 })
 export class DesignationComponent implements OnInit, AfterViewInit {
@@ -19,6 +20,11 @@ export class DesignationComponent implements OnInit, AfterViewInit {
   designations: GetDesignationDto[] = [];
   isEditMode = false;
   selectedDesignationId: number | null = null;
+  searchText: string = '';
+  filteredDesignations: any[] = [];
+  currentPage: number = 1;
+  itemsPerPageOptions: number[] = [3, 5, 10, 25, 50];
+  itemsPerPage: number = 5; // default value
   private modal!: bootstrap.Modal;
   private modalElement!: ElementRef;
 
@@ -47,10 +53,28 @@ export class DesignationComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // getDesignations(): void {
+  //   this.designationService.getAllDesignations().subscribe(res => this.designations = res);
+  // }
   getDesignations(): void {
-    this.designationService.getAllDesignations().subscribe(res => this.designations = res);
+    this.designationService.getAllDesignations().subscribe((data) => {
+      this.designations = data;
+      this.filteredDesignations = [...data]; 
+    });
   }
-
+  filterDesignations(): void {
+    const search = this.searchText?.trim().toLowerCase();
+  
+    if (!search) {
+      this.filteredDesignations = [...this.designations];
+      return;
+    }
+  
+    this.filteredDesignations = this.designations.filter(d =>
+      d.designationName.toLowerCase().includes(search)
+    );
+  }
+  
   openAddModal(): void {
     this.resetForm();
     this.isEditMode = false;
