@@ -8,33 +8,37 @@ import { CommonModule } from '@angular/common';
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.css'
 })
+// change-password.component.ts
+ 
 export class ChangePasswordComponent {
-  passwordData = {
+  passwordModel = {
     oldPassword: '',
     newPassword: '',
     confirmPassword: ''
   };
-  //password shoe
- 
-    showOldPassword = false;
-    showNewPassword = false;
-    showConfirmPassword = false;
+
+  showPassword = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   onChangePassword() {
-    if (this.passwordData.newPassword !== this.passwordData.confirmPassword) {
-      alert("New passwords do not match.");
+    const { oldPassword, newPassword, confirmPassword } = this.passwordModel;
+
+    if (!oldPassword || !newPassword || !confirmPassword) {
+      alert("Please fill in all fields.");
       return;
     }
-  
-    // Handle actual password change logic here
-    console.log("Password change request submitted:", this.passwordData);
-    alert("Password changed successfully (demo only).");
-  
-    // Optionally reset the form
-    this.passwordData = {
-      oldPassword: '',
-      newPassword: '',
-      confirmPassword: ''
-    };
+
+    if (newPassword !== confirmPassword) {
+      alert("New password and confirm password do not match.");
+      return;
+    }
+
+    // Call your password change service or logic here
+    console.log('Password changed:', this.passwordModel);
   }
 }
+
 
