@@ -88,7 +88,7 @@
           <tbody>
             <tr *ngFor="let state of filteredStates | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; index as i"
             [ngClass]="{'inactive-row': !state.stateStatus}">
-              <td><div class="tr-first-child">{{ i + 1 }}</div></td>
+              <td><div class="tr-first-child">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</div></td>
               <td><div class="tr-other-child">{{ state.stateName }}</div></td>
               <td><div class="tr-other-child">{{ state.stateCode }}</div></td>
               <td><div class="tr-other-child">{{ state.countryName }}</div></td>
