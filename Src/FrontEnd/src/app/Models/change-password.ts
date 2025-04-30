@@ -1,6 +1,9 @@
-// export interface ChangePassword {
-//     userName: string;
-//     otp: string;
-//     newPassword: string;
-//     confirmNewPassword: string;
-// }
+export class ChangePasswordModel {
+ 
+  constructor(
+    public userName:string,
+    public oldPassword:string,
+    public newPassword:string,
+    public confirmPassword:string)
+   {}
+}

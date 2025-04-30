@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
       next: (response: AuthResponseModel) => {
         localStorage.setItem('otp', response.otp);
         localStorage.setItem('email', response.email);
+        localStorage.setItem('userName', response.userName);
+        console.log(localStorage.getItem('userName'));
+        
         loginForm.reset();
 
         const modalElement = document.getElementById('otpModal');
