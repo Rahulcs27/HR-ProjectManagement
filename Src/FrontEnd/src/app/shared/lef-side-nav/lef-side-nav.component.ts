@@ -1,12 +1,14 @@
 import { Component, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
+import { DashboardComponent } from '../../features/Dashboard/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-lef-side-nav',
   templateUrl: './lef-side-nav.component.html',
   styleUrls: ['./lef-side-nav.component.css'],
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,HeaderComponent],
 })
 export class LefSideNavComponent {
   user = {

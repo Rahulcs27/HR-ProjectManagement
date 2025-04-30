@@ -10,7 +10,9 @@ import { CountryComponent } from './features/Master/settings/country/country.com
 import { StateComponent } from './features/Master/settings/state/state-component.component';
 import { HolidayComponent } from './features/Master/holiday/holiday.component';
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: LefSideNavComponent },
+
   { path: 'dashboard', component: DashboardComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'country', component: CountryComponent },
@@ -24,6 +26,5 @@ export const routes: Routes = [
   {path:"gmc",component:GmcComponent},
 
   { path: 'otp', component: OtpComponent },
-  {path:'sidebar',component:LefSideNavComponent},
   { path: '**', redirectTo: '' } 
 ];
