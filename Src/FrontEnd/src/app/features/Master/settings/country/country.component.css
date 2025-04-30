@@ -103,4 +103,29 @@
     background-color: #e2e8f0;
     color: #000;
   }
-  
+  .entries-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    margin-left: 55px;
+    font-weight: bold;
+
+  }
+  .entries-dropdown select {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+  }
+  .pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    /* padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+    border-radius: 8px; */
+  }

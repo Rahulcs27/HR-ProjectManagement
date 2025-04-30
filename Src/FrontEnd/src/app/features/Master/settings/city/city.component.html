@@ -6,11 +6,18 @@
       + Add City
     </button>
   </div>
+  <div class="entries-dropdown">
+    <label for="entries">Show</label>
+    <select id="entries" [(ngModel)]="itemsPerPage">
+      <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+    </select>
+    <span>Entries</span>
+  </div>
   <div class="mb-3 row">
     <div class="input-group" style="width: 300px;">
         <span class="input-group-text" style="background-color: transparent;"><i class="fas fa-search"></i></span>
         <input type="text" id="search" class="form-control" placeholder="Search City"
-               [(ngModel)]="searchText" (ngModelChange)="filterCities()" style="background-color: transparent;">
+               [(ngModel)]="searchText" (ngModelChange)="filterCities()" style="background-color: transparent;" >
     </div>
   </div>
 
@@ -84,7 +91,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let city of filteredCities; index as i" [ngClass]="{ 'inactive-row': !city.cityStatus }">
+            <tr *ngFor="let city of filteredCities | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; index as i" [ngClass]="{ 'inactive-row': !city.cityStatus }">
               <td><div class="tr-first-child">{{ i + 1 }}</div></td>
               <td><div class="tr-other-child">{{ city.cityName }}</div></td>
               <td><div class="tr-other-child">{{ city.stateName }}</div></td>
@@ -107,6 +114,9 @@
             </tr>
           </tbody>
         </table>
+        <div class="pagination-wrapper">
+          <pagination-controls (pageChange)="currentPage = $event" [autoHide]="true"></pagination-controls>
+        </div>
       </div>
     </div>
   </div>

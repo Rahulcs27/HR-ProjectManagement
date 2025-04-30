@@ -9,23 +9,28 @@ import { GetStateDto } from './Models/get-state.dto';
 import { GetCountryDto } from '../country/Models/get-country.dto';
 import { UpdateStateDto } from './Models/update-state.dto';
 import { CreateStateDto } from './Models/create-state.dto';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-state',
   templateUrl: './state-component.component.html',
   standalone: true,
   styleUrls: ['./state-component.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,NgxPaginationModule],
 })
 export class StateComponent implements OnInit, AfterViewInit {
   stateForm!: FormGroup;
   states: GetStateDto[] = [];
   countries: GetCountryDto[] = [];
+  
 
   isEditMode = false;
   selectedStateId: number | null = null;
   searchText: string = '';
   filteredStates: any[] = [];
+  currentPage: number = 1;
+itemsPerPageOptions: number[] = [3, 5, 10, 25]
+itemsPerPage: number = 5; // default value
 
   private stateModal!: bootstrap.Modal;
   private modalElement: ElementRef | undefined;

@@ -7,14 +7,14 @@ import { UpdateHolidayDto } from './Models/update-holiday.dto';
 import { CreateHolidayDto } from './Models/create-holiday.dto';
 import { CommonModule } from '@angular/common';
 import { DatePickerModule } from 'primeng/datepicker';
-import { FloatLabel } from 'primeng/floatlabel';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-holiday',
   templateUrl: './holiday.component.html',
   styleUrls: ['./holiday.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, DatePickerModule,FloatLabel],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, DatePickerModule,NgxPaginationModule],
 })
 export class HolidayComponent implements OnInit, AfterViewInit {
   holidayForm!: FormGroup;
@@ -23,6 +23,9 @@ export class HolidayComponent implements OnInit, AfterViewInit {
   selectedHolidayId: number | null = null;
   isEditMode = false;
   private modal!: bootstrap.Modal;
+  currentPage: number = 1;
+  itemsPerPageOptions: number[] = [3, 5, 10, 25, 50];
+  itemsPerPage: number = 5; // default value
 
   filter = {
     listType: '',
