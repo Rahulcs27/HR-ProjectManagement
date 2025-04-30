@@ -1,7 +1,7 @@
 using HR.Application;
 using HR.Application.Contracts.Persistence;
 using HR.Application.Mapper;
-using HR.Domain.Entity;
+using HR.Domain.Entities;
 using HR.Persistence;
 using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +28,9 @@ namespace HR.API
 
             //------------------------------------------------------------------------------------------
             builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-            builder.Services.AddTransient<IEmailService, EmailService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
+
+            builder.Services.AddMemoryCache();
             //------------------------------------------------------------------------------------------
 
             // Register Repositories

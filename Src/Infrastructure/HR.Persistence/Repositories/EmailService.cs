@@ -1,9 +1,9 @@
 ﻿ 
 using HR.Application.Contracts.Models;
 using HR.Application.Contracts.Persistence;
-using HR.Domain.Entity;
+using HR.Domain.Entities;
 using MailKit.Security;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;      
 using MimeKit;
  
 
@@ -26,7 +26,7 @@ namespace HR.Persistence.Repositories
             builder.HtmlBody=mailRequest.EmailBody;
             email.Body=builder.ToMessageBody();
 
-            using var smtp = new MailKit.Net.Smtp.SmtpClient();
+            using var smtp = new MailKit.Net.Smtp.SmtpClient(); 
             smtp.Connect(emailSettings.Host, emailSettings.Port,SecureSocketOptions.StartTls);
             smtp.Authenticate(emailSettings.Email, emailSettings.Password);
             await smtp.SendAsync(email);

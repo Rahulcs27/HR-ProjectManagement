@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HR.Domain.Entity
+namespace HR.Domain.Entities
 {
     public class EmailSettings
     {

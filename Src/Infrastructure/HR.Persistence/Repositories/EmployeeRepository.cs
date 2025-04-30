@@ -1,6 +1,6 @@
 ﻿using HR.Application.Contracts.Persistence;
 using HR.Application.Features.Employee.Commands.CreateEmployeeMaster;
-using HR.Domain.Entity;
+using HR.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HR.Persistence.Repositories

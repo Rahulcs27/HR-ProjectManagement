@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace HR.Application.Contracts.Models
 {
-    public class LoginResponse
+    public class passwordOtpResponse
     {
-        public string Email { get; set; }
         public string UserName { get; set; }
         public string Otp { get; set; }
-        public DateTime OtpExpiryTime { get; set; }
+        //public string Email { get; set; }
+        //public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
     }
 }
- 

@@ -15,7 +15,7 @@ namespace HR.Persistence
         public static IServiceCollection AddServiceRegistration(this IServiceCollection services ,IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(configuration.GetConnectionString("HrConnString")));
             services.AddScoped<ILoginService, LoginServices>();
 
 

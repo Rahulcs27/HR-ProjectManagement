@@ -1,7 +1,7 @@
 ﻿ 
 using AutoMapper;
 using HR.Application.Dtos;
-using HR.Domain.Entity;
+using HR.Domain.Entities;
 
 namespace HR.Application.Profiles
 {

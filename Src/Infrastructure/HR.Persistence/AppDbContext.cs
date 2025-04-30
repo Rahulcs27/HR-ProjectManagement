@@ -1,4 +1,4 @@
-﻿using HR.Domain.Entity;
+﻿using HR.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SharePoint.Client;
 
@@ -16,7 +16,7 @@ namespace HR.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Tbl_LoginMaster>().HasNoKey();
+            modelBuilder.Entity<Tbl_LoginMaster>();
             modelBuilder.Entity<EmployeeMaster>()
                 .ToTable("Tbl_EmployeeMaster"); // Maps to dbo.Tbl_EmployeeMaster
         }
