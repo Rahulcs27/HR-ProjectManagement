@@ -6,13 +6,6 @@
       + Add Country
     </button>
   </div>
-  <div class="entries-dropdown">
-    <label for="entries">Show</label>
-    <select id="entries" [(ngModel)]="itemsPerPage">
-      <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
-    </select>
-    <span>Entries</span>
-  </div>
   <div class="mb-3 row">
     <div class="input-group" style="width: 300px;">
         <span class="input-group-text" style="background-color: transparent;"><i class="fas fa-search"></i></span>
@@ -79,8 +72,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let country of filteredCountries | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }; index as i"  [ngClass]="{'inactive-row': !country.countryStatus}" >
-              <td ><div class="tr-first-child">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</div></td>
+            <tr *ngFor="let country of filteredCountries; index as i"  [ngClass]="{'inactive-row': !country.countryStatus}" >
+              <td ><div class="tr-first-child">{{ i + 1 }}</div></td>
               <td><div class="tr-other-child">{{ country.countryName }}</div></td>
               <td><div class="tr-other-child">{{ country.countryCode }}</div></td>
               <td >
@@ -101,9 +94,6 @@
             </tr>
           </tbody>
         </table>
-        <div class="pagination-wrapper">
-          <pagination-controls (pageChange)="currentPage = $event" [autoHide]="true"></pagination-controls>
-        </div>
         
       </div>
     </div>

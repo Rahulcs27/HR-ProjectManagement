@@ -2,6 +2,7 @@
 using HR.Application.Features.Cities.Commands.DeleteCity;
 using HR.Application.Features.Cities.Commands.UpdateCity;
 using HR.Application.Features.Cities.Queries.GetAllCities;
+using HR.Application.Features.Divisions.Command.DeleteDivision;
 using HR.Application.Features.States.Commands.CreateState;
 using HR.Application.Features.States.Commands.DeleteState;
 using HR.Application.Features.States.Commands.UpdateState;
@@ -36,7 +37,7 @@ namespace HR.API.Controllers
         {
             int updatedBy = 1;
 
-            return Ok(await _mediator.Send(new DeleteCityCommand(id, updatedBy)));
+            return Ok(await _mediator.Send(new DeleteDivisionCommand(id, updatedBy)));
         }
 
         [HttpGet]

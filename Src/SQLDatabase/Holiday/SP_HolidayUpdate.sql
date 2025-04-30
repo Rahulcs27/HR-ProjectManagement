@@ -3,6 +3,7 @@ CREATE OR ALTER PROCEDURE dbo.SP_HolidayUpdate
     @HolidayName NVARCHAR(30),
     @HolidayDate DATE,
     @HolidayListType BIT,
+    @Year INT,
     @HolidayStatus BIT,
     @UpdatedBy INT
 AS
@@ -12,6 +13,7 @@ BEGIN
         HolidayName = @HolidayName,
         HolidayDate = @HolidayDate,
         HolidayListType = @HolidayListType,
+        Year = @Year,
         HolidayStatus = @HolidayStatus,
         UpdatedBy = @UpdatedBy,
         UpdatedDate = GETDATE()

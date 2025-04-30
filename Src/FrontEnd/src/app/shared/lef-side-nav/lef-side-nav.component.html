@@ -1,76 +1,75 @@
-<div class="d-flex flex-column sidebar bg-primary text-white p-3">
-  <!-- Profile Section -->
+
+
+   <div class="d-flex flex-column vh-100 bg-dark text-white p-3" style="width: 250px; height: 200vh; overflow-y: auto;margin: 0; position: fixed;  left: 0;">
+     <!-- Profile Section -->
   <div class="text-center mb-4">
-    <img [src]="user.profileImage" class="rounded-circle mb-2 border border-white" width="80" height="80"
-      alt="Profile Image">
+    <img [src]="user.profileImage" class="rounded-circle mb-2" width="80" height="80" alt="Profile Image">
     <h6 class="mb-0">{{ user.name }}</h6>
-    <small class="text-white-50">{{ user.department }}</small>
+    <small class="text-white">{{ user.department }}</small>
   </div>
-
-  <!-- Dashboard -->
-  <a routerLink="/dashboard" routerLinkActive="active-link" class="sidebar-link mb-2">
-    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-  </a>
-
-  <!-- Accordion -->
-  <div class="accordion accordion-flush" id="sidebarMenu" #sidebarMenu>
-
-    <!-- Profile -->
-    <div class="accordion-item bg-transparent border-0">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-transparent text-white" type="button"
-          aria-expanded="false" aria-controls="profileMenu" (click)="toggleProfileMenu()">
-          <i class="fas fa-user me-2"></i> Profile
-        </button>
-      </h2>
-      <div id="profileMenu" #profileMenu class="accordion-collapse collapse" data-bs-parent="#sidebarMenu">
-        <div class="accordion-body ps-4">
-          <a routerLink="/changePassword" class="sidebar-link d-block mb-2">
-            <i class="fas fa-lock me-2"></i> Change Password
-          </a>
-          <a routerLink="/logout" class="sidebar-link d-block">
-            <i class="fas fa-sign-out-alt me-2"></i> Log Out
-          </a>
+    <!-- Static Dashboard -->
+    <a routerLink="/dashboard" class="text-white mb-3 nav-link">Dashboard</a>
+  
+    <!-- Sidebar Accordion  Profile-->
+    <div class="accordion accordion-flush" id="sidebarMenu">
+      <div class="accordion-item bg-dark border-0">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#profileMenu">
+            Profile
+          </button>
+        </h2>
+        <div id="profileMenu" class="accordion-collapse collapse" data-bs-parent="#sidebarMenu">
+          <div class="accordion-body p-2">
+            <a routerLink="/changePassword" class="text-white d-block mb-1"><i class="fa-solid fa-lock"></i> Change Password</a>
+            <a routerLink="/leave-management" class="text-white d-block mb-1"> <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              Log Out</a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Masters -->
-    <div class="accordion-item bg-transparent border-0">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-transparent text-white" type="button"
-          aria-expanded="false" aria-controls="mastersMenu" (click)="toggleMastersMenu()">
-          <i class="fas fa-cogs me-2"></i> Masters
-        </button>
-      </h2>
-      <div id="mastersMenu" #mastersMenu class="accordion-collapse collapse" data-bs-parent="#sidebarMenu">
-        <div class="accordion-body ps-4">
-          <a routerLink="/employees" class="sidebar-link d-block mb-2">Employee Master</a>
-          <a routerLink="/holiday" class="sidebar-link d-block mb-2">Holiday Calendar</a>
-          <a routerLink="/settings" class="sidebar-link d-block mb-2">Settings</a>
-          <a routerLink="/teamComposition" class="sidebar-link d-block mb-2">Team Composition</a>
-          <a routerLink="/gmc" class="sidebar-link d-block">GMC</a>
+  
+      <!-- Masters -->
+      <div class="accordion-item bg-dark border-0">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mastersMenu">
+            Masters
+          </button>
+        </h2>
+        <div id="mastersMenu" class="accordion-collapse collapse" data-bs-parent="#sidebarMenu">
+          <div class="accordion-body p-2">
+            <a routerLink="/employees" class="text-white d-block mb-1">Employee Master</a>
+            <a routerLink="/departments" class="text-white d-block mb-1">Holiday Calendar</a>
+            <a routerLink="/settings" class="text-white d-block mb-1">Settings</a>
+            <a routerLink="/teamComposition" class="text-white d-block mb-1"> Team composition</a>
+            <a routerLink="/gmc" class="text-white d-block mb-1">GMC</a>
+            
+           
+          </div>
         </div>
       </div>
-    </div>
+  
+  
+  
+      <!-- HR -->
+      <div class="accordion-item bg-dark border-0">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#hrMenu">
+            HR
+          </button>
+        </h2>
+        <div id="hrMenu" class="accordion-collapse collapse" data-bs-parent="#sidebarMenu">
+          <div class="accordion-body p-2">
+            <a routerLink="/attendance" class="text-white d-block mb-1">Timesheet Update</a>
+            <a routerLink="/leave-management" class="text-white d-block mb-1">Daily Report</a>
+            <a routerLink="/leave-management" class="text-white d-block mb-1">Employee Attendance
+              Report
+              </a>
 
-    <!-- HR -->
-    <div class="accordion-item bg-transparent border-0">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed bg-transparent text-white" type="button"
-          aria-expanded="false" aria-controls="hrMenu" (click)="toggleHrMenu()">
-          <i class="fas fa-briefcase me-2"></i> HR
-        </button>
-      </h2>
-      <div id="hrMenu" #hrMenu class="accordion-collapse collapse" data-bs-parent="#sidebarMenu">
-        <div class="accordion-body ps-4">
-          <a routerLink="/attendance" class="sidebar-link d-block mb-2">Timesheet Update</a>
-          <a routerLink="/leave-management" class="sidebar-link d-block mb-2">Daily Report</a>
-          <a routerLink="/leave-management" class="sidebar-link d-block mb-2">Employee Attendance Report</a>
-          <a routerLink="/leave-management" class="sidebar-link d-block">Daily Report</a>
+            <a routerLink="/leave-management" class="text-white d-block mb-1">Daily Report</a>
+
+          </div>
         </div>
       </div>
+      
     </div>
-
   </div>
-</div>
+  

@@ -11,6 +11,7 @@ namespace HR.Application.Features.Holidays.Commands.CreateHoliday
         public string HolidayName { get; set; }
         public DateTime HolidayDate { get; set; }
         public bool HolidayListType { get; set; }
+        public int Year { get; set; }
         public int CreatedBy { get; set; }
     }
 

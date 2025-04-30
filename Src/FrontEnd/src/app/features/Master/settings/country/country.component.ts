@@ -6,13 +6,12 @@ import { UpdateCountryDto } from './Models/update-country.dto';
 import { CreateCountryDto } from './Models/create-country.dto';
 import { CommonModule } from '@angular/common';
 import * as bootstrap from 'bootstrap'; // Import Bootstrap for manual modal control
-import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule,NgxPaginationModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   styleUrls: ['./country.component.css']
 })
 export class CountryComponent implements OnInit, AfterViewInit {
@@ -23,9 +22,6 @@ export class CountryComponent implements OnInit, AfterViewInit {
   selectedCountryId: number | null = null;
   searchText: string = '';
   filteredCountries: any[] = [];
-  currentPage: number = 1;
-  itemsPerPageOptions: number[] = [3, 5, 10, 25, 50];
-  itemsPerPage: number = 5; // default value
   private countryModal: bootstrap.Modal | undefined;
   private modalElement: ElementRef | undefined;
 

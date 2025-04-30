@@ -2,6 +2,8 @@ using System;
 using HR.Application.Features.Cities.Commands.Dtos;
 using HR.Application.Features.Countries.Commands.Dtos;
 using HR.Application.Features.Designations.Commands.Dtos;
+using HR.Application.Features.Divisions.Command.Dto;
+using HR.Application.Features.Dtos;
 using HR.Application.Features.Holidays.Commands.Dtos;
 using HR.Application.Features.States.Commands.Dtos;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,8 @@ public class AppDbContext : DbContext
     public DbSet<DesignationDto> DesignationDtos { get; set; }
     public DbSet<CityDto> CityDtos { get; set; }
     public DbSet<HolidayDto> HolidayDtos { get; set; }
+    public DbSet<LocationDto> LocationDtos { get; set; }
+    public DbSet<DivisionDtos> DivisionDto { get; set; }
 
 
 
@@ -28,7 +32,8 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<DesignationDto>().HasNoKey();
         modelBuilder.Entity<CityDto>().HasNoKey();
         modelBuilder.Entity<HolidayDto>().HasNoKey();
-
+        modelBuilder.Entity<LocationDto>().HasNoKey();
+        modelBuilder.Entity<DivisionDtos>().HasNoKey();
 
 
 

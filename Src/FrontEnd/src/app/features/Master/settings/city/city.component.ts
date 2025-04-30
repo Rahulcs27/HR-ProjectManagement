@@ -10,13 +10,12 @@ import { GetCityDto } from './Models/get-city.dto';
 import { UpdateCityDto } from './Models/update-city.dto';
 import { CreateCityDto } from './Models/create-city.dto';
 import { CommonModule } from '@angular/common';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule,NgxPaginationModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   standalone: true,
 })
 export class CityComponent implements OnInit, AfterViewInit {
@@ -29,9 +28,6 @@ export class CityComponent implements OnInit, AfterViewInit {
   filteredCities: any[] = [];
   selectedCityId: number | null = null;
   isEditMode = false;
-  currentPage: number = 1;
-  itemsPerPageOptions: number[] = [3, 5, 10, 25, 50];
-  itemsPerPage: number = 5; // default value
 
   private cityModal!: bootstrap.Modal;
   private modalElement: ElementRef | undefined;

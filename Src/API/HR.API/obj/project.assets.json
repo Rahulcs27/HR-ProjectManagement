@@ -5289,11 +5289,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
       "projectName": "HR.API",
-      "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5315,14 +5315,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
-              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
+            "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
             },
-            "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
-              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
+            "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
             },
-            "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
-              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj"
+            "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\new project\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj"
             }
           }
         }
@@ -5337,7 +5337,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -5379,7 +5379,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -6,13 +6,12 @@ import { GetDesignationDto } from './Models/get-designation.dto';
 import { UpdateDesignationDto } from './Models/update-designation.dto';
 import { CreateDesignationDto } from './Models/create-designation.dto';
 import { CommonModule } from '@angular/common';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-designation',
   templateUrl: './designation.component.html',
   styleUrls: ['./designation.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule,NgxPaginationModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   standalone: true,
 })
 export class DesignationComponent implements OnInit, AfterViewInit {
@@ -22,9 +21,6 @@ export class DesignationComponent implements OnInit, AfterViewInit {
   selectedDesignationId: number | null = null;
   searchText: string = '';
   filteredDesignations: any[] = [];
-  currentPage: number = 1;
-  itemsPerPageOptions: number[] = [3, 5, 10, 25, 50];
-  itemsPerPage: number = 5; // default value
   private modal!: bootstrap.Modal;
   private modalElement!: ElementRef;
 

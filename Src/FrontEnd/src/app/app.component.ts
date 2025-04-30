@@ -22,10 +22,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 })
 export class AppComponent {
-  ngOnInit(): void {
-    console.log((window as any).bootstrap); // Should log Bootstrap object
-  }
-  
   hideLayout = false;
 
   constructor(private router: Router) {

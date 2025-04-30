@@ -7,10 +7,12 @@ import { SubcategoryTabsComponent } from '../../../shared/subcategory-tabs/subca
 import { StateComponent } from './state/state-component.component';
 import { CityComponent } from './city/city.component';
 import { DesignationComponent } from './designation/designation.component';
+import { LocationComponent } from './location/location.component';
+import { DivisionComponent } from './division/division/division.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [ReactiveFormsModule,CountryComponent,CommonModule,SubcategoryTabsComponent,StateComponent,CityComponent,DesignationComponent],
+  imports: [ReactiveFormsModule,CountryComponent,CommonModule,SubcategoryTabsComponent,StateComponent,CityComponent,DesignationComponent,LocationComponent,DivisionComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css'
 })

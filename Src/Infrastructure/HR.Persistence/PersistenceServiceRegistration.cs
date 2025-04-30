@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HR.Application.Contracts.Models.Persistence;
+﻿using HR.Application.Contracts.Models.Persistence;
 using HR.Persistence.Context;
 using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +17,9 @@ namespace HR.Persistence
             services.AddScoped<IDesignationRepository, DesignationRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IHolidayRepository, HolidayRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IDivisionRepositry, DivisionRepository>();
+
 
 
 
