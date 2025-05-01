@@ -1,4 +1,4 @@
-CREATE PROCEDURE dbo.SP_GetStateById
+CREATE PROCEDURE SP_GetStateById
     @StateId INT
 AS
 BEGIN

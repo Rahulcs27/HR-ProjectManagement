@@ -1,29 +1,11 @@
-CREATE OR ALTER PROCEDURE dbo.SP_HolidayInsert
+CREATE PROCEDURE InsertHoliday
     @HolidayName NVARCHAR(30),
     @HolidayDate DATE,
-	@HolidayListType BIT,
+    @HolidayListType NVARCHAR(50),
     @Year INT,
-    @CreatedBy INT
+    @WhoInserted NVARCHAR(50)
 AS
 BEGIN
-    INSERT INTO Tbl_HolidayMaster (
-        HolidayName,
-        HolidayDate,
-        HolidayListType,
-        Year,
-        HolidayStatus,
-        CreatedBy,
-        CreatedDate
-    )
-    VALUES (
-        @HolidayName,
-        @HolidayDate,
-        @HolidayListType,
-        @Year,
-        1,
-        @CreatedBy,
-        GETDATE()
-    );
-
-    SELECT 'Holiday Inserted Successfully' AS Message;
-END;
+    INSERT INTO Holiday_(HolidayName, HolidayDate, HolidayListType, Year, WhoInserted, WhenInserted)
+    VALUES (@HolidayName, @HolidayDate, @HolidayListType, @Year, @WhoInserted, GETDATE());
+END

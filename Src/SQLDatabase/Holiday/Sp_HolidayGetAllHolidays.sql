@@ -1,4 +1,4 @@
-CREATE or alter PROCEDURE dbo.SP_GetHolidays
+CREATE or alter PROCEDURE GetHolidays
     @HolidayListType NVARCHAR(50) = NULL,
     @Year INT = NULL
 AS

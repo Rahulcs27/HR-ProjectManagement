@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE dbo.SP_GetAllDesignations
+CREATE OR ALTER PROCEDURE SP_GetAllDesignations
 AS
 BEGIN
     SELECT 

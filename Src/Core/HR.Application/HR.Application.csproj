@@ -7,16 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../HR.Domain/HR.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.SharePointOnline.CSOM" Version="16.1.25912.12000" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Designations\Queries\GetDesignationById\" />
+    <ProjectReference Include="..\..\Infrastructure\HR.Infrastructure\HR.Infrastructure.csproj" />
+    <ProjectReference Include="..\HR.Domain\HR.Domain.csproj" />
   </ItemGroup>
 
 </Project>
