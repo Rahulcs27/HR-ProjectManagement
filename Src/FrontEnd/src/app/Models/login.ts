@@ -12,6 +12,15 @@ export class AuthResponseModel {
     public email:string,
     public userName:string,
     public otp:string,
-    otpExpiryTime:string 
+    otpExpiryTime:string,
+    public firstLogin:string,
+    // public empid:number
   ) { }
+}
+export class VerifyOTPDto {
+  constructor(
+    public userName:string,
+    public password:string,
+    public otp:string
+  ) {}
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthResponseModel, Login } from '../Models/login';
+import { AuthResponseModel, Login, VerifyOTPDto } from '../Models/login';
 import { Observable } from 'rxjs';
 import { ChangePasswordModel } from '../Models/change-password';
 
@@ -13,10 +13,11 @@ export class UserService {
   login(loginUser:Login):Observable<AuthResponseModel> {
     return this.http.post<AuthResponseModel>(`${this.apiUrl}`, loginUser);
   }
+  verifyOtp(data: VerifyOTPDto) : Observable<AuthResponseModel> {
+    return this.http.post<AuthResponseModel>(`https://localhost:7292/api/Login/otpVerify`, data);
+  }
 
-  
-
-  resendOtp(loginUser: Login): Observable<AuthResponseModel> {
+  resendOtp(loginUser: Login): Observable<AuthResponseModel>{
     return this.http.post<AuthResponseModel>(`${this.apiUrl}/resend-otp`, loginUser);
   }
 
