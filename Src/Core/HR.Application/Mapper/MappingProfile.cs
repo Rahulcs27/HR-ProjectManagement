@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HR.Application.Dtos;
 using HR.Application.Features.GMC.Commands.AddEmpDetails;
 using HR.Application.Features.GMC.Commands.AddFamilyDetails;
 using HR.Domain.Entities;
@@ -18,6 +19,8 @@ namespace HR.Application.Mapper
             // Create mappings for your entities and DTOs here
             CreateMap<AddFamilyDetailsCommandDto, FamilyMaster>();
             CreateMap<FamilyMaster, AddFamilyDetailsCommandDto>();
+            CreateMap<Tbl_LoginMaster, Tbl_LoginMasterDto>().ReverseMap();
+
         }
     }
 }

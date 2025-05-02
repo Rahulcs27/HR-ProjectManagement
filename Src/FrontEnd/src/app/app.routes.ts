@@ -6,11 +6,9 @@ import { SettingsComponent } from './features/Master/settings/settings.component
 import { ChangePasswordComponent } from './features/Profile/change-password/change-password.component';
 import { LefSideNavComponent } from './shared/lef-side-nav/lef-side-nav.component';
 import { GmcComponent } from './features/Master/gmc/gmc.component';
-
 import { TimesheetUpdateComponent } from './features/Hr/timesheet-update/timesheet-update.component';
-
-
 import { EmployeeComponent } from './features/Master/employee/employee.component';
+
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },

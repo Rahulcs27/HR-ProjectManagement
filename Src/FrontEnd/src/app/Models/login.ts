@@ -10,8 +10,9 @@ export class Login {
 export class AuthResponseModel {
   constructor(
     public email:string,
-    public username:string,
+    public userName:string,
     public otp:string,
-    otpExpiryTime:string
+    otpExpiryTime:string,
+    public empid :number 
   ) { }
 }

@@ -1,7 +1,7 @@
 ﻿
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Xml;
+
 
 using HR.Application.Features.Employee.Queries;
 
@@ -9,6 +9,7 @@ using HR.Application.Features.Employee.Queries;
 using HR.Application.Features.Employee.Commands.MakeEmployeeInactivate;
 using HR.Application.Features.Employee.Queries.GetAllEmployees;
 using HR.Application.Features.Employee.Commands.MakeEmployeeActive;
+using HR.Application.Features.Employee.Queries.GetEmployeeProfile;
 
 namespace HR.API.Controllers
 {
@@ -29,6 +30,40 @@ namespace HR.API.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+        [HttpGet("ProfileDetalis/{code}")]
+        public async Task<IActionResult> GetEmployeeProfile(string code)
+        {
+            var query = new GetEmployeeProfileQuery(code);
+            var employeeProfile = await _mediator.Send(query);
+
+            if (employeeProfile == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employeeProfile);
+        }
+
+        //        [HttpGet("ProfileDetalis")]
+        //public async Task<IActionResult> GetEmployeeProfile()
+        //{
+        //    var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        //    if (string.IsNullOrEmpty(userIdClaim))
+        //        return Unauthorized();
+
+        //    int userId = int.Parse(userIdClaim);
+
+        //    var query = new GetEmployeeProfileQuery(userId);
+        //    var employeeProfile = await _mediator.Send(query);
+
+        //    if (employeeProfile == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(employeeProfile);
+        //}
 
         [HttpPost("Inactivate/{code}")]
         public async Task<IActionResult> InactivateEmployee(string code)

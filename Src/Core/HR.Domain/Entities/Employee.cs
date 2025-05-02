@@ -38,6 +38,7 @@ namespace HR.Domain.Entities
             public byte[] Photo { get; set; }
             public byte[] Signature { get; set; }
             public int Fk_EmployeeTypeId { get; set; }
+        public int Fk_UserGroupId { get; set; }
         public bool LoginStatus { get; set; } = true;  // Default to Active
         public string SignaturePath { get; set; }
             public int? CreatedBy { get; set; }
@@ -45,15 +46,7 @@ namespace HR.Domain.Entities
             public DateTime? UpdatedDate { get; set; }
             public int? UpdatedBy { get; set; }
 
-            // Foreign Key Navigation Properties
-            public BranchMaster Branch { get; set; }
-            public GenderMaster Gender { get; set; }
-            public EmployeeTypeMaster EmployeeType { get; set; }
-            public LocationMaster Location { get; set; }
-            public ShiftMaster Shift { get; set; }
-            public DesignationMaster Designation { get; set; }
-            public DivisionMaster Division { get; set; }
-            public UserGroupMaster UserGroup { get; set; }
+           
         }
     }
 

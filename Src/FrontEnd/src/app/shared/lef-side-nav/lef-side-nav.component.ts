@@ -20,16 +20,22 @@ export class LefSideNavComponent implements OnInit {
 
 
 constructor(private profileService: ProfileService) {}
+ngOnInit(): void {
+  const code = localStorage.getItem('userName');  // Changed empId to code
 
-  ngOnInit(): void {
-    const Id = 11; // Replace with dynamic ID if needed
-    this.profileService.getUserProfile(Id).subscribe(profile => {
+  if (code) {
+    this.profileService.getUserProfile(code).subscribe(profile => {
       this.user = profile;
 
       if (profile.image) {
         this.imageSrc = `data:image/png;base64,${profile.image}`;
-        // You can also check for image type if needed
       }
     });
+  } else {
+    console.error('No code found. User might not be logged in.');
+  
   }
+}
+
+
 }

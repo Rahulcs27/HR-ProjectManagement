@@ -1,10 +1,7 @@
 ﻿using HR.Application.Contracts.Models.Common;
 using HR.Application.Features.Employee.Queries.GetAllEmployees;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HR.Application.Features.Employee.Queries.GetEmployeeProfile;
+
 
 namespace HR.Application.Contracts.Persistence
 {
@@ -12,6 +9,9 @@ namespace HR.Application.Contracts.Persistence
     {
         
         Task<PaginatedResult<GetAllEmployeeVm>> GetAllEmployeeSummaryPagedAsync(int pageNumber, int pageSize);
+        //Task<GetEmployeeProfileQueryVm> GetEmployeeProfileAsync(int id);
+        Task<GetEmployeeProfileQueryVm> GetEmployeeProfileAsync(string Code);
+
         Task<string> MakeEmployeeInactiveAsync(string code);
         Task<string> MakeEmployeeActiveAsync(string code);
     }

@@ -20,14 +20,14 @@ export class UserService {
   }
 
 
-  // --------------------------------------------------
+  // ----------------------------------------------------------------------------------------------------------------
 
-  resetPassword(data: { email: string; otp: string; newPassword: string }) {
-    return this.http.post<any>('your-backend-api-url/api/reset-password', data);
+  resetPassword(data: { username: string; otp: string; newPassword: string, confirmNewPassword:string }) {
+    return this.http.post<any>('https://localhost:7292/api/Login/verify-otp',data);
   }
 
-  sendForgotPasswordOtp(email: string) {
-    return this.http.post<any>(`https://localhost:7292/api/Login/send-otp?username=NS001`, { email });
+  sendForgotPasswordOtp(username: string) {
+    return this.http.post<any>(`https://localhost:7292/api/Login/send-otp?username=${username}`, null);
   }
   
   

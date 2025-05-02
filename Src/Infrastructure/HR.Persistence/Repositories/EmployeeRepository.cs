@@ -1,14 +1,11 @@
 ﻿using HR.Application.Contracts.Models.Common;
 using HR.Application.Contracts.Persistence;
 using HR.Application.Features.Employee.Queries.GetAllEmployees;
+using HR.Application.Features.Employee.Queries.GetEmployeeProfile;
 using HR.Persistence.Context;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace HR.Persistence.Repositories
 {
@@ -16,10 +13,13 @@ namespace HR.Persistence.Repositories
 
     {
         readonly AppDbContext _appDbContext;
-        public Employeerepository(AppDbContext dbContext)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public Employeerepository(AppDbContext dbContext,IHttpContextAccessor httpContextAccessor)
         {
 
             _appDbContext = dbContext;
+            _httpContextAccessor = httpContextAccessor;
 
         }
 
@@ -55,6 +55,18 @@ namespace HR.Persistence.Repositories
 
             return result > 0 ? "Employee is inactive successfully" : "Failed to inactivate employee";
         }
+public async Task<GetEmployeeProfileQueryVm> GetEmployeeProfileAsync(string  code)
+{
+            var employeeProfile = _appDbContext
+        .Set<GetEmployeeProfileQueryVm>()
+        .FromSqlRaw("EXEC GetEmployeeProfile @Code = {0}", code)
+        .AsNoTracking()
+        .AsEnumerable()
+        .FirstOrDefault();
+
+    return await Task.FromResult(employeeProfile);
+}
+
 
 
     }

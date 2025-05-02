@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   isVerifying = false;
   errorMessage = '';
   formSubmitted = false;
+  // -----
+  isLoggingIn=false;
  
   
   constructor(
@@ -38,19 +40,38 @@ export class LoginComponent implements OnInit {
     }
     this.login = loginForm.value;
 
+     // START: Login Button Spinner Addition
+  this.isLoggingIn = true;
+  // END: Login Button Spinner Addition
+
     this.userService.login(this.login).subscribe({
       next: (response: AuthResponseModel) => {
-        localStorage.setItem('otp', response.otp);
-        localStorage.setItem('email', response.email);
-        loginForm.reset();
+        console.log('Login Response:', response);  // Check the response object
+    if (response.userName) {
+      localStorage.setItem('userName', response.userName);  // Save username
+    } else {
+      console.error('Username is missing from the response');
+    }
+ // Save other details
+ localStorage.setItem('otp', response.otp);
+ localStorage.setItem('email', response.email);
 
-        const modalElement = document.getElementById('otpModal');
-        const otpModal = new bootstrap.Modal(modalElement);
-        otpModal.show();
+ // Show OTP Modal
+ const modalElement = document.getElementById('otpModal');
+ const otpModal = new bootstrap.Modal(modalElement);
+ otpModal.show();
+
+         // START: Login Button Spinner Addition
+      this.isLoggingIn = false;
+      // END: Login Button Spinner Addition-
       },
       error: (error) => {
         console.error('Login failed!', error);
         alert("Invalid email or password. Please try again");
+
+          // START: Login Button Spinner Addition
+      this.isLoggingIn = false;
+      // END: Login Button Spinner Addition
       }
     });
   }
@@ -117,20 +138,18 @@ export class LoginComponent implements OnInit {
   }
   
   // <!-- -----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
- 
- 
- 
- 
-  forgotEmail: string = '';
+ //forgot password logic
+  
+  forgotUsername: string = ''
 forgotOtp: string = '';
 newPassword: string = '';
 confirmNewPassword: string = '';
 
 openForgotPasswordModal() {
-  const email = prompt('Please enter your registered email:');
-  if (email) {
-    this.forgotEmail = email;
-    this.userService.sendForgotPasswordOtp(email).subscribe({
+  const username = prompt('Please enter your registered username:');
+  if (username) {
+    this.forgotUsername = username;
+    this.userService.sendForgotPasswordOtp(username).subscribe({
       next: (response: any) => {
         alert('OTP sent to your registered email.');
         const modalElement = document.getElementById('forgotPasswordModal');
@@ -146,7 +165,7 @@ openForgotPasswordModal() {
 }
 
 submitForgotPassword() {
-  if (!this.forgotEmail || !this.forgotOtp || !this.newPassword || !this.confirmNewPassword) {
+  if (!this.forgotUsername || !this.forgotOtp || !this.newPassword || !this.confirmNewPassword) {
     alert('Please fill all fields.');
     return;
   }
@@ -157,9 +176,10 @@ submitForgotPassword() {
   }
 
   const resetPasswordData = {
-    email: this.forgotEmail,
+    username: this.forgotUsername,
     otp: this.forgotOtp,
-    newPassword: this.newPassword
+    newPassword: this.newPassword,
+    confirmNewPassword: this.confirmNewPassword
   };
 
   this.userService.resetPassword(resetPasswordData).subscribe({
@@ -176,10 +196,12 @@ submitForgotPassword() {
   });
 }
 
-
-
-
-
     // <!-- -----IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII -->
+
+    //UpdatePassword
+
+    
+
+
 
 }
