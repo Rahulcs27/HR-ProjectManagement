@@ -9,9 +9,11 @@ import { GmcComponent } from './features/Master/gmc/gmc.component';
 import { CountryComponent } from './features/Master/settings/country/country.component';
 import { StateComponent } from './features/Master/settings/state/state-component.component';
 import { HolidayComponent } from './features/Master/holiday/holiday.component';
+import { TeamCompositionComponent } from './features/Master/team-composition/team-composition.component';
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '', component: LefSideNavComponent },
+  { path: '', component: LoginComponent },
+  { path: 'sidebar', component: LefSideNavComponent },
+  { path: 'team-composition', component: TeamCompositionComponent },
 
   { path: 'dashboard', component: DashboardComponent },
   { path: 'settings', component: SettingsComponent },

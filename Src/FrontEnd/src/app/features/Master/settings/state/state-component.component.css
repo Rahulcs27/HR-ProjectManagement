@@ -67,10 +67,7 @@
     background-color: #c5c5c5 !important; 
     color: #817070 !important;            /* Dark red text */
   }
-  .row{
-    margin-left: 40px;
-    margin-right: 40px;
-  }
+  
   
   .status-badge.active {
     background-color: #c5edee; /* green */
@@ -94,6 +91,7 @@
     background-color: #5b7cfd;
     color: white;
     margin-right: 50px;
+
   }
   .custom-add-btn:hover{
     box-shadow: #555 0px 0px 10px;
@@ -102,6 +100,10 @@
   .edit-btn:hover {
     background-color: #e2e8f0;
     color: #000;
+  }
+  .row{
+    margin-left: 40px;
+    margin-right: 40px;
   }
   .entries-dropdown {
     display: flex;
