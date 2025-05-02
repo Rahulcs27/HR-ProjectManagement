@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HR.Application.Features.TimeSheet.Commands.CreateTimeSheet;
+
 using HR.Domain.Entities;
 
 namespace HR.Application.Mapper
@@ -10,8 +10,7 @@ namespace HR.Application.Mapper
         {
 
 
-            CreateMap<TimeSheetDto, TimeSheet>();
-            CreateMap<TimeSheet, TimeSheetDto>();
+            
             CreateMap<CreateEmployeeMasterDto, EmployeeMaster>();
             CreateMap<EmployeeMaster, CreateEmployeeMasterDto>();
 

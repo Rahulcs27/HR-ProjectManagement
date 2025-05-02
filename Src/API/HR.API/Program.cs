@@ -34,7 +34,6 @@ namespace HR.API
             //------------------------------------------------------------------------------------------
 
             // Register Repositories
-            builder.Services.AddScoped<ITimeSheetRepository, TimeSheetRepo>();
             builder.Services.AddScoped<IEmployeeMasterRepository, EmployeeRepository>();
 
             // Register AutoMapper
