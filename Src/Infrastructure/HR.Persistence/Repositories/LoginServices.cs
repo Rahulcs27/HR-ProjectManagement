@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HR.Application.Exceptions;
 using Microsoft.Extensions.Caching.Memory;
+using HR.Application.Dtos;
 
 namespace HR.Identity.Services
 {
@@ -22,7 +23,7 @@ namespace HR.Identity.Services
             _cache = cache;
         }
 
-        public async Task<LoginResponse> Login(LoginRequest loginRequest)
+        public async Task<LoginResponse> Login(Tbl_LoginMasterDto loginRequest)
         {
             var user = await _context.Tbl_LoginMaster.FirstOrDefaultAsync(u => u.UserName == loginRequest.UserName);
             if (user == null)
@@ -35,20 +36,40 @@ namespace HR.Identity.Services
             {
                 throw new UserNotFoundException("Invalid credentials, please try again!!");
             }
-
-            var otp = GenerateRandomNumber();
-            StoreOtp(user.UserName, otp);
-            await SendOtpMail(user.Email, otp, user.UserName);
-
-            var response = new LoginResponse
+            //var otplogin =await _context.Tbl_LoginMaster.FirstOrDefaultAsync(ol=>ol.FirstLogin==);
+            if (user.FirstLogin)
             {
-                Email = user.Email,
-                UserName = user.UserName,
-                Otp = otp,
-                OtpExpiryTime = DateTime.Now.AddMinutes(3)
-            };
+                var otp = GenerateRandomNumber();
+                StoreOtp(user.UserName, otp);
+                await SendOtpMail(user.Email, otp, user.UserName);
 
-            return response;
+                var response = new LoginResponse
+                {
+                    Email = user.Email,
+                    UserName = user.UserName,
+                    Otp = otp,
+                    OtpExpiryTime = DateTime.Now.AddMinutes(3),
+                    FirstLogin = user.FirstLogin,
+                    EmpId = user.fk_EmpId
+                };
+
+                return response;
+            }
+            else
+            {
+                // Return a simple login response without OTP
+                var response = new LoginResponse
+                {
+                    Email = user.Email,
+                    UserName = user.UserName,
+                    FirstLogin = user.FirstLogin
+                    //Otp = null,
+                    //OtpExpiryTime = DateTime.Now.
+                };
+
+                return response;
+            }
+
         }
 
         public async Task SendOtpMail(string useremail, string otpText, string name)
@@ -85,7 +106,7 @@ namespace HR.Identity.Services
             var cacheEntryOptions = new MemoryCacheEntryOptions()
                 .SetAbsoluteExpiration(TimeSpan.FromMinutes(3));
             _cache.Set(userName, otp, cacheEntryOptions);
-        }
+        }  
 
         public string? GetOtp(string userName)
         {
@@ -96,7 +117,7 @@ namespace HR.Identity.Services
         public async Task<OtpResponse> VerifyOtp(OtpRequest otpRequest)
         {
             var user = await _context.Tbl_LoginMaster.FirstOrDefaultAsync(u => u.UserName == otpRequest.UserName);
-            if (user == null)   
+            if (user == null)
             {
                 throw new NotFoundException($"User with Username {otpRequest.UserName} does not exist");
             }
@@ -107,7 +128,16 @@ namespace HR.Identity.Services
                 throw new OtpNotFoundException("You have entered an incorrect or expired OTP.");
             }
 
+            // Remove the OTP from cache
             RemoveOtp(user.UserName);
+
+            // Marking user as no longer first-time
+            if (user.FirstLogin)
+            {
+                user.FirstLogin = false;
+                _context.Tbl_LoginMaster.Update(user);
+                await _context.SaveChangesAsync();
+            }
 
             var response = new OtpResponse
             {
@@ -118,6 +148,7 @@ namespace HR.Identity.Services
 
             return response;
         }
+
 
         public void RemoveOtp(string userName)
         {

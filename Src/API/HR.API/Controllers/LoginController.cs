@@ -1,5 +1,6 @@
 ﻿using HR.Application.Contracts.Models;
 using HR.Application.Contracts.Persistence;
+using HR.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HR.API.Controllers 
@@ -17,9 +18,9 @@ namespace HR.API.Controllers
 
         //login first
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResponse>>Login(LoginRequest loginRequest)
+        public async Task<ActionResult<LoginResponse>>Login(Tbl_LoginMasterDto tbloginRequest)
         {
-            var response=await _loginService.Login(loginRequest);
+            var response=await _loginService.Login(tbloginRequest);
             return Ok(response);
         }
 
