@@ -19,6 +19,8 @@ namespace HR.Domain.Entities
         public int UpdatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
         public bool FirstLogin { get; set; }
+
+        public string  RoleName { get; set; }
         //public int? Otp {  get; set; }
         //public DateTime? OtpExpiryTime { get; set; }
 

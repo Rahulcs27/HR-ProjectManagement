@@ -14,7 +14,7 @@ export class AuthResponseModel {
     public otp:string,
     otpExpiryTime:string,
     public firstLogin:string,
-    // public empid:number
+    public roleName:string
   ) { }
 }
 export class VerifyOTPDto {

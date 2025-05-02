@@ -50,7 +50,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('otp', response.otp);
         localStorage.setItem('email', response.email);
         localStorage.setItem('userName', response.userName);
-        localStorage.setItem('checkFirstLogin', response.firstLogin);       
+        localStorage.setItem('checkFirstLogin', response.firstLogin);  
+        localStorage.setItem('roleName',response.roleName);
+
       // localStorage.setItem('empid', response.empid.toString());
         console.log(localStorage.getItem('userName'));
 

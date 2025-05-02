@@ -50,19 +50,21 @@ namespace HR.Identity.Services
                     Otp = otp,
                     OtpExpiryTime = DateTime.Now.AddMinutes(3),
                     FirstLogin = user.FirstLogin,
-                    EmpId = user.fk_EmpId
+                    RoleName=user.RoleName
+                    //EmpId = user.fk_EmpId
                 };
 
                 return response;
             }
             else
             {
-                // Return a simple login response without OTP
+                // Return login response without OTP
                 var response = new LoginResponse
                 {
                     Email = user.Email,
                     UserName = user.UserName,
-                    FirstLogin = user.FirstLogin
+                    FirstLogin = user.FirstLogin,
+                     RoleName = user.RoleName
                     //Otp = null,
                     //OtpExpiryTime = DateTime.Now.
                 };
