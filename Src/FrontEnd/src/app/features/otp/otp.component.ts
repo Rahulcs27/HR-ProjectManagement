@@ -30,7 +30,7 @@ export class OtpComponent {
 
     // Validate OTP or navigate forward
     // this.router.navigate(['/dashboard']);
-    this.router.navigate(['/sidebar']);
+    this.router.navigate(['/dashboard']);
   }
 
   resendOtp() {

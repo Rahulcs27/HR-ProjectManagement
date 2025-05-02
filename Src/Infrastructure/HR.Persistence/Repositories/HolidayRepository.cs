@@ -39,7 +39,7 @@ namespace HR.Persistence.Repositories
         }
         public async Task<Holiday> UpdateAsync(UpdateHolidayDto dto)
         {
-            var sql = "EXEC SP_HolidayUpdate @HolidayId = {0}, @HolidayName = {1}, @HolidayDate = {2}, @HolidayListType = {3}, @Year = {3}, @HolidayStatus = {4}, @UpdatedBy = {5}";
+            var sql = "EXEC SP_HolidayUpdate @HolidayId = {0}, @HolidayName = {1}, @HolidayDate = {2}, @HolidayListType = {3}, @HolidayStatus = {4}, @UpdatedBy = {5}";
             await _context.Database.ExecuteSqlRawAsync(sql, dto.HolidayId, dto.HolidayName, dto.HolidayDate, dto.HolidayListType, dto.HolidayStatus, dto.UpdatedBy);
 
             return new Holiday

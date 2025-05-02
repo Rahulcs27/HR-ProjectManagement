@@ -113,12 +113,12 @@ export class HolidayComponent implements OnInit, AfterViewInit {
 
   onSubmit(): void {
     if (this.holidayForm.invalid) return;
-
+    const listTypeBool = this.holidayForm.value.holidayStatus === '1' ? true : false;
     const payload = {
       holidayName: this.holidayForm.value.holidayName,
       holidayDate: this.holidayForm.value.holidayDate,
       holidayListType: this.holidayForm.value.holidayListType === '1',
-      holidayStatus: this.holidayForm.value.holidayStatus === '1'
+      holidayStatus: listTypeBool
     };
 
     if (this.isEditMode && this.selectedHolidayId) {
