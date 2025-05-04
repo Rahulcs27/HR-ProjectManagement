@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreateDesignationDto } from '../features/Master/settings/designation/Models/create-designation.dto';
 import { UpdateDesignationDto } from '../features/Master/settings/designation/Models/update-designation.dto';
+import { API_URL } from '../../constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DesignationService {
-  private apiUrl = 'https://localhost:7292/api/Designation';
+  private apiUrl = `${API_URL}/Designation`;
 
   constructor(private http: HttpClient) {}
 

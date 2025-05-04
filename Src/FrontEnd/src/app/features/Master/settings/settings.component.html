@@ -1,11 +1,13 @@
-<app-subcategory-tabs (tabChanged)="onTabChanged($event)"></app-subcategory-tabs>
+<app-subcategory-tabs
+  (tabChanged)="onTabChanged($event)"
+></app-subcategory-tabs>
 
 <div *ngIf="activeTab === 'Country'">
   <app-country></app-country>
 </div>
 
 <div *ngIf="activeTab === 'State'">
-    <app-state></app-state>
+  <app-state></app-state>
 </div>
 
 <div *ngIf="activeTab === 'City'">
@@ -15,4 +17,3 @@
 <div *ngIf="activeTab === 'Designation'">
   <app-designation></app-designation>
 </div>
- 

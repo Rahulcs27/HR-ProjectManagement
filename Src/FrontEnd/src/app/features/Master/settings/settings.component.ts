@@ -10,9 +10,17 @@ import { DesignationComponent } from './designation/designation.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [ReactiveFormsModule,CountryComponent,CommonModule,SubcategoryTabsComponent,StateComponent,CityComponent,DesignationComponent],
+  imports: [
+    ReactiveFormsModule,
+    CountryComponent,
+    CommonModule,
+    SubcategoryTabsComponent,
+    StateComponent,
+    CityComponent,
+    DesignationComponent,
+  ],
   templateUrl: './settings.component.html',
-  styleUrl: './settings.component.css'
+  styleUrl: './settings.component.css',
 })
 export class SettingsComponent {
   activeTab = 'Country';
@@ -20,5 +28,4 @@ export class SettingsComponent {
   onTabChanged(tab: string) {
     this.activeTab = tab;
   }
-
 }

@@ -4,13 +4,13 @@ import { GetCityDto } from '../features/Master/settings/city/Models/get-city.dto
 import { Observable } from 'rxjs';
 import { CreateCityDto } from '../features/Master/settings/city/Models/create-city.dto';
 import { UpdateCityDto } from '../features/Master/settings/city/Models/update-city.dto';
+import { API_URL } from '../../constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CityService {
-
-  private apiUrl = 'https://localhost:7292/api/City';
+  private apiUrl = `${API_URL}/City`;
 
   constructor(private http: HttpClient) {}
 

@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { GetHolidayDto } from '../features/Master/holiday/Models/get-holiday.dto';
 import { CreateHolidayDto } from '../features/Master/holiday/Models/create-holiday.dto';
 import { UpdateHolidayDto } from '../features/Master/holiday/Models/update-holiday.dto';
+import { API_URL } from '../../constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HolidayService {
-  private apiUrl = 'https://localhost:7292/api/Holiday';
+  private apiUrl = `${API_URL}/Holiday`;
 
   constructor(private http: HttpClient) {}
 

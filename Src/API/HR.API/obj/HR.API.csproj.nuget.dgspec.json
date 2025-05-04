@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {}
+    "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {
+    "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+        "projectUniqueName": "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
         "projectName": "HR.API",
-        "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
+        "projectPath": "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\HR.API.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
+        "outputPath": "D:\\HR-ProjectManagement\\Src\\API\\HR.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,14 +33,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
+              "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
+                "projectPath": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
               },
-              "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
+              "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\HR.Infrastructure.csproj": {
+                "projectPath": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\HR.Infrastructure.csproj"
               },
-              "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj"
+              "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
+                "projectPath": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj"
               }
             }
           }
@@ -61,17 +61,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "MediatR": {
               "target": "Package",
-              "version": "[8.0.15, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[8.0.15, )"
+              "version": "[12.5.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -97,18 +89,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
+    "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj",
+        "projectUniqueName": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj",
         "projectName": "HR.Application",
-        "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj",
+        "projectPath": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\obj\\",
+        "outputPath": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -130,8 +122,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj"
+              "D:\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj": {
+                "projectPath": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj"
+              },
+              "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\HR.Infrastructure.csproj": {
+                "projectPath": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\HR.Infrastructure.csproj"
               }
             }
           }
@@ -159,6 +154,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.5.0, )"
+            },
+            "Microsoft.SharePointOnline.CSOM": {
+              "target": "Package",
+              "version": "[16.1.25912.12000, )"
             }
           },
           "imports": [
@@ -177,18 +176,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj": {
+    "D:\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj",
+        "projectUniqueName": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj",
         "projectName": "HR.Domain",
-        "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj",
+        "projectPath": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\obj\\",
+        "outputPath": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -243,18 +242,84 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
+    "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\HR.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj",
-        "projectName": "HR.Identity",
-        "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj",
+        "projectUniqueName": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\HR.Infrastructure.csproj",
+        "projectName": "HR.Infrastructure",
+        "projectPath": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\HR.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\obj\\",
+        "outputPath": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj",
+        "projectName": "HR.Persistence",
+        "projectPath": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -276,8 +341,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
+              "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
+                "projectPath": "D:\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
               }
             }
           }
@@ -298,11 +363,7 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Identity": {
-              "target": "Package",
-              "version": "[2.3.1, )"
-            },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.15, )"
             },
@@ -333,94 +394,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj",
-        "projectName": "HR.Persistence",
-        "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {
-              "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
-              },
-              "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.Data.SqlClient": {
-              "target": "Package",
-              "version": "[6.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[8.0.15, )"
-            },
-            "Microsoft.Extensions.Options.ConfigurationExtensions": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
