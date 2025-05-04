@@ -1,14 +1,14 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee, FamilyMember } from '../Models/gmc-model';
 import { Observable } from 'rxjs';
+import { API_URL } from '../../constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GmcService {
-  private baseUrl = 'myapilink'; 
+  private baseUrl = `${API_URL}/`;
 
   constructor(private http: HttpClient) {}
 
@@ -24,5 +24,3 @@ export class GmcService {
     return this.http.get<FamilyMember[]>(`${this.baseUrl}/family`);
   }
 }
-
-

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmployeeModel, EmployeeResponse } from '../Models/employee-model';
 import { CreateModel } from '../Models/create-model';
+import { API_URL } from '../../constant';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { CreateModel } from '../Models/create-model';
 export class EmployeeService {
   private baseUrl = 'https://localhost:7292/ALlEmployees';
 
-  private url = 'https://localhost:44340/api';
+  private url = API_URL;
 
   constructor(private http: HttpClient) {}
 
