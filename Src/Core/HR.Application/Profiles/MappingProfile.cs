@@ -1,34 +1,47 @@
-﻿using AutoMapper;
-using HR.Application.Features.Location.Query;
-using HR.Application.Features.TimeSheet.Commands.CreateTimeSheet;
+using System;
+using AutoMapper;
+using HR.Application.Features.Cities.Commands.CreateCity;
+using HR.Application.Features.Cities.Commands.Dtos;
+using HR.Application.Features.Cities.Commands.UpdateCity;
+using HR.Application.Features.Countries.Commands.CreateCountry;
+using HR.Application.Features.Countries.Commands.Dtos;
+using HR.Application.Features.Countries.Commands.UpdateCountry;
+using HR.Application.Features.Designations.Commands.CreateDesignation;
+using HR.Application.Features.Designations.Commands.Dtos;
+using HR.Application.Features.Designations.Commands.UpdateDesignation;
+using HR.Application.Features.Holidays.Commands.CreateHoliday;
+using HR.Application.Features.Holidays.Commands.Dtos;
+using HR.Application.Features.Holidays.Commands.UpdateHoliday;
+using HR.Application.Features.States.Commands.CreateState;
+using HR.Application.Features.States.Commands.Dtos;
+using HR.Application.Features.States.Commands.UpdateState;
 using HR.Domain.Entities;
-using HR.Domain.Entity;
 
-namespace HR.Application.Mapper
+namespace HR.Application.Profiles;
+
+public class MappingProfile : Profile
 {
-    public class MappingProfile : Profile
+    public MappingProfile()
     {
-        public MappingProfile()
-        {
+        CreateMap<CreateCountryDto, Country>();
+        CreateMap<UpdateCountryDto, Country>();
+        CreateMap<Country, CountryDto>();
 
 
-            CreateMap<CreateTimeSheetDto, TimeSheet>();
-            CreateMap<TimeSheet, CreateTimeSheetDto>();
-            CreateMap<CreateEmployeeMasterDto, EmployeeMaster>()
-    .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image != null ? Convert.FromBase64String(src.Image) : null)) // Decode Base64 string to byte[] 
-    .ForMember(dest => dest.Signature, opt => opt.MapFrom(src => src.Signature != null ? Convert.FromBase64String(src.Signature) : null)) // Decode Base64 string to byte[]
-    .ForMember(dest => dest.JoinDate, opt => opt.MapFrom(src => src.JoinDate));
+        CreateMap<CreateStateDto, State>();
+        CreateMap<UpdateStateDto, State>();
+        CreateMap<State, StateDto>();
 
-            CreateMap<EmployeeMaster, CreateEmployeeMasterDto>()
-                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image != null ? Convert.ToBase64String(src.Image) : null)) // Encode byte[] to Base64 string
-                .ForMember(dest => dest.Signature, opt => opt.MapFrom(src => src.Signature != null ? Convert.ToBase64String(src.Signature) : null)); // Encode byte[] to Base64 string
+        CreateMap<CreateDesignationDto, Designation>();
+        CreateMap<UpdateDesignationDto, Designation>();
+        CreateMap<Designation, DesignationDto>();
 
+        CreateMap<CreateCityDto, City>();
+        CreateMap<UpdateCityDto, City>();
+        CreateMap<City, CityDto>();
 
-
-            CreateMap<Location, GetAllLocationDto>();
-
-            //CreateMap<Employee, GetEmployeeVm>();
-
-        }
+        CreateMap<CreateHolidayDto, Holiday>();
+        CreateMap<UpdateHolidayDto, Holiday>();
+        CreateMap<Holiday, HolidayDto>();
     }
 }

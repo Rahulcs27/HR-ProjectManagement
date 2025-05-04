@@ -1,4 +1,4 @@
-﻿namespace HR.Identity
+﻿namespace HR.Domain
 {
     public class Class1
     {

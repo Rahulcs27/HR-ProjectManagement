@@ -1,9 +1,7 @@
-using HR.Application;
-using HR.Application.Contracts.Persistence;
-using HR.Application.Mapper;
+
+using HR.Identity;
 using HR.Persistence;
-using HR.Persistence.Repositories;
-using Microsoft.EntityFrameworkCore;
+using HR.Application;
 
 namespace HR.API
 {
@@ -13,48 +11,28 @@ namespace HR.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var connString = builder.Configuration.GetConnectionString("HrConnString");
-
-            // Register DbContext
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connString),
-                ServiceLifetime.Scoped
-            );
-
-            // Register Application Services
+            // Add services to the container.
             builder.Services.AddApplicationServices();
+            builder.Services.AddPersistenceServices(builder.Configuration);
 
-            // Register Repositories
-            builder.Services.AddScoped<ITimeSheetRepository, TimeSheetRepository>();
-            builder.Services.AddScoped<IEmployeeMasterRepository, EmployeeRepository>();
-            builder.Services.AddScoped<ILocationMasterRepository, LocationMasterRepository>();
+            // builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
-            // Register AutoMapper
-            builder.Services.AddAutoMapper(typeof(MappingProfile));  // Ensure MappingProfile is the correct profile class
+            // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
-            // Add services to the container
             builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // CORS policy
-            builder.Services.AddCors(o => o.AddPolicy("MyPolicy",
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200")
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-                    }));
-
             var app = builder.Build();
+            app.UseCors(x => x
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 
-            // Use CORS
-            app.UseCors("MyPolicy");
-
-            // Configure the HTTP request pipeline
+            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
@@ -62,6 +40,7 @@ namespace HR.API
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
 
             app.MapControllers();
 

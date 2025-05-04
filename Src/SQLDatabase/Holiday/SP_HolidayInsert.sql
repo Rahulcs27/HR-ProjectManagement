@@ -1,4 +1,4 @@
-CREATE PROCEDURE InsertHoliday
+CREATE OR ALTER PROCEDURE dbo.SP_HolidayInsert
     @HolidayName NVARCHAR(30),
     @HolidayDate DATE,
 	@HolidayListType BIT,

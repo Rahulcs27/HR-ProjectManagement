@@ -8,14 +8,13 @@ import { DashboardComponent } from '../../features/Dashboard/dashboard/dashboard
   templateUrl: './lef-side-nav.component.html',
   styleUrls: ['./lef-side-nav.component.css'],
   standalone: true,
-  imports: [RouterLink, HeaderComponent],
+  imports: [RouterLink,HeaderComponent],
 })
 export class LefSideNavComponent {
   user = {
     name: 'Vaishnavi',
     department: 'HR',
-    profileImage:
-      'https://img.icons8.com/?size=100&id=52883&format=png&color=FFFFFF',
+    profileImage: 'https://img.icons8.com/?size=100&id=52883&format=png&color=FFFFFF'
   };
 
   // Reference to the DOM elements
