@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using HR.Application.Contracts.Persistence;
 using HR.Domain.Entities;
+using HR.Persistence.Context;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 

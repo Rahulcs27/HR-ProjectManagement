@@ -1,7 +1,8 @@
 ﻿using HR.Application.Contracts.Persistence;
 using HR.Application.Features.TimeSheet.Commands.CreateTimeSheet;
 using HR.Application.Features.TimeSheet.Queries;
-using HR.Domain.Entity;
+using HR.Domain.Entities;
+using HR.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace HR.Persistence.Repositories

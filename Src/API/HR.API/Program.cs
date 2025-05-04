@@ -1,9 +1,9 @@
 using HR.Application;
-using HR.Application.Contracts.Persistence;
-using HR.Application.Mapper;
+using HR.Application.Profiles;
 using HR.Persistence;
-using HR.Persistence.Repositories;
+using HR.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace HR.API
 {
@@ -24,10 +24,11 @@ namespace HR.API
             // Register Application Services
             builder.Services.AddApplicationServices();
 
+            builder.Services.AddPersistenceServices(builder.Configuration);
+
+
             // Register Repositories
-            builder.Services.AddScoped<ITimeSheetRepository, TimeSheetRepository>();
-            builder.Services.AddScoped<IEmployeeMasterRepository, EmployeeRepository>();
-            builder.Services.AddScoped<ILocationMasterRepository, LocationMasterRepository>();
+
 
             // Register AutoMapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));  // Ensure MappingProfile is the correct profile class

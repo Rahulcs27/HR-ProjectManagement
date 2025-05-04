@@ -1,6 +1,6 @@
 ﻿using HR.Application.Features.TimeSheet.Commands.CreateTimeSheet;
 using HR.Application.Features.TimeSheet.Queries;
-using HR.Domain.Entity;
+using HR.Domain.Entities;
 
 namespace HR.Application.Contracts.Persistence
 {

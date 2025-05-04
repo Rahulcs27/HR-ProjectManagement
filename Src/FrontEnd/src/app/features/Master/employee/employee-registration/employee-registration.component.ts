@@ -11,13 +11,20 @@ import { CreateModel } from '../../../../Models/create-model';
 import { EmployeeService } from '../../../../services/employee-service';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
   standalone: true,
   templateUrl: './employee-registration.component.html',
   styleUrls: ['./employee-registration.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterLink,
+    FormsModule,
+  ],
 })
 export class EmployeeRegistrationComponent implements OnInit {
   employeeForm!: FormGroup;
