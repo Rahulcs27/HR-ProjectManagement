@@ -12,10 +12,21 @@ import { TimesheetUpdateComponent } from './features/Hr/timesheet-update/timeshe
 import { EmployeeComponent } from './features/Master/employee/employee.component';
 import { EmployeeRegistrationComponent } from './features/Master/employee/employee-registration/employee-registration.component';
 
+import { CountryComponent } from './features/Master/settings/country/country.component';
+import { StateComponent } from './features/Master/settings/state/state-component.component';
+import { HolidayComponent } from './features/Master/holiday/holiday.component';
+import { TeamCompositionComponent } from './features/Master/team-composition/team-composition.component';
 export const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'sidebar', component: LefSideNavComponent },
+  { path: 'team-composition', component: TeamCompositionComponent },
+
   { path: 'dashboard', component: DashboardComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'country', component: CountryComponent },
+  { path: 'state', component: StateComponent },
+  { path: 'holiday', component: HolidayComponent },
+
   { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'gmc', component: GmcComponent },
 
