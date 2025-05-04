@@ -1,5 +1,5 @@
 
-CREATE OR ALTER PROCEDURE SP_DesignationDelete
+CREATE OR ALTER PROCEDURE dbo.SP_DesignationDelete
     @DesignationId INT,
     @UpdatedBy INT
 AS
