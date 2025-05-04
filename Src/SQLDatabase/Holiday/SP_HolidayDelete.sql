@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE SP_HolidayDelete
+CREATE OR ALTER PROCEDURE dbo.SP_HolidayDelete
     @HolidayId INT,
     @UpdatedBy INT
 AS

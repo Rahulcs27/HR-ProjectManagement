@@ -1,4 +1,4 @@
-﻿namespace HR.Domain.Entity
+﻿namespace HR.Domain.Entities
 {
     public class TimeSheet
     {

@@ -1,7 +1,6 @@
-CREATE OR ALTER PROCEDURE SP_CityInsert
+CREATE OR ALTER PROCEDURE dbo.SP_CityInsert
     @Fk_StateId INT,
     @CityName NVARCHAR(100),
-    @CityStatus BIT,
     @CreatedBy INT
 AS
 BEGIN
@@ -9,7 +8,7 @@ BEGIN
         Fk_StateId, CityName, CityStatus, CreatedBy, CreatedDate
     )
     VALUES (
-        @Fk_StateId, @CityName, @CityStatus, @CreatedBy, GETDATE()
+        @Fk_StateId, @CityName, 1, @CreatedBy, GETDATE()
     );
 
     SELECT 'City Added Successfully' AS Message;

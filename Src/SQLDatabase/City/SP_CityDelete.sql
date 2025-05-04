@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE SP_CityDelete
+CREATE OR ALTER PROCEDURE dbo.SP_CityDelete
     @CityId INT,
     @UpdatedBy INT
 AS

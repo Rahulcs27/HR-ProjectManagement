@@ -7,8 +7,8 @@ EXEC SP_LocationInsert
 Go
 
 EXEC SP_LocationUpdate
-    @LocationId = 2, 
-    @LocationName = 'Rabale', 
+    @LocationId = 4, 
+    @LocationName = 'Parel', 
     @LocationStatus = 1, 
     @UpdatedBy = 1;
 
@@ -21,5 +21,4 @@ EXEC SP_GetLocationById @LocationId = 1;
 	select * from Tbl_LocationMaster;
 
 	
-
 

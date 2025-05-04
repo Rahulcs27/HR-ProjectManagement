@@ -1,4 +1,4 @@
-CREATE or Alter PROCEDURE SP_StateDelete
+CREATE or Alter PROCEDURE dbo.SP_StateDelete
     @StateId INT,
     @UpdatedBy INT
 AS
