@@ -7,8 +7,8 @@ EXEC SP_LocationInsert
 Go
 
 EXEC SP_LocationUpdate
-    @LocationId = 4, 
-    @LocationName = 'Parel', 
+    @LocationId = 2, 
+    @LocationName = 'Rabale', 
     @LocationStatus = 1, 
     @UpdatedBy = 1;
 

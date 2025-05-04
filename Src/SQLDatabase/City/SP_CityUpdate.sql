@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE dbo.SP_CityUpdate
+CREATE OR ALTER PROCEDURE SP_CityUpdate
     @CityId INT,
     @Fk_StateId INT,
     @CityName NVARCHAR(100),

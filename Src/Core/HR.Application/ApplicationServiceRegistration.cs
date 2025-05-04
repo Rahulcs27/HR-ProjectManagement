@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HR.Application
 {
-    public static class ApplicationServiceRegistration
+    public static class ApplicationServices
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {

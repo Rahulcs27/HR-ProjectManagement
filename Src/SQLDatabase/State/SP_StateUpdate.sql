@@ -1,4 +1,4 @@
-CREATE or Alter PROCEDURE dbo.SP_StateUpdate
+CREATE or Alter PROCEDURE SP_StateUpdate
     @StateId INT,
     @Fk_CountryId INT,
     @StateName NVARCHAR(100),
@@ -19,4 +19,3 @@ BEGIN
 
     SELECT 'State Updated Successfully' AS Message;
 END;
-SELECT * FROM dbo.Tbl_CountryMaster

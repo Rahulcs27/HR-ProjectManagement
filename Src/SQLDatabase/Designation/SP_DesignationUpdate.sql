@@ -1,5 +1,5 @@
 
-CREATE OR ALTER PROCEDURE dbo.SP_DesignationUpdate
+CREATE OR ALTER PROCEDURE SP_DesignationUpdate
     @DesignationId INT,
     @DesignationName NVARCHAR(75),
     @DesignationStatus BIT,
@@ -16,5 +16,3 @@ BEGIN
 
     SELECT 'Division Updated Successfully' AS Message;
 END;
-
-Exec Rahul.SP_GetAllDesignations
