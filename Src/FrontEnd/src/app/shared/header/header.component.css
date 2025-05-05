@@ -1,68 +1,21 @@
-
-.header-box {
-    border: 2px solid;
+body {
+  padding-top: 70px; /* To prevent content hiding under fixed navbar */
+}
+body {
+  padding-top: 80px; /* adjust according to header height */
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f9fa;
-    padding: 10px 20px;
-    border-bottom: 1px solid #dee2e6;
-  }
-  
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .logo {
-    height: 40px;
-    width: 165px;
-  }
-  
-  .title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .header-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logout-btn {
-    background-color: transparent;
-    border: none;
-    color: #333;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-  }
-  
-  .logout-btn i {
-    font-size: 18px;
-  }
-  
-  .logout-btn:hover {
-    color: #dc3545;
-  }
-  .hamburger-btn {
-    background: none;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    align-items: center;
-    margin-left: 70px;
-    border-radius: 5px;
-    background-color: rgb(11, 210, 236);
-  }
-  
-  
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.nav-link {
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.btn-outline-danger {
+  display: flex;
+  align-items: center;
+}

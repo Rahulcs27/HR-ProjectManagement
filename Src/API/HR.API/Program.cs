@@ -6,6 +6,10 @@ using HR.Persistence;
 using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
+using HR.Application.Profiles;
+using HR.Persistence.Context;
+
+
 namespace HR.API
 {
     public class Program
@@ -44,21 +48,47 @@ namespace HR.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddPersistenceServices(builder.Configuration);
+            builder.Services.AddServiceRegistration(builder.Configuration);
+
+
+            // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+
+
             // CORS policy
             builder.Services.AddCors(o => o.AddPolicy("MyPolicy",
                     builder =>
                     {
                         builder.AllowAnyOrigin()
+                        builder.WithOrigins("http://localhost:4200")
                                .AllowAnyMethod()
                                .AllowAnyHeader();
                     }));
 
-            var app = builder.Build();
+            //app.UseCors(x => x
+            //                        .AllowAnyOrigin()
+            //                        .AllowAnyMethod()
+            //                        .AllowAnyHeader());
+           
+        
 
-            // Use CORS
-            app.UseCors("MyPolicy");
+            app.UseCors("AllowAll");
 
-            // Configure the HTTP request pipeline
+
+            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

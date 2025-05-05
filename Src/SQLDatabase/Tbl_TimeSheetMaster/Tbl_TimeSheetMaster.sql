@@ -1,6 +1,5 @@
  
-ALTER TABLE Tbl_TimeSheetMaster
-ADD TimeSheetStatus bit;
+drop table Tbl_TimeSheetMaster
 
 create table Tbl_TimeSheetMaster
 (
@@ -9,7 +8,9 @@ create table Tbl_TimeSheetMaster
 	StartDate DateTime2 not null,
 	EndDate DateTime2 not null,
 	Fk_EmployeeId int not null,
-	JobId int not null,
+	Fk_JobId int not null,
+
+	TimeSheetStatus bit,
 	CreatedBy int ,
 	CreatedDate DateTime2,
 

@@ -153,7 +153,6 @@ namespace HR.Identity.Services
             return response;
         }
 
-
         public void RemoveOtp(string userName)
         {
             _cache.Remove(userName);

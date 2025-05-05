@@ -28,3 +28,5 @@ BEGIN
         GETDATE()
 		)
 End
+
+select * from TimeSheets

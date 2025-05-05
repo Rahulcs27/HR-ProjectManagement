@@ -1,66 +1,136 @@
-﻿using HR.Application.Contracts.Models.Persistence;
-using HR.Application.Features.Employee.Commands.CreateEmployeeMaster;
-using HR.Domain.Entities;
+using HR.Application.Contracts.Models.Common;
+using HR.Application.Contracts.Persistence;
+using HR.Application.Features.Employee.Queries.GetAllEmployees;
+using HR.Application.Features.Employee.Queries.GetEmployeeProfile;
+using HR.Persistence.Context;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace HR.Persistence.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class Employeerepository : IEmployeeRepository
+
     {
         readonly AppDbContext _appDbContext;
-        public EmployeeRepository(AppDbContext appDbContext)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public Employeerepository(AppDbContext dbContext,IHttpContextAccessor httpContextAccessor)
         {
-            _appDbContext = appDbContext;
+
+            _appDbContext = dbContext;
+            _httpContextAccessor = httpContextAccessor;
 
         }
 
-
-        public async Task<EmployeeMaster> AddEmployee(CreateEmployeeMasterDto employee)
+        public async Task<PaginatedResult<GetAllEmployeeVm>> GetAllEmployeeSummaryPagedAsync(int pageNumber, int pageSize)
         {
-            string sql = @"EXEC SP_Employee_insert 
-                    @Code = {0}, 
-                    @Name = {1}, 
-                    @Address = {2}, 
-                    @MobileNo = {3}, 
-                    @SkypeId = {4}, 
-                    @JoinDate = {5}, 
-                    @Email = {6}, 
-                    @BccEmail = {7}, 
-                    @PanNumber = {8}, 
-                    @BirthDate = {9}, 
-                    @Image = {10}, 
-                    @Signature = {11}, 
-                    @LoginStatus = {12}, 
-                    @LeftCompany = {13}, 
-                    @leftDate = {14}, 
-                    @Fk_LocationId = {15}, 
-                    @Fk_DesignationId = {16}, 
-                    @Fk_ShiftId = {17}, 
-                    @Fk_EmployeeTypeId = {18}, 
-                    @Fk_UserGroupId = {19}";
+            var allData = await _appDbContext.GetAllEmployeeVms
+                .FromSqlRaw("EXEC SP_GetAllEmployeeSummary")
+                .ToListAsync();
+
+            var totalCount = allData.Count;
+
+            var pagedData = allData
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new PaginatedResult<GetAllEmployeeVm>(pagedData, totalCount, pageNumber, pageSize);
+        }
+
+        public async Task<string> MakeEmployeeActiveAsync(string code)
+        {
+            var result = await _appDbContext
+                .Database
+                .ExecuteSqlRawAsync("Exec dbo.SP_MakeEmployeeActive @Code={0}", code);
+            return result > 0 ? "Employee is Activated Successfully" : "Failed to activate Employee";
+        }
+
+        public async Task<string> MakeEmployeeInactiveAsync(string code)
+        {
+            var result = await _appDbContext
+                 .Database
+                 .ExecuteSqlRawAsync("EXEC dbo.SP_MakeEmployeeInactive @Code = {0}",code);
+
+            return result > 0 ? "Employee is inactive successfully" : "Failed to inactivate employee";
+        }
+public async Task<GetEmployeeProfileQueryVm> GetEmployeeProfileAsync(string  code)
+{
+            var employeeProfile = _appDbContext
+        .Set<GetEmployeeProfileQueryVm>()
+        .FromSqlRaw("EXEC GetEmployeeProfile @Code = {0}", code)
+        .AsNoTracking()
+        .AsEnumerable()
+        .FirstOrDefault();
+
+    return await Task.FromResult(employeeProfile);
+}
+
+public async Task<EmployeeMaster> AddEmployee(CreateEmployeeMasterDto employee)
+        {
+            Console.WriteLine(employee.Image);
+
+            byte[] imageBytes = employee.Image != null ? Convert.FromBase64String(employee.Image) : null;
+            byte[] signatureBytes = employee.Signature != null ? Convert.FromBase64String(employee.Signature) : null;
+
+            var parameters = new List<SqlParameter>
+{   new SqlParameter("@Name", employee.Name ?? (object)DBNull.Value),
+    new SqlParameter("@Code", employee.Code ?? (object)DBNull.Value),
+
+    new SqlParameter("@Address", employee.Address ?? (object)DBNull.Value),
+    new SqlParameter("@MobileNo", employee.MobileNo ?? (object)DBNull.Value),
+    new SqlParameter("@SkypeId", employee.SkypeId ?? (object)DBNull.Value),
+    new SqlParameter("@JoinDate", (object?)employee.JoinDate ?? DBNull.Value),
+    new SqlParameter("@Email", employee.Email ?? (object)DBNull.Value),
+    new SqlParameter("@BccEmail", employee.BccEmail ?? (object)DBNull.Value),
+    new SqlParameter("@PanNumber", employee.PanNumber ?? (object)DBNull.Value),
+    new SqlParameter("@BirthDate", (object?)employee.BirthDate ?? DBNull.Value),
+
+
+    new SqlParameter("@Image", SqlDbType.VarBinary) { Value = (object?)imageBytes ?? DBNull.Value },
+    new SqlParameter("@Signature", SqlDbType.VarBinary) { Value = (object?)signatureBytes ?? DBNull.Value },
+
+    new SqlParameter("@LoginStatus", employee.LoginStatus),
+    new SqlParameter("@LeftCompany", (object?)employee.LeftCompany ?? DBNull.Value),
+    new SqlParameter("@leftDate", (object?)employee.LeaveCompany ?? DBNull.Value),
+
+    new SqlParameter("@Fk_LocationId", (object?)employee.LocationId ?? DBNull.Value),
+    new SqlParameter("@Fk_DesignationId", (object?)employee.DesignationId ?? DBNull.Value),
+    new SqlParameter("@Fk_ShiftId", (object?)employee.ShiftId ?? DBNull.Value),
+    new SqlParameter("@Fk_EmployeeTypeId", (object?)employee.EmployeeTypeId ?? DBNull.Value),
+    new SqlParameter("@Fk_UserGroupId", (object?)employee.UserGroupId ?? DBNull.Value),
+    new SqlParameter("@Fk_BranchId", (object?)employee.BranchId ?? DBNull.Value),
+    new SqlParameter("@Fk_DivisionId", (object?)employee.DivisionId ?? DBNull.Value),
+};
+
 
             await _appDbContext.Database.ExecuteSqlRawAsync(
-                sql,
-                employee.Code,
-                employee.Name,
-                employee.Address,
-                employee.MobileNo,
-                employee.SkypeId,
-                employee.JoinDate,
-                employee.Email,
-                employee.BccEmail,
-                employee.PanNumber,
-                employee.BirthDate,
-                employee.Image,
-                employee.Signature,
-                employee.LoginStatus,
-                employee.LeftCompany,
-                employee.LeaveCompany,  // Fix: Property name corrected from `LeftCompany`
-                employee.LocationId,
-                employee.DesignationId,
-                employee.ShiftId,
-                employee.EmployeeTypeId,
-                employee.UsergroupId
+                @"EXEC SP_Employee_insert 
+            @Name,
+            @Code, 
+            
+            @Address, 
+            @MobileNo, 
+            @SkypeId, 
+            @JoinDate, 
+            @Email, 
+            @BccEmail, 
+            @PanNumber, 
+            @BirthDate,
+            @Image, 
+            @Signature, 
+            @LoginStatus, 
+            @LeftCompany, 
+            @leftDate, 
+            @Fk_LocationId, 
+            @Fk_DesignationId, 
+            @Fk_ShiftId, 
+            @Fk_EmployeeTypeId, 
+            @Fk_UserGroupId,
+            @Fk_BranchId,
+            @Fk_DivisionId",
+                parameters.ToArray()
             );
 
             return new EmployeeMaster
@@ -74,30 +144,21 @@ namespace HR.Persistence.Repositories
                 Email = employee.Email,
                 BccEmail = employee.BccEmail,
                 PanNumber = employee.PanNumber,
-                BirthtDate = employee.BirthDate,
-                Image = employee.Image,
-                Signature = employee.Signature,
+                BirthDate = employee.BirthDate,
+                Image = imageBytes,
+                Signature = signatureBytes,
                 LoginStatus = employee.LoginStatus,
                 LeftCompany = employee.LeftCompany,
-                LeaveCompany = employee.LeaveCompany,  // Fix: Property name corrected
-                CountryId = employee.LocationId,
+                LeaveCompany = employee.LeaveCompany,
+                LocationId = employee.LocationId,
                 DesignationId = employee.DesignationId,
                 ShiftId = employee.ShiftId,
                 EmployeeTypeId = employee.EmployeeTypeId,
-                UsergroupId = employee.UsergroupId,
+                UserGroupId = employee.UserGroupId,
+                BranchId = employee.BranchId,
+                DivisionId = employee.DivisionId
             };
         }
 
-
-
     }
 }
-
-
-
-
-
-
-
-
-

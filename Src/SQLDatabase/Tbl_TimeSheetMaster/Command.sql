@@ -1,11 +1,7 @@
-EXEC SP_TimeSheetMasterInsert
-    @StartDate = '2024-04-01 09:00:00',
-    @EndDate = '2024-04-30 18:00:00',
-    @Fk_EmployeeId = 1, 
-	
-	@Fk_JobId =1,
-    @CreatedBy = 1001;
-
-	select * from Tbl_TimeSheetMaster
-
-	delete  Tbl_TimeSheetMaster  where TimeSheetMasterId =3
+EXEC SP_TimeSheetInsert  
+    @StartDate = '2025-04-01 09:00:00',  
+    @EndDate = '2025-04-07 17:00:00',  
+    @Fk_EmployeeId = 1,       -- Replace with an actual employee ID  
+    @FK_JobId = 101,          -- Replace with an actual job ID  
+    @CreatedBy = 1,           -- Replace with the ID of the user who is inserting  
+    @TimeSheetStatus = 1;     -- 1 for Active, 0 for Inactive

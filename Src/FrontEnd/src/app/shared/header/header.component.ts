@@ -13,6 +13,7 @@ export class HeaderComponent {
   logout() {
     localStorage.clear();
     sessionStorage.clear();
+    // Clear session or token
     this.router.navigate(['/login']);
   }
 
