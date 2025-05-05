@@ -6,7 +6,7 @@ import { SettingsComponent } from './features/Master/settings/settings.component
 import { ChangePasswordComponent } from './features/Profile/change-password/change-password.component';
 import { LefSideNavComponent } from './shared/lef-side-nav/lef-side-nav.component';
 import { GmcComponent } from './features/Master/gmc/gmc.component';
-
+import { AuthGuard } from './auth.guard';
 import { TimesheetUpdateComponent } from './features/Hr/timesheet-update/timesheet-update.component';
 
 import { EmployeeComponent } from './features/Master/employee/employee.component';
@@ -19,29 +19,23 @@ import { TeamCompositionComponent } from './features/Master/team-composition/tea
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'sidebar', component: LefSideNavComponent },
+  // { path: 'otp', component: OtpComponent  },
+  
+  
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'gmc', component: GmcComponent, canActivate: [AuthGuard] },
+  { path: 'sidebar', component: LefSideNavComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' },
+  { path: '', component: LoginComponent },
   { path: 'team-composition', component: TeamCompositionComponent },
-
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'settings', component: SettingsComponent },
   { path: 'country', component: CountryComponent },
   { path: 'state', component: StateComponent },
   { path: 'holiday', component: HolidayComponent },
-
-  { path: 'changePassword', component: ChangePasswordComponent },
-  { path: 'gmc', component: GmcComponent },
-
   { path: 'timesheetupdate', component: TimesheetUpdateComponent },
-
   { path: 'employee', component: EmployeeComponent },
   { path: 'employee-registration', component: EmployeeRegistrationComponent },
-
-  {path:'timesheetupdate', component:TimesheetUpdateComponent},
-
-  {path:"employee",component:EmployeeComponent},
-
-
   { path: 'otp', component: OtpComponent },
-  { path: 'sidebar', component: LefSideNavComponent },
-  { path: '**', redirectTo: '' },
+
 ];

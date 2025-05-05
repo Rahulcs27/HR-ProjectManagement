@@ -27,6 +27,7 @@ public class MappingProfile : Profile
 
     public MappingProfile()
     {
+        CreateMap<Tbl_LoginMaster, Tbl_LoginMasterDto>().ReverseMap();
 
 
         CreateMap<CreateTimeSheetDto, TimeSheet>();

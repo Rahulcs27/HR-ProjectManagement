@@ -1,11 +1,11 @@
-﻿ 
+﻿
 using HR.Application.Contracts.Models;
-using HR.Application.Contracts.Persistence;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Domain.Entities;
 using MailKit.Security;
-using Microsoft.Extensions.Options;      
+using Microsoft.Extensions.Options;
 using MimeKit;
- 
+
 
 namespace HR.Persistence.Repositories
 {

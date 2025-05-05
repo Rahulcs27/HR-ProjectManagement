@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './shared/header/header.component';
-import { LefSideNavComponent } from './shared/lef-side-nav/lef-side-nav.component';
+import { HeaderComponent } from "./shared/header/header.component";
+import { LefSideNavComponent } from "./shared/lef-side-nav/lef-side-nav.component";
 import { LoginComponent } from './features/login/login.component';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -35,7 +35,7 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        const hiddenRoutes = ['/', '/login', '/otp'];
+        const hiddenRoutes = ['/','/login', '/otp'];
         this.hideLayout = hiddenRoutes.includes(event.urlAfterRedirects);
       });
   }

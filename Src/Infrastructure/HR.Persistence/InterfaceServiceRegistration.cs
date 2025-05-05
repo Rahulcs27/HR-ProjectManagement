@@ -1,7 +1,6 @@
 ﻿
-using HR.Application.Contracts.Persistence;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Identity.Services;
-using HR.Persistence.Context;
 using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,8 +15,9 @@ namespace HR.Persistence
         public static IServiceCollection AddServiceRegistration(this IServiceCollection services ,IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("hrWebApiConnString")));
-           
+            options.UseSqlServer(configuration.GetConnectionString("HrConnString")));
+            services.AddScoped<ILoginService, LoginServices>();
+
 
           
             return services;

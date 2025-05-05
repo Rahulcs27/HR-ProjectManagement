@@ -1,8 +1,10 @@
 ﻿using HR.Application.Contracts.Models;
-using HR.Application.Contracts.Persistence;
+using HR.Application.Contracts.Models.Persistence;
+using HR.Application.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HR.API.Controllers 
+namespace HR.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -17,9 +19,9 @@ namespace HR.API.Controllers
 
         //login first
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResponse>>Login(LoginRequest loginRequest)
+        public async Task<ActionResult<LoginResponse>>Login(Tbl_LoginMasterDto tbloginRequest)
         {
-            var response=await _loginService.Login(loginRequest);
+            var response=await _loginService.Login(tbloginRequest);
             return Ok(response);
         }
 
@@ -50,41 +52,41 @@ namespace HR.API.Controllers
 
        // verifying the otp and chnaging the password if the otp is correct
 
-        //[HttpPost("verify-otp")]
-        //public async Task<IActionResult> VerifyOtpAndChangePassword( ChangePassword changePasswordRequest)
-        //{
-        //    try
-        //    {
+        [HttpPost("verify-otp")]
+        public async Task<IActionResult> VerifyOtpAndChangePassword( ChangePassword changePasswordRequest)
+        {
+            try
+            {
                 
-        //        bool isPasswordChanged = await _loginService.ChangePassword(changePasswordRequest);
+                bool isPasswordChanged = await _loginService.ChangePassword(changePasswordRequest);
 
-        //        if (isPasswordChanged)
-        //        {
-        //            return Ok(new { message = "Password changed successfully!!!" });
-        //        }
-        //        else
-        //        {
-        //            return BadRequest(new { message = "OTP verification failed." });
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(new { message = ex.Message });
-        //    }
-        //}
+                if (isPasswordChanged)
+                {
+                    return Ok(new { message = "Password changed successfully!!!" });
+                }
+                else
+                {
+                    return BadRequest(new { message = "OTP verification failed." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
 
-        ////update password
-        //[HttpPost("update_password")]
-        //public async Task<IActionResult> UpdatePasswrd(UpdatePasswordRequest updatePasswordRequest)
-        //{
-        //    var result = await _loginService.UpdatePassword(updatePasswordRequest);
-        //    if (!result)
-        //    {
-        //        return BadRequest("Password update failed. Check your input and try again.");                
-        //    }
-        //    return Ok("Password Updated Successfully");
-        //}
+        //update password
+        [HttpPost("update_password")]
+        public async Task<IActionResult> UpdatePasswrd(UpdatePasswordRequest updatePasswordRequest)
+        {
+            var result = await _loginService.UpdatePassword(updatePasswordRequest);
+            if (!result)
+            {
+                return BadRequest("Password update failed. Check your input and try again.");                
+            }
+            return Ok("Password Updated Successfully");
+        }
     }
 }
 
