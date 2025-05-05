@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HR.Application.Exception
+namespace HR.Application.Features.GMC.Queries.GetAllFamilyDetails
 {
-    internal class Class1
+    class GetAllFamilyDetailsQuery
     {
     }
 }

@@ -16,6 +16,7 @@ import { CountryComponent } from './features/Master/settings/country/country.com
 import { StateComponent } from './features/Master/settings/state/state-component.component';
 import { HolidayComponent } from './features/Master/holiday/holiday.component';
 import { TeamCompositionComponent } from './features/Master/team-composition/team-composition.component';
+
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'sidebar', component: LefSideNavComponent },
@@ -34,6 +35,11 @@ export const routes: Routes = [
 
   { path: 'employee', component: EmployeeComponent },
   { path: 'employee-registration', component: EmployeeRegistrationComponent },
+
+  {path:'timesheetupdate', component:TimesheetUpdateComponent},
+
+  {path:"employee",component:EmployeeComponent},
+
 
   { path: 'otp', component: OtpComponent },
   { path: 'sidebar', component: LefSideNavComponent },

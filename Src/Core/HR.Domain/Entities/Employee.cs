@@ -1,4 +1,4 @@
-﻿namespace HR.Domain.Entities
+namespace HR.Domain.Entities
 
 {
     public class EmployeeMaster

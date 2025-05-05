@@ -1,4 +1,5 @@
 using HR.Application;
+using HR.Domain.Entities;
 using HR.Application.Profiles;
 using HR.Persistence;
 using HR.Persistence.Context;
@@ -25,18 +26,24 @@ namespace HR.API
             builder.Services.AddApplicationServices();
 
             builder.Services.AddPersistenceServices(builder.Configuration);
+            builder.Services.AddServiceRegistration(builder.Configuration);
 
 
-            // Register Repositories
-
-
-            // Register AutoMapper
-            builder.Services.AddAutoMapper(typeof(MappingProfile));  // Ensure MappingProfile is the correct profile class
-
-            // Add services to the container
+            // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
+
 
             // CORS policy
             builder.Services.AddCors(o => o.AddPolicy("MyPolicy",
@@ -47,12 +54,17 @@ namespace HR.API
                                .AllowAnyHeader();
                     }));
 
-            var app = builder.Build();
+            //app.UseCors(x => x
+            //                        .AllowAnyOrigin()
+            //                        .AllowAnyMethod()
+            //                        .AllowAnyHeader());
+           
+        
 
-            // Use CORS
-            app.UseCors("MyPolicy");
+            app.UseCors("AllowAll");
 
-            // Configure the HTTP request pipeline
+
+            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,6 +73,8 @@ namespace HR.API
             }
 
             app.UseHttpsRedirection();
+         
+
 
             app.UseAuthorization();
 
