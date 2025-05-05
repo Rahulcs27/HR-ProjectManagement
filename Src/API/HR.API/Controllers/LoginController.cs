@@ -1,10 +1,10 @@
 ﻿using HR.Application.Contracts.Models;
-using HR.Application.Contracts.Persistence;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Application.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HR.API.Controllers 
+namespace HR.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

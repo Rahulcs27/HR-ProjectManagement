@@ -1,5 +1,5 @@
 using HR.Application;
-using HR.Application.Contracts.Persistence;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Application.Mapper;
 using HR.Domain.Entities;
 using HR.Persistence;
@@ -34,7 +34,7 @@ namespace HR.API
             //------------------------------------------------------------------------------------------
 
             // Register Repositories
-            builder.Services.AddScoped<IEmployeeMasterRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             // Register AutoMapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));  // Ensure MappingProfile is the correct profile class

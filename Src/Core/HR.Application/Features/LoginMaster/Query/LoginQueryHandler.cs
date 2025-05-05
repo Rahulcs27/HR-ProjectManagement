@@ -2,7 +2,7 @@
 
 using AutoMapper;
 using HR.Application.Contracts.Models;
-using HR.Application.Contracts.Persistence;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Application.Dtos;
 using MediatR;
 

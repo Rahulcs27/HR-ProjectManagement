@@ -1,5 +1,5 @@
 ﻿
-using HR.Application.Contracts.Persistence;
+using HR.Application.Contracts.Models.Persistence;
 using HR.Identity.Services;
 using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;

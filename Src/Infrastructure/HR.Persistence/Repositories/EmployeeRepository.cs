@@ -1,11 +1,11 @@
-﻿using HR.Application.Contracts.Persistence;
+﻿using HR.Application.Contracts.Models.Persistence;
 using HR.Application.Features.Employee.Commands.CreateEmployeeMaster;
 using HR.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HR.Persistence.Repositories
 {
-    public class EmployeeRepository : IEmployeeMasterRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         readonly AppDbContext _appDbContext;
         public EmployeeRepository(AppDbContext appDbContext)

@@ -1,5 +1,4 @@
 ﻿using HR.Application.Contracts.Models;
-using HR.Application.Contracts.Persistence;
 using HR.Domain.Entities;
 using HR.Persistence;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using HR.Application.Exceptions;
 using Microsoft.Extensions.Caching.Memory;
 using HR.Application.Dtos;
+using HR.Application.Contracts.Models.Persistence;
 
 namespace HR.Identity.Services
 {
