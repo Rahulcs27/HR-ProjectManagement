@@ -14,7 +14,7 @@ namespace HR.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var connString = builder.Configuration.GetConnectionString("HrConnString");
+            var connString = builder.Configuration.GetConnectionString("hrWebApiConnString");
 
             // Register DbContext
             builder.Services.AddDbContext<AppDbContext>(options =>
@@ -58,9 +58,9 @@ namespace HR.API
             //                        .AllowAnyOrigin()
             //                        .AllowAnyMethod()
             //                        .AllowAnyHeader());
-           
-        
 
+
+            var app = builder.Build();
             app.UseCors("AllowAll");
 
 

@@ -1,13 +1,12 @@
-﻿using HR.Application.Contracts.Models;
+﻿
+using HR.Application.Contracts.Models;
 using HR.Application.Contracts.Persistence;
 using HR.Domain.Entities;
 using HR.Persistence;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HR.Application.Exceptions;
 using Microsoft.Extensions.Caching.Memory;
 using HR.Persistence.Context;
-using Microsoft.AspNetCore.Http;
 
 
 namespace HR.Identity.Services
@@ -17,15 +16,13 @@ namespace HR.Identity.Services
         readonly AppDbContext _context;
         readonly IEmailService _emailService;
         private readonly IMemoryCache _cache;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-
-        public LoginServices(AppDbContext context, IEmailService emailService, IMemoryCache cache, IHttpContextAccessor httpContextAccessor)
+      
+        public LoginServices(AppDbContext context, IEmailService emailService, IMemoryCache cache)
         {
             _context = context;
             _emailService = emailService;
             _cache = cache;
-            _httpContextAccessor = httpContextAccessor;
+           
         }
 
         public async Task<LoginResponse> Login(LoginRequest loginRequest)

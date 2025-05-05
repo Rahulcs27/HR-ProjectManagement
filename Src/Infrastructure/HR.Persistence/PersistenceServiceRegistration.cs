@@ -1,5 +1,6 @@
 ﻿using HR.Application.Contracts.Models.Persistence;
 using HR.Application.Contracts.Persistence;
+using HR.Identity.Services;
 using HR.Persistence.Context;
 using HR.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -12,27 +13,28 @@ namespace HR.Persistence
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("hrWebApiConnString")));
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IStateRepository, StateRepository>();
             services.AddScoped<IDesignationRepository, DesignationRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IHolidayRepository, HolidayRepository>();
-            services.AddScoped<IEmployeeRepository, Employeerepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IGmcRepository, GmcRepository>();
             
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ILoginService, LoginServices>();
             // Register IHttpContextAccessor
-            services.AddHttpContextAccessor();
+            //services.AddHttpContextAccessor();
 
             // Register IMemoryCache
             services.AddMemoryCache();
 
 
             services.AddScoped<ITimeSheetRepository, TimeSheetRepository>();
-            services.AddScoped<IEmployeeMasterRepository, EmployeeRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ILocationMasterRepository, LocationMasterRepository>();
+            services.AddScoped<IBranchRepository,BranchRepository>();
 
 
 

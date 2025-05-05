@@ -2,24 +2,26 @@ using HR.Application.Contracts.Models.Common;
 using HR.Application.Contracts.Persistence;
 using HR.Application.Features.Employee.Queries.GetAllEmployees;
 using HR.Application.Features.Employee.Queries.GetEmployeeProfile;
+using HR.Domain.Entities;
 using HR.Persistence.Context;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 
 namespace HR.Persistence.Repositories
 {
-    public class Employeerepository : IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
 
     {
         readonly AppDbContext _appDbContext;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public Employeerepository(AppDbContext dbContext,IHttpContextAccessor httpContextAccessor)
+        public EmployeeRepository(AppDbContext dbContext)
         {
 
             _appDbContext = dbContext;
-            _httpContextAccessor = httpContextAccessor;
+           
 
         }
 

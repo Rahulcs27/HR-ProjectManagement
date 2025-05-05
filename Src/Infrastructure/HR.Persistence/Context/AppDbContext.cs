@@ -1,12 +1,15 @@
-﻿using HR.Application.Features.Cities.Commands.Dtos;
+﻿using HR.Application.Features.Branches.Commands.Dtos;
+using HR.Application.Features.Cities.Commands.Dtos;
 using HR.Application.Features.Countries.Commands.Dtos;
 using HR.Application.Features.Designations.Commands.Dtos;
+using HR.Application.Features.Employee.Dtos;
 using HR.Application.Features.Employee.Queries.GetAllEmployees;
 using HR.Application.Features.Employee.Queries.GetEmployeeProfile;
 using HR.Application.Features.Holidays.Commands.Dtos;
 using HR.Application.Features.Location.Query;
 using HR.Application.Features.States.Commands.Dtos;
 using HR.Application.Features.TimeSheet.Queries;
+using HR.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HR.Persistence.Context;
@@ -23,11 +26,14 @@ public class AppDbContext : DbContext
     public DbSet<StateDto> StateDtos { get; set; }
     public DbSet<DesignationDto> DesignationDtos { get; set; }
     public DbSet<CityDto> CityDtos { get; set; }
+
     public DbSet<HolidayDto> HolidayDtos { get; set; }
 
     public DbSet<EmployeeDto> Employees { get; set; }
     public DbSet<GetAllLocationDto> dtos { get; set; }
     public DbSet<GetAllTimeSheetListDto> timeSheetListDtos { get; set; }
+    public DbSet<BranchDto> BranchDtos { get; set; }
+
 
 
 
@@ -49,6 +55,9 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<EmployeeDto>().HasNoKey();
         modelBuilder.Entity<GetAllLocationDto>().HasNoKey();
         modelBuilder.Entity<GetAllTimeSheetListDto>().HasNoKey();
+
+
+        modelBuilder.Entity<BranchDto>().HasNoKey();
 
 
 

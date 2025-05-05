@@ -101,14 +101,14 @@ export class EmployeeComponent implements OnInit {
         const search = this.searchText?.toLowerCase().trim();
   
         this.employees = res.data.filter((emp: {
-          Code: string,
-          Name: string,
+          code: string,
+          name: string,
           branchName: string,
           designationName: string,
           divisionName:string
         }) =>
-          emp.Code?.toLowerCase().includes(search) ||
-          emp.Name?.toLowerCase().includes(search) ||
+          emp.code?.toLowerCase().includes(search) ||
+          emp.name?.toLowerCase().includes(search) ||
           emp.branchName?.toLowerCase().includes(search) ||
           emp.designationName?.toLowerCase().includes(search)||
           emp.divisionName?.toLowerCase().includes(search)
@@ -129,7 +129,7 @@ export class EmployeeComponent implements OnInit {
     else if(col.key=='loginStatus'){       
        row['Status'] = emp[col.key] ? 'Active' : 'Inactive';
     }
-    else if (col.key !== 'photo' && col.key !== 'action') {
+    else if (col.key !== 'image' && col.key !== 'action') {
       row[col.label] = emp[col.key];
     }
 
@@ -164,12 +164,12 @@ saveAs(data, 'Visible_Employees.xlsx');
     const tableHeaders = [
       [
         'SR. NO.',
-        'Emp Name',
-        'Emp Code',
+        'Employee Name',
+        'Employee Code',
         'Designation Name',
         'Branch Name',
         'Division Name',
-        'Employee Type',
+        
         'Login Status',
       ],
     ];
@@ -177,12 +177,12 @@ saveAs(data, 'Visible_Employees.xlsx');
     // Table Data (Only visible employees)
     const tableRows = this.employees.map((emp, i) => [
       (this.pageNumber - 1) * this.pageSize + i + 1,
-      emp.empName,
-      emp.empCode,
+      emp.name,
+      emp.code,
       emp.designationName,
       emp.branchName,
       emp.divisionName,
-      emp.employeeType,
+    
       emp.loginStatus ? 'Active' : 'Inactive',
     ]);
   
