@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HR.Application.Contracts.Models;
 
-namespace HR.Application.Contracts.Models.Persistence
+namespace HR.Application.Contracts.Persistence
 {
     public interface IEmailService
     {
