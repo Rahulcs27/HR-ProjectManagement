@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HR.Application.Features.Employee.Queries.GetEmployeeProfile;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,9 @@ namespace HR.Application.Contracts.Models
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Otp { get; set; }
+     
         public DateTime OtpExpiryTime { get; set; }
-        public bool FirstLogin { get; set; }
-        public string RoleName { get; set; }
-
-        //public int EmpId { get; set; }
+     
     }
 }
  
