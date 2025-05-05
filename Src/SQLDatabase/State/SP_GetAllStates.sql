@@ -14,4 +14,3 @@ BEGIN
 END;
 
 exec dbo.SP_GetAllStates
-

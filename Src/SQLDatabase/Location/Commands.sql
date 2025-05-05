@@ -22,4 +22,3 @@ EXEC SP_GetLocationById @LocationId = 1;
 
 	
 
-

@@ -1,15 +1,19 @@
-
-CREATE OR ALTER PROCEDURE dbo.SP_DesignationDelete
-    @DesignationId INT,
-    @UpdatedBy INT
+CREATE OR ALTER PROCEDURE dbo.SP_GetAllCities
 AS
 BEGIN
-    UPDATE Tbl_DesignationMaster
-    SET 
-        DesignationStatus = 0,
-        UpdatedBy = @UpdatedBy,
-        UpdatedDate = GETDATE()
-    WHERE DesignationId = @DesignationId;
+    SELECT 
+        C.CityId,
+        C.CityName,
+        C.CityStatus,
 
-    SELECT 'Division Deleted Successfully' AS Message;
+        S.StateId,
+        S.StateName,
+
+        CO.CountryId,
+        CO.CountryName
+
+    FROM Tbl_CityMaster C
+    INNER JOIN Tbl_StateMaster S ON C.Fk_StateId = S.StateId
+    INNER JOIN Tbl_CountryMaster CO ON S.Fk_CountryId = CO.CountryId
+    WHERE C.CityStatus = 1;
 END;

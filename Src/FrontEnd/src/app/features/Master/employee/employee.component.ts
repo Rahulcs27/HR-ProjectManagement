@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Employee } from '../../../Models/employee-model';
 import { EmployeeService } from '../../../services/employee-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -38,11 +39,13 @@ export class EmployeeComponent implements OnInit {
     { key: 'divisionName', label: 'Division' },
     { key: 'userGroupName', label: 'User Group' },
     { key: 'loginStatus', label: 'Status' },
-    { key: 'action', label: 'Action' }
+    { key: 'action', label: 'Action' },
   ];
 
-  constructor(private employeeService: EmployeeService,private dialog: MatDialog) {}
-
+  constructor(
+    private employeeService: EmployeeService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadEmployees();
