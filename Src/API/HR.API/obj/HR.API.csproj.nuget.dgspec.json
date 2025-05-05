@@ -36,6 +36,9 @@
               "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
                 "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
               },
+              "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
+                "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
+              },
               "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj": {
                 "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Persistence\\HR.Persistence.csproj"
               }
@@ -58,6 +61,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -117,9 +132,6 @@
             "projectReferences": {
               "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj": {
                 "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj"
-              },
-              "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
               }
             }
           }
@@ -143,10 +155,6 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[14.0.0, )"
-            },
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.5.1, )"
             },
             "MediatR": {
               "target": "Package",
@@ -267,7 +275,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
+                "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -285,6 +297,26 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.15, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -337,8 +369,8 @@
               "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj": {
                 "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Application\\HR.Application.csproj"
               },
-              "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Core\\HR.Domain\\HR.Domain.csproj"
+              "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj": {
+                "projectPath": "C:\\Users\\User\\OneDrive\\Documents\\Demo Project\\frontendbranch\\HR-ProjectManagement\\Src\\Infrastructure\\HR.Identity\\HR.Identity.csproj"
               }
             }
           }
@@ -361,31 +393,23 @@
           "dependencies": {
             "MailKit": {
               "target": "Package",
-              "version": "[4.11.0, )"
+              "version": "[4.12.0, )"
             },
-            "Microsoft.AspNetCore.Http.Abstractions": {
+            "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[2.3.0, )"
-            },
-            "Microsoft.AspNetCore.Http.Extensions": {
-              "target": "Package",
-              "version": "[2.3.0, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[6.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[8.0.15, )"
             },
-            "Microsoft.Extensions.Identity.Core": {
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[8.0.0, )"
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.11.0, )"
+              "version": "[4.12.0, )"
             }
           },
           "imports": [

@@ -1,5 +1,5 @@
 
-CREATE TABLE Tbl_DivisionMaster (
+CREATE TABLE dbo.Tbl_DivisionMaster (
     DivisionId INT IDENTITY(1,1) PRIMARY KEY,
     DivisionName NVARCHAR(75) NOT NULL,
     ProjectManagerName NVARCHAR(100) NOT NULL,

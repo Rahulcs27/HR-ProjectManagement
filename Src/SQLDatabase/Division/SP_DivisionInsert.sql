@@ -1,5 +1,5 @@
 
-CREATE OR ALTER PROCEDURE usp_AddDivision
+CREATE OR ALTER PROCEDURE SP_DivisionInsert
     @DivisionName NVARCHAR(75),
     @ProjectManagerName NVARCHAR(100),
     @PrefixName NVARCHAR(20),

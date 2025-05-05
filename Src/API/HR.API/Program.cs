@@ -1,17 +1,8 @@
 
-using HR.Application.Contracts.Persistence;
 using HR.Identity;
-using HR.Persistence.Repositories;
-using Microsoft.EntityFrameworkCore;
-using HR.Application;
-using HR.Persistence.Context;
-using Microsoft.Extensions.DependencyInjection;
 using HR.Persistence;
+using HR.Application;
 using HR.Domain.Entities;
-using System.Reflection;
-using System.Reflection.Metadata;
-
-
 
 namespace HR.API
 {
@@ -22,36 +13,14 @@ namespace HR.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddApplicationServices();
+            
+            builder.Services.AddPersistenceServices(builder.Configuration);
+            builder.Services.AddServiceRegistration(builder.Configuration);
 
-            //builder.Services.AddIdentityServices(builder.Configuration);
-            //builder.Services.AddInterfaceServices(builder.Configuration);
             // builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
             // builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
-
-            // Add DbContext
-            //builder.Services.AddDbContext<AppDbContext>(options =>
-            //    options.UseSqlServer(builder.Configuration.GetConnectionString("hrWebApiConnString")));
-
-            // Register repository
-            builder.Services.AddScoped<IEmployeeRepository, Employeerepository>();
-            builder.Services.AddScoped<IGmcRepository, GmcRepository>();
             builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-            builder.Services.AddScoped<IEmailService, EmailService>();
-            builder.Services.AddMemoryCache();
-            builder.Services.AddServiceRegistration(builder.Configuration);
-            //builder.Services.AddDistributedMemoryCache();
-
-            ////builder.Services.AddSession();
-            //builder.Services.AddSession(options =>
-            //{   
-            //    options.IdleTimeout = TimeSpan.FromMinutes(30);
-            //    options.Cookie.HttpOnly = true;
-            //    options.Cookie.IsEssential = true;
-            //});
-            builder.Services.AddHttpContextAccessor();
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -68,6 +37,10 @@ namespace HR.API
 
 
             var app = builder.Build();
+            app.UseCors(x => x
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 
             //app.UseCors(x => x
             //                        .AllowAnyOrigin()

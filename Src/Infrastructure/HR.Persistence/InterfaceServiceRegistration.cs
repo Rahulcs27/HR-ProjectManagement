@@ -17,8 +17,7 @@ namespace HR.Persistence
         {
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("hrWebApiConnString")));
-            services.AddScoped<ILoginService, LoginServices>();
-
+           
 
           
             return services;
